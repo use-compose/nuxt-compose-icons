@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "dev": "pnpm --filter core dev",
+    "dev:prepare": "pnpm --filter core dev:prepare",
+    "dev:generate": "pnpm --filter core dev:generate"
   },
   "keywords": [],
   "author": "",

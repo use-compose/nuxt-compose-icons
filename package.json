@@ -10,7 +10,10 @@
     "prepare": "husky",
     "dev": "pnpm --filter core dev",
     "dev:prepare": "pnpm --filter core dev:prepare",
-    "dev:build": "pnpm --filter core dev:build"
+    "dev:build": "pnpm --filter core dev:build",
+    "docs:dev": "pnpm --filter docs docs:dev",
+    "docs:build": "pnpm --filter docs docs:build",
+    "docs:preview": "pnpm --filter docs docs:preview"
   },
   "keywords": [],
   "author": "",
@@ -34,5 +37,9 @@
       "eslint --fix"
     ],
     "**/*": "prettier --write --ignore-unknown"
+  },
+  "dependencies": {
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0"
   }
 }

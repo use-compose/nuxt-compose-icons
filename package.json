@@ -10,7 +10,7 @@
     "prepare": "husky",
     "dev": "pnpm --filter core dev",
     "dev:prepare": "pnpm --filter core dev:prepare",
-    "dev:generate": "pnpm --filter core dev:generate"
+    "dev:build": "pnpm --filter core dev:build"
   },
   "keywords": [],
   "author": "",

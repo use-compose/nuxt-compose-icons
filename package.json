@@ -44,6 +44,7 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
+    "prettier-plugin-organize-imports": "^4.1.0",
     "typescript": "~5.8.2",
     "vite": "^6.2.0"
   }

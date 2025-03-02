@@ -1,0 +1,25 @@
+.home-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  background: linear-gradient(0deg, #070101 0%, #2f0a0b 50%, #070101 100%);
+}
+
+.wrapper {
+  width: clamp(16rem, 90svw, 90rem);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+// @media (min-width: 960px) {
+.VPLocalNav.empty {
+  display: none;
+}
+// }
+
+.container {
+  // container-type: inline-size;
+}

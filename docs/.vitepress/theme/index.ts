@@ -1,17 +1,26 @@
 // https://vitepress.dev/guide/custom-theme
-import { h } from 'vue';
 import type { Theme } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
-import './style.css';
+import 'vue-code-highlighter/dist/style.css'; // dont forget to import
+import './assets/scss/main.scss';
+import './assets/scss/style.scss';
+import CustomLayout from './CustomLayout.vue';
+import './theme.css';
 
 export default {
   extends: DefaultTheme,
-  Layout: () => {
-    return h(DefaultTheme.Layout, null, {
-      // https://vitepress.dev/guide/extending-default-theme#layout-slots
-    });
-  },
-  // enhanceApp({ app, router, siteData }) {
-  // ...
-  // }
+  Layout: CustomLayout,
+  // Layout: () => {
+  //   return h(DefaultTheme.Layout, null, {
+  //     // https://vitepress.dev/guide/extending-default-theme#layout-slots
+  //   })
+  // },
+  // enhanceApp({ app }: EnhanceAppContext) {
+  // const moduleFile = import.meta.url('vue3-code-highlighter');
+  // console.log('📟 - file: index.ts:20 - moduleFile → ', moduleFile.VueCodeHighlighter);
+  // app.use(TwoslashFloatingVue);
+  // app.component('VueCodeHighlighter', VueCodeHighlighter);
+  // console.log('📟 - file: index.ts:33 - VueCodeHighlighter → ', VueCodeHighlighter);
+  // app.component('VueCodeHighlighterMulti', VueCodeHighlighterMulti);
+  // },
 } satisfies Theme;

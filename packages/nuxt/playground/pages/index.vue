@@ -1,0 +1,64 @@
+<template>
+  <div class="container">
+    <div class="icon-overview">
+      <Component
+        :is="component"
+        v-for="(component, index) in components"
+        :key="index"
+        :color="iconStyles"
+        :class="iconSize"
+        :someProp="`Component ${index + 1}`"
+      />
+      <AlarmBellIcon />
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { type Component } from 'vue';
+import * as AllIcons from '../../src/runtime/components/icons-generated';
+import type { ComposeIconSize } from '../../src/runtime/types';
+import { IconSize } from '../../src/runtime/types';
+import { getIconSizeClass } from '../../src/runtime/utils';
+
+interface IconOverviewProps {
+  size: ComposeIconSize;
+  color: string;
+}
+
+const props = defineProps<IconOverviewProps>();
+
+// const components = ref<ReturnType<typeof defineAsyncComponent>[]>([]);
+const components = ref<(Component | string)[]>([]);
+
+const loadComponents = () => {
+  return Object.keys(AllIcons).map((file) => {
+    const component = resolveComponent(file);
+    return component;
+  });
+};
+
+onMounted(() => {
+  components.value = loadComponents();
+});
+
+const iconSize = computed(() => {
+  return getIconSizeClass(IconSize.md || 'xl');
+});
+
+const iconStyles = computed(() => {
+  return props.color;
+});
+</script>
+
+<style scoped>
+.container {
+  min-height: 100svh;
+  align-content: center;
+}
+.icon-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(1rem, 1fr));
+  gap: 2rem;
+}
+</style>

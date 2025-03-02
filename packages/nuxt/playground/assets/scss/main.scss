@@ -1,0 +1,35 @@
+@import './_variables.scss';
+
+body {
+  margin: 0;
+  background-color: $slate-800;
+  font-family: 'gotham-book', sans-serif;
+  // font-family: "CaviarDreams", sans-serif;
+  font-weight: 400;
+  color: #fff;
+}
+
+/* https://css-tricks.com/best-way-implement-wrapper-css/ */
+// https://css-tricks.com/use-css-clamp-to-create-a-more-flexible-wrapper-utility/
+.wrapper {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1440px;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+/* @link https://utopia.fyi/type/calculator?c=320,16,1.125,1240,16,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'gotham-black', sans-serif;
+}
+
+.primary {
+  color: $green-400;
+}

@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { type Component } from 'vue';
+import { computed, onMounted, ref, resolveComponent, type Component } from 'vue';
 import * as AllIcons from '../../src/runtime/components/icons-generated';
 import type { ComposeIconSize } from '../../src/runtime/types';
 import { IconSize } from '../../src/runtime/types';

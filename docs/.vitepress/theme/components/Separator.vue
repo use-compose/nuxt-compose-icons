@@ -26,7 +26,7 @@ const getStyles = computed(() => {
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '../assets/scss/abstracts/mixins';
 
 .separator {

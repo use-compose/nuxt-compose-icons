@@ -43,9 +43,9 @@ const icons = ref([
 const generateRandomStyles = () => {
   return Array.from({ length: 10 }, () => ({
     style: {
-      '--top': `${Math.random() * 90 + 10}%`, // 10% to 90%
-      '--left': `${Math.random() * 90 + 20}%`, // 10% to 90%
-      '--scale': `${Math.random() * 90 + 10}%`, // 50% to 100%
+      '--top': `${Math.random() * 70 + 1}%`, // 10% to 90%
+      '--left': `${Math.random() * 80 + 1}%`, // 10% to 90%
+      '--scale': `${Math.random() * 90 + 50}%`, // 50% to 100%
     },
   }));
 };

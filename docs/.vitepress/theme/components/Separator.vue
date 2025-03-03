@@ -10,7 +10,10 @@ interface SeparatorProps {
   height?: number | string;
   noMargin?: boolean;
 }
-const props = defineProps<SeparatorProps>();
+const props = withDefaults(defineProps<SeparatorProps>(), {
+  width: '25%',
+  noMargin: false,
+});
 
 const getStyles = computed(() => {
   const width = Number.isInteger(props.width) ? `${props.width}px` : props.width;
@@ -31,8 +34,8 @@ const getStyles = computed(() => {
   background-color: var(--clr-primary);
   height: 5px;
 
-  @include media(desktop) {
-    height: 8px;
+  @include media('lg') {
+    height: 12px;
   }
 }
 </style>

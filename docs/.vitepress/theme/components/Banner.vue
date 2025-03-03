@@ -2,15 +2,14 @@
   <section class="banner">
     <HighlightedText tag="h1" labeled class="heading">
       <template #highlighted> Compose </template>your own Icon components library
+      <h2 class="tagline text-xl">
+        Automatically generates customizable Vue components based on SVG files
+      </h2>
+      <Separator />
     </HighlightedText>
-    <p class="tagline text-xl">
-      Nuxt
-      <HighlightedText tag="span"><template #highlighted>Compose</template></HighlightedText>
-      Ico<span class="primary">n</span>s is a Module that automatically generates customizable Vue
-      components based on SVG files
-    </p>
+
     <IconOverview />
-    <ModuleTemplateExample class="module-template-example" />
+    <ModuleTemplateExample />
 
     <Features />
   </section>
@@ -21,9 +20,10 @@ import Features from './Features.vue';
 import HighlightedText from './HighlightedText.vue';
 import IconOverview from './IconOverview.vue';
 import ModuleTemplateExample from './ModuleTemplateExample.vue';
+import Separator from './Separator.vue';
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '../assets/scss/abstracts/mixins';
 
 .banner {
@@ -31,7 +31,6 @@ import ModuleTemplateExample from './ModuleTemplateExample.vue';
   container-name: banner;
   container-type: inline-size;
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
   align-items: center;
   // padding: 7.5rem 0;
   margin-bottom: 1rem;
@@ -40,11 +39,11 @@ import ModuleTemplateExample from './ModuleTemplateExample.vue';
 
   row-gap: 1rem;
   grid-template-areas:
-    'tagline tagline'
-    'icon-overview icon-overview'
-    'heading heading'
-    'features features'
-    'module-template-example module-template-example';
+    'icon-overview'
+    'tagline'
+    'heading'
+    'features'
+    'module-template-example';
 
   // 'module-template-example module-template-example';
   // grid-template-columns: auto 1fr;
@@ -74,10 +73,11 @@ import ModuleTemplateExample from './ModuleTemplateExample.vue';
   //     // height: 100%;
   //   }
   // }
-  &:deep(.icons-overview) {
+  .icons-overview {
     grid-area: icon-overview;
     height: 100%;
-    grid-row: span 2;
+    min-height: 8cqb;
+    // grid-row: span 2;
   }
 }
 
@@ -98,32 +98,25 @@ import ModuleTemplateExample from './ModuleTemplateExample.vue';
 
 .module-template-example {
   grid-area: module-template-example;
-  min-width: 25svw;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  gap: 1rem;
 }
 
 .features {
   grid-area: features;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  grid-template-rows: repeat(auto-fit, minmax(160px, 1fr));
 }
 
-@include media('lg') {
+@include media('md') {
   .banner {
+    // align-content: center;
+    grid-template-columns: 1fr 3svw 1fr;
     grid-template-areas:
-      'heading icon-overview icon-overview'
-      'tagline icon-overview icon-overview'
-      'module-template-example features features'
-      'module-template-example features features';
+      'heading heading icon-overview'
+      'features . module-template-example';
     // 'description description module-template-example'
     // 'module-example module-example module-template-example';
     // grid-template-columns: 1.5fr 1fr;
     // row-gap: unset;
     column-gap: 2rem;
+    row-gap: 4rem;
     // justify-content: flex-start;
     // flex-direction: row;
 
@@ -131,13 +124,11 @@ import ModuleTemplateExample from './ModuleTemplateExample.vue';
       max-width: 90%;
     }
   }
+}
+@container banner (min-width: 768px) {
   .features {
     grid-template-columns: repeat(2, minmax(260px, 1fr));
     grid-template-rows: repeat(2, minmax(160px, 1fr));
-  }
-
-  .module-template-example {
-    flex-direction: row;
   }
 }
 </style>

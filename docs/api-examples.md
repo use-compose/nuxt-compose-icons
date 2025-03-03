@@ -1,5 +1,6 @@
 ---
 outline: deep
+sidebar: true
 ---
 
 # Runtime API Examples

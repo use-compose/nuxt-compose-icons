@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <VCodeBlock
+  <div class="module-template-example">
+    <!-- <VCodeBlock
       :code="vueComponentCode"
       highlightjs
       label="MyComponent.vue"
@@ -13,13 +13,12 @@
       label="Hello World"
       lang="bash"
       theme="neon-bunny"
-    />
-    <CodeHighlighter :code="vueComponentCode" lang="html" title="nuxt.config.ts" />
+    /> -->
+    <CodeHighlighter :code="arrayCode" />
   </div>
 </template>
 
 <script setup lang="ts">
-import VCodeBlock from '@wdns/vue-code-block';
 import CodeHighlighter from './CodeHighlighter.vue';
 
 // https://github.com/vuejs/vitepress/issues/603
@@ -42,6 +41,42 @@ const vueComponentCode = `<template>
   </section>
 </template>
 `;
+
+const arrayCode = [
+  {
+    code: vueComponentCode,
+    lang: 'html',
+    title: 'MyComponent.vue',
+  },
+  {
+    code: svgDirectoryCode,
+    lang: 'bash',
+    title: 'SVG directory',
+  },
+];
 </script>
 
-<style scoped></style>
+<style lang="scss">
+.module-template-example {
+  min-width: 20cqi;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1rem;
+  height: 100%;
+}
+
+.wrapper-codemulti-highlight {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  pre {
+    flex-grow: 1;
+  }
+
+  code {
+    height: 100%;
+  }
+}
+</style>

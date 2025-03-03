@@ -10,18 +10,12 @@
 <script setup>
 const features = [
   {
-    title: 'Generated and included in the final',
-    details:
-      'Icons are generated and injected during the build process, and are available as any other components',
-  },
-  {
     title: 'No extra wrapper needed',
-    details:
-      'In your Vue Template, use the icon components with their initial names, with an optional prefix or suffix, without the need of using any extra wrapper',
+    details: 'Icon component names are derived from the initial SVG file name',
   },
   {
     title: 'Fully dynamic',
-    details: 'Generated at build time, customizable at runtime using CSS custom properties',
+    details: 'Generated at build time, customizable at runtime using CSS custom properties',
   },
   {
     title: 'Rendered as pure SVG',
@@ -35,7 +29,7 @@ const features = [
 ];
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '../assets/scss/abstracts/mixins';
 
 .features {
@@ -44,8 +38,9 @@ const features = [
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 3rem;
   margin-top: 2rem;
+  display: grid;
 }
 
 .feature {

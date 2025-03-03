@@ -1,7 +1,9 @@
 <template>
   <!-- <VPHomeHero> -->
   <div class="wrapper">
-    <Banner />
+    <div class="home-content">
+      <Banner />
+    </div>
   </div>
   <!-- </VPHomeHero> -->
 </template>

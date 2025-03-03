@@ -62,6 +62,7 @@ $colors: (
   --text-3: clamp(1.9531rem, 1.8973rem + 0.2793vw, 2.3686rem);
   /* Step 4: 39.0625px → 50.5174px */
   --text-4: clamp(2.4414rem, 2.089rem + 1.7621vw, 3.375rem);
+  --text-4: clamp(2.4414rem, 2.089rem + 1.7621cqi, 3.375rem);
 }
 $font-sizes: (
   'xs': var(--text--2),

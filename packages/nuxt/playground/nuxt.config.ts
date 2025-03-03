@@ -1,5 +1,5 @@
 import { resolve } from 'node:path';
-import { IconSize } from '../src/runtime/types';
+import { IconSize, type ComposeIconSize } from '../src/runtime/types';
 
 const iconSizes: ComposeIconSize = {
   [IconSize.xs]: '0.5rem',

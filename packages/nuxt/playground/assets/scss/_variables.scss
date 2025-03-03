@@ -1,0 +1,120 @@
+// Nuxt Brand Colors
+$green-50: #effdf5;
+$green-100: #d9fbe8;
+$green-200: #b3f5d1;
+$green-300: #75edae;
+$green-400: #00dc82;
+$green-500: #00c16a;
+$green-600: #00a155;
+$green-700: #007f45;
+$green-800: #016538;
+$green-900: #0a5331;
+$green-950: #052e16;
+
+$slate-50: #f8fafc;
+$slate-100: #f1f5f9;
+$slate-200: #e2e8f0;
+$slate-300: #cbd5e1;
+$slate-400: #94a3b8;
+$slate-500: #64748b;
+$slate-600: #475569;
+$slate-700: #334155;
+$slate-800: #1e293b;
+$slate-900: #0f172a;
+$slate-950: #020420;
+
+// Typography
+$text-xs: clamp(0.64rem, 0.8423rem + -0.2611vw, 0.7901rem);
+$text-sm: clamp(0.8rem, 0.9198rem + -0.1546vw, 0.8889rem);
+$text-md: clamp(1rem, 1rem + 0vw, 1rem);
+$text-lg: clamp(1.125rem, 1.0815rem + 0.2174vw, 1.25rem);
+$text-xl: clamp(1.2656rem, 1.1624rem + 0.5163vw, 1.5625rem);
+$text-xxl: clamp(1.4238rem, 1.2397rem + 0.9205vw, 1.9531rem);
+$text-4: clamp(1.6018rem, 1.3098rem + 1.4602vw, 2.4414rem);
+$text-5: clamp(1.802rem, 1.3673rem + 2.1734vw, 3.0518rem);
+$text-5-5: clamp(1.9021rem, 1.396rem + 2.5821vw, 3.6621rem);
+$text-6: clamp(2.0273rem, 1.4251rem + 3.2597vw, 4.8828rem);
+$text-7: clamp(2.2813rem, 1.4831rem + 4.8891vw, 7.3242rem);
+
+// Breakpoints
+$breakpoint-mobile: 450px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+$breakpoint-desktop-xl: 1280px;
+$breakpoint-desktop-xxl: 1820px;
+
+$little-screen: '(min-width : 350px)';
+$mobile: '(min-width : #{$breakpoint-mobile})';
+$mobile-landscape: '(min-height : #{$breakpoint-mobile}) and (orientation: landscape)';
+$tablet: '(min-width : #{$breakpoint-tablet})';
+$small-desktop: '(max-height: 810px) and (min-width: #{$breakpoint-desktop})';
+$desktop: '(min-width : #{$breakpoint-desktop})';
+
+@mixin desktop {
+  @media screen and (min-width: #{$breakpoint-desktop}) {
+    @content;
+  }
+}
+
+// :root {
+//   --text-color: #fff;
+//   --text-2: #{$text-2};
+//   --text-1: #{$text-1};
+//   --text-md: #{$text-md};
+//   --text-lg: #{$text-lg};
+//   --text-xl: #{$text-xl};
+//   --text-xxl: #{$text-xxl};
+//   --text-4: #{$text-4};
+//   --text-5: #{$text-5};
+// }
+
+@mixin media($media) {
+  @if $media == little-screen {
+    @media screen and (min-width: 350px) {
+      @content;
+    }
+  } @else if $media == mobile {
+    @media screen and (min-width: #{$breakpoint-mobile}) {
+      @content;
+    }
+  } @else if $media == mobile-landscape {
+    @media screen and (min-height: #{$breakpoint-mobile}) and (orientation: landscape) {
+      @content;
+    }
+  } @else if $media == tablet {
+    @media screen and (min-width: #{$breakpoint-tablet}) {
+      @content;
+    }
+  } @else if $media == small-desktop {
+    @media screen and (max-height: 810px) and (min-width: #{$breakpoint-desktop}) {
+      @content;
+    }
+  } @else if $media == desktop {
+    @media screen and (min-width: #{$breakpoint-desktop}) {
+      @content;
+    }
+  } @else if $media == only-desktop {
+    @media screen and (min-width: #{$breakpoint-desktop}) and (max-width: #{$breakpoint-desktop-xl}) {
+      @content;
+    }
+  } @else if $media == desktop-xl {
+    @media screen and (min-width: #{$breakpoint-desktop-xl}) {
+      @content;
+    }
+  } @else if $media == desktop-xxl {
+    @media screen and (min-width: #{$breakpoint-desktop-xxl}) {
+      @content;
+    }
+  }
+}
+
+$header-footer-height: 55px;
+$header-footer-height-desktop-xxl: 65px;
+$small-header-height: 35px;
+// $small-header-height: 4rem;
+$footer-height: 75px;
+
+$header-mobile: 50px;
+$header-tablet: 60px;
+$header-desktop-xl: 65px;
+$header-small: 38px;

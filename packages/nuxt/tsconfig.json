@@ -1,4 +1,15 @@
 {
   "extends": "./.nuxt/tsconfig.json",
-  "exclude": ["dist", "node_modules", "playground"]
+  "exclude": ["dist", "node_modules", "playground"],
+  "alias": {
+    "@/types": "./src/types"
+  },
+  "compilerOptions": {
+    "paths": {
+      "~/*": ["./*"],
+      "@nuxt-compose-icons": ["./src/*"],
+      "@nuxt-compose-icons/utils": ["./src/runtime/utils/*"],
+      "@nuxt-compose-icons/assets": ["./src/runtime/assets/*"]
+    }
+  }
 }

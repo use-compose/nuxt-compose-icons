@@ -11,6 +11,14 @@
       "types": "./dist/types.d.ts",
       "import": "./dist/module.mjs",
       "require": "./dist/module.cjs"
+    },
+    "./types": {
+      "import": "./dist/runtime/types",
+      "require": "./dist/runtime/types"
+    },
+    "./utils": {
+      "import": "./dist/runtime/utils",
+      "require": "./dist/runtime/utils"
     }
   },
   "main": "./dist/module.cjs",
@@ -31,7 +39,8 @@
     "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.15.4"
+    "@nuxt/kit": "^3.15.4",
+    "node-html-parser": "^7.0.1"
   },
   "devDependencies": {
     "@nuxt/devtools": "^2.1.1",

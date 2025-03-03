@@ -54,3 +54,9 @@ coverage
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Generated icon components
+src/runtime/components/icons-generated
+
+# Generated CSS
+src/runtime/assets/compose-sizes.css

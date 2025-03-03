@@ -9,7 +9,9 @@
     </HighlightedText>
 
     <IconOverview />
-    <ModuleTemplateExample />
+    <ClientOnly>
+      <ModuleTemplateExample />
+    </ClientOnly>
 
     <Features />
   </section>
@@ -20,7 +22,6 @@ import Features from './Features.vue';
 import HighlightedText from './HighlightedText.vue';
 import IconOverview from './IconOverview.vue';
 import ModuleTemplateExample from './ModuleTemplateExample.vue';
-import Separator from './Separator.vue';
 </script>
 
 <style lang="scss">

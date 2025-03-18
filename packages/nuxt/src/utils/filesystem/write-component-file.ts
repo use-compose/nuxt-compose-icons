@@ -2,10 +2,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
-const componentsDir = path.resolve(
-  __dirname,
-  '../../runtime/components/icons-generated',
-);
+const componentsDir = path.resolve(__dirname, '../../runtime/components/icons-generated');
 const indexFilePath = path.join(componentsDir, 'index.ts');
 
 export function writeComponentFile(
@@ -22,19 +19,17 @@ export function writeComponentFile(
     fs.writeFileSync(filePath, componentCode, 'utf-8');
   }
 
-  let importStatement = '';
-
   if (withIndex) {
-    importStatement = `export { default as ${componentName} } from './${componentName}.vue';\n`;
-  }
+    const importStatement = `export { default as ${componentName} } from './${componentName}.vue';\n`;
 
-  if (!fs.existsSync(indexFilePath)) {
-    // Create index.ts and add the import statement
-    fs.writeFileSync(indexFilePath, importStatement, 'utf-8');
-  } else {
-    const indexContent = fs.readFileSync(indexFilePath, 'utf-8');
-    if (!indexContent.includes(importStatement.trim())) {
-      fs.appendFileSync(indexFilePath, importStatement, 'utf-8');
+    if (!fs.existsSync(indexFilePath)) {
+      // Create index.ts and add the import statement
+      fs.writeFileSync(indexFilePath, importStatement, 'utf-8');
+    } else {
+      const indexContent = fs.readFileSync(indexFilePath, 'utf-8');
+      if (!indexContent.includes(importStatement.trim())) {
+        fs.appendFileSync(indexFilePath, importStatement, 'utf-8');
+      }
     }
   }
 

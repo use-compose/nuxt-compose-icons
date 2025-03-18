@@ -1,7 +1,7 @@
-import globals from 'globals';
 import pluginJs from '@eslint/js';
-import tseslint from 'typescript-eslint';
 import pluginVue from 'eslint-plugin-vue';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
@@ -15,6 +15,15 @@ export default [
     languageOptions: { parserOptions: { parser: tseslint.parser } },
   },
   {
-    ignores: ['**/dist/', '**/.nuxt/', '**/.nvm/', '**/.output/', '**/.husky/'],
+    ignores: [
+      '**/dist/',
+      '**/cache/',
+      '**/.nuxt/',
+      '**/.nvm/',
+      '**/.output/',
+      '**/.husky/',
+      '**/icons-generated/',
+      '**/.vitepress/theme/components/',
+    ],
   },
 ];

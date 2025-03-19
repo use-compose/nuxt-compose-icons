@@ -13,33 +13,37 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - run: corepack enable
-      - uses: actions/setup-node@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js and pnpm
+        uses: pnpm/action-setup@v2
         with:
-          node-version: 20
+          version: 8
 
       - name: Install dependencies
-        run: npx nypm@latest i
+        run: pnpm install
 
       - name: Lint
-        run: npm run lint
+        run: pnpm run lint
 
   test:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - run: corepack enable
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
+     - name: Checkout code
+       uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: npx nypm@latest i
+     - name: Setup Node.js and pnpm
+       uses: pnpm/action-setup@v2
+       with:
+         version: 8
 
-      - name: Playground prepare
-        run: npm run dev:prepare
+     - name: Install dependencies
+       run: pnpm install
+       
+     - name: Playground prepare
+       run: pnpm dev:prepare
 
-      - name: Test
-        run: npm run test
+     - name: Test
+       run: pnpm test

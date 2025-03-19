@@ -2,6 +2,7 @@ import pluginJs from '@eslint/js';
 import pluginVue from 'eslint-plugin-vue';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
+import eslintConfigPrettier from 'eslint-config-prettier';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
@@ -10,9 +11,19 @@ export default [
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   ...pluginVue.configs['flat/essential'],
+  eslintConfigPrettier,
   {
-    files: ['**/*.vue'],
+    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx', '**/*.vue', '**/*', 'eslint.config.js'],
     languageOptions: { parserOptions: { parser: tseslint.parser } },
+     settings: {
+          'editor.formatOnSave': true,
+        },
+        rules: {
+          "vue/multi-word-component-names": ["error", {
+            "ignores": ['index']
+          }],
+          quotes: ['error', 'single'],
+        },
   },
   {
     ignores: [

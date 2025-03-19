@@ -3,10 +3,11 @@ import { IconSize } from '../../runtime/types';
 
 // Default icon sizes if none have been provided to the module
 const defaultSizes: ComposeIconSize = {
-  [IconSize.S]: '1rem',
-  [IconSize.M]: '2rem',
-  [IconSize.L]: '3rem',
-  [IconSize.XL]: '4rem',
+  [IconSize.xs]: '0.5rem',
+  [IconSize.sm]: '0.75rem',
+  [IconSize.md]: '1rem',
+  [IconSize.lg]: '1.5rem',
+  [IconSize.xl]: '2rem',
 };
 
 /*
@@ -26,14 +27,15 @@ const defaultSizes: ComposeIconSize = {
  * and since it's a CSS variable, it will automatically update the class applied to the icon
  * at runtime without involving too much JavaScript
  */
-export function generateCssFile(iconSizes?: ComposeIconSize) {
+export function generateCssFile(iconSizes?: ComposeIconSize): string {
   const sizes = { ...defaultSizes, ...iconSizes };
 
   const cssContent = `:root {
-  --icon-size-${IconSize.S}: ${sizes[IconSize.S]};
-  --icon-size-${IconSize.M}: ${sizes[IconSize.M]};
-  --icon-size-${IconSize.L}: ${sizes[IconSize.L]};
-  --icon-size-${IconSize.XL}: ${sizes[IconSize.XL]};
+  --icon-size-${IconSize.xs}: ${sizes[IconSize.xs]};
+  --icon-size-${IconSize.sm}: ${sizes[IconSize.sm]};
+  --icon-size-${IconSize.md}: ${sizes[IconSize.md]};
+  --icon-size-${IconSize.lg}: ${sizes[IconSize.lg]};
+  --icon-size-${IconSize.xl}: ${sizes[IconSize.xl]};
 }
 `;
 

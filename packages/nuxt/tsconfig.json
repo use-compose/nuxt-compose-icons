@@ -11,5 +11,14 @@
       "@nuxt-compose-icons/utils": ["./src/runtime/utils/*"],
       "@nuxt-compose-icons/assets": ["./src/runtime/assets/*"]
     }
-  }
+  },
+  "include": [
+    "**/*",
+    "src/**/*",
+    "../../src/**/*",
+    "../../src/runtime/**/*",
+    "../../src/runtime/assets/**/*",
+    "../../src/runtime/utils/**/*",
+    "../../eslint.config.mjs"
+  ]
 }

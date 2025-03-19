@@ -13,14 +13,6 @@ export function parseSvg(svgContent: string): {
 
   const childrenWithAttributes = svgElementChildren.map((child: HtmlNode) => {
     const childElement = child as HTMLElement;
-    console.log(
-      '📟 - file: create-svg-component.ts:19 - child → ',
-      childElement,
-    );
-    console.log(
-      '📟 - file: create-svg-component.ts:19 - child → ',
-      childElement.getAttribute('fill'),
-    );
 
     if (childElement.getAttribute('fill')) {
       const initialFill = childElement.getAttribute('fill');
@@ -29,10 +21,7 @@ export function parseSvg(svgContent: string): {
 
     if (childElement.getAttribute('stroke')) {
       const initialStroke = childElement.getAttribute('stroke');
-      childElement.setAttribute(
-        'stroke',
-        `var(--icon-stroke, ${initialStroke})`,
-      );
+      childElement.setAttribute('stroke', `var(--icon-stroke, ${initialStroke})`);
     }
 
     return child;

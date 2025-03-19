@@ -50,7 +50,10 @@
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
     "prettier": "^3.5.2",
-    "typescript-eslint": "^8.25.0"
+    "prettier-plugin-organize-imports": "^4.1.0",
+    "typescript-eslint": "^8.25.0",
+    "vite": "^6.2.0",
+    "typescript": "~5.8.2"
   },
   "lint-staged": {
     "**/*.{js,ts,tsx}": [
@@ -58,9 +61,5 @@
     ],
     "**/*": "prettier --write --ignore-unknown"
   },
-  "dependencies": {
-    "prettier-plugin-organize-imports": "^4.1.0",
-    "typescript": "~5.8.2",
-    "vite": "^6.2.0"
-  }
+  "dependencies": {}
 }

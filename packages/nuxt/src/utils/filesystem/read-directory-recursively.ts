@@ -7,10 +7,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
-export function readDirectoryRecursively(
-  dir: string,
-  fileList: string[] = [],
-): string[] {
+export function readDirectoryRecursively(dir: string, fileList: string[] = []): string[] {
   const files = fs.readdirSync(dir);
 
   files.forEach((file) => {

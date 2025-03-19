@@ -1,5 +1,6 @@
 import type { AddComponentOptions } from '@nuxt/kit';
 import type { Component } from '@nuxt/schema';
+import type { GeneratedComponentOptions } from '~/src/module';
 import { toKebabCase, toPascalCase } from '..';
 
 export { createComponentFromName };
@@ -19,27 +20,50 @@ const defaultComponent: Component = {
   priority: 0,
 };
 
-function createComponentFromName(componentOptions: AddComponentOptions) {
+function includePrefixAndSuffix({
+  prefix,
+  suffix = 'Icon',
+  name,
+}: {
+  prefix: string | boolean;
+  suffix: string;
+  name: string;
+}) {
+  let componentName = '';
+
+  if (prefix) {
+    componentName = `${prefix}-${name}`;
+  }
+
+  if (suffix) {
+    componentName += suffix;
+  } else {
+    componentName += '-icon';
+  }
+
+  return {
+    componentPascalName: toPascalCase(componentName),
+    componentKebabName: toKebabCase(componentName),
+  };
+}
+
+function createComponentFromName(
+  componentOptions: AddComponentOptions & GeneratedComponentOptions,
+): Component {
   // replace "&" by "-" in the name (in case of icons file names which could contains any "&" character if we use the iconPath option)
   const name = componentOptions.name.replace(/&/g, '-');
 
-  // We manually add the "icon" or "Icon" suffix if it's not already present
-  // To use it as "<AlertIcon>" or "<alert-icon />" in template
-  let componentPascalName = '';
-  let componentKebabCaseName = '';
-  if (name.includes('Icon') || name.includes('-icon')) {
-    componentPascalName = toPascalCase(name);
-    componentKebabCaseName = toKebabCase(name);
-  } else {
-    componentPascalName = toPascalCase(name) + 'Icon';
-    componentKebabCaseName = toKebabCase(name) + '-icon';
-  }
+  const { componentPascalName, componentKebabName } = includePrefixAndSuffix({
+    name,
+    prefix: componentOptions.prefix,
+    suffix: componentOptions.suffix,
+  });
 
   const component: Component = {
     ...defaultComponent,
     ...componentOptions,
     pascalName: componentPascalName,
-    kebabName: componentKebabCaseName,
+    kebabName: componentKebabName,
     chunkName: componentPascalName,
   };
 

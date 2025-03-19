@@ -1,10 +1,7 @@
 import { convertNodeToVNode } from '../convert-node-to-vnode';
 import { parseSvg } from './parse-svg';
 
-export function createSvgComponentCode(
-  name: string,
-  svgContent: string,
-): string {
+export function createSvgComponentCode(name: string, svgContent: string): string {
   const { attributes, children: svgNodeChildren } = parseSvg(svgContent);
 
   // const childrenWithAttributes = svgNodeChildren.map((child: HtmlNode) => {
@@ -28,14 +25,6 @@ export function createSvgComponentCode(
   // });
   // const vnodeChildren = svgNodeChildren.map(convertNodeToVNode);
   const vnodeChildren = svgNodeChildren.map(convertNodeToVNode);
-  console.log(
-    '📟 - file: create-svg-component.ts:8 - svgNodeChildren → ',
-    svgNodeChildren,
-  );
-  console.log(
-    '📟 - file: create-svg-component.ts:8 - vnodeChildren → ',
-    vnodeChildren,
-  );
 
   return `
     <script lang="ts">

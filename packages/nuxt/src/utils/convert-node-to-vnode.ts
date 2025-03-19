@@ -11,7 +11,7 @@ function convertNodeToVNode(node: HtmlNode): VNode | string {
   }
 
   const element = node as unknown as HTMLElement;
-  console.log('📟 - element → ', element);
+
   const serializedNode: Partial<VNode> = {
     type: element.tagName ? element.tagName.toLowerCase() : '',
     props: {},

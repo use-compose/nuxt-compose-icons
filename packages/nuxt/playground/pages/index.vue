@@ -51,7 +51,7 @@ const iconStyles = computed(() => {
 });
 </script>
 
-<style scoped>
+<style>
 .container {
   min-height: 100svh;
   align-content: center;

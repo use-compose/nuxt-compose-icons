@@ -1,22 +1,23 @@
-import { addImportsDir, createResolver, defineNuxtModule } from '@nuxt/kit';
+import { defineNuxtModule } from '@nuxt/kit';
 import type { Component } from '@nuxt/schema';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import type { ComposeIconSize } from './runtime/types';
+import { IconSize, type ComposeIconSize } from './runtime/types';
 import {
   createComponentFromName,
   createSvgComponentCode,
   generateCssFile,
+  normalizeComponentName,
   readDirectoryRecursively,
   toPascalCase,
   writeComponentFile,
 } from './utils';
 
-interface GeneratedComponentOptions {
+export interface GeneratedComponentOptions {
   /**
    * The prefix to use for the component - default false
    */
-  prefix?: boolean | string;
+  prefix: boolean | string;
   /**
    * The suffix to use for the component
    * default "Icon" ( PascalCase ) and "-icon" ( kebab-case )
@@ -31,7 +32,7 @@ export interface ModuleOptions {
   pathToIcons?: string;
   iconComponentList?: { [key: string]: Component };
   iconSizes?: ComposeIconSize;
-  generatedComponentOptions?: GeneratedComponentOptions;
+  generatedComponentOptions: GeneratedComponentOptions;
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -40,34 +41,40 @@ export default defineNuxtModule<ModuleOptions>({
     configKey: 'composeIcons',
   },
   // Default configuration options of the Nuxt module
-  defaults: {},
-  setup(_options, nuxt) {
-    const pathToIcons = _options.pathToIcons;
-    const iconComponentList = _options.iconComponentList;
-    const iconSizes = _options.iconSizes;
+  defaults: {
+    iconSizes: {
+      [IconSize.xs]: '0.5rem',
+      [IconSize.sm]: '0.875rem',
+      [IconSize.md]: '1rem',
+      [IconSize.lg]: '1.5rem',
+      [IconSize.xl]: '2.5rem',
+    },
+    // If not provided, the default will be to use the "Icon" suffix for the component without a prefix
+    // e.g. "arrow-up.svg" will be "ArrowUpIcon"
+    generatedComponentOptions: { prefix: false, suffix: 'Icon' },
+  },
+  setup(moduleOptions, nuxt) {
+    const pathToIcons = moduleOptions.pathToIcons;
+    const iconComponentList = moduleOptions.iconComponentList;
+    const iconSizes = moduleOptions.iconSizes;
+    const generatedComponentOptions = moduleOptions.generatedComponentOptions;
 
     if (!pathToIcons && !iconComponentList) {
+      // eslint-disable-next-line no-console
       console.error('pathToIcons or iconComponentList is required');
       return;
     }
 
-    const resolver = createResolver(import.meta.url);
+    // const resolver = createResolver(import.meta.url);
 
     if (pathToIcons) {
       // Resolve the path to the icons directory provided
-      const absolutePathToIcons = path.resolve(
-        nuxt.options.rootDir,
-        pathToIcons,
-      );
+      const absolutePathToIcons = path.resolve(nuxt.options.rootDir, pathToIcons);
 
-      if (
-        fs.existsSync(absolutePathToIcons) &&
-        fs.statSync(absolutePathToIcons).isDirectory()
-      ) {
+      if (fs.existsSync(absolutePathToIcons) && fs.statSync(absolutePathToIcons).isDirectory()) {
         // We first read all the files recursively to flatten the structure
         const files = readDirectoryRecursively(absolutePathToIcons);
 
-        // const components: Component[] = [];
         /*
          * For each file we:
          * 1. Parse the content (as HTML string)
@@ -84,51 +91,39 @@ export default defineNuxtModule<ModuleOptions>({
          */
         files.forEach((filePath) => {
           const fileInfo = path.parse(filePath);
+
           // 1. Parse the content (as HTML string)
           const svgContent = fs.readFileSync(filePath, 'utf-8');
 
           // TODO: Check if necessary to handle snake case as well
           // TODO: handle double dashes "--", and if ".svg" already present
-          const componentName = (toPascalCase(fileInfo.name) + 'Icon')
-            .replace(/&/g, 'And')
-            .replace(/\s/g, '');
+          const componentName = normalizeComponentName(fileInfo.name);
 
           // 2. Create the component code as literal string template
-          const componentCode = createSvgComponentCode(
-            componentName,
-            svgContent,
-          );
+          const componentCode = createSvgComponentCode(componentName, svgContent);
 
           // 3. Write the component to the file system
-          const generatedFilePath = writeComponentFile(
-            componentName,
-            componentCode,
-            true,
-          );
+          const generatedFilePath = writeComponentFile(componentName, componentCode, true);
 
           // 4. Create the "official" component object with the name and path
           const component = createComponentFromName({
-            ..._options.generatedComponentOptions,
+            prefix: generatedComponentOptions.prefix,
+            suffix: generatedComponentOptions.suffix,
             name: componentName,
             shortPath: generatedFilePath,
             filePath: generatedFilePath,
           });
 
-          // // 5. Add the component to the Nuxt app's components array at build time
+          // 5. Add the component to the Nuxt app's components array at build time
           nuxt.hook('components:extend', (components) => {
             components.push(component);
           });
 
-          // components.push(component);
-
           // // 6. Generate a CSS file with the icon sizes and add it to the Nuxt app's CSS array at build time
           const cssContent = generateCssFile(iconSizes);
 
-          // // Define the path to save the CSS file within the module
-          const cssFilePath = path.resolve(
-            __dirname,
-            './runtime/assets/compose-sizes.css',
-          );
+          // Define the path to save the CSS file within the module
+          const cssFilePath = path.resolve(__dirname, './runtime/assets/compose-sizes.css');
           // // Ensure the directory exists
           fs.mkdirSync(path.dirname(cssFilePath), { recursive: true });
           // // Write the CSS content to the file
@@ -140,11 +135,9 @@ export default defineNuxtModule<ModuleOptions>({
 
           // // Push the CSS file into the Nuxt app's CSS array
           nuxt.options.css.push(cssFilePath);
-          nuxt.options.css.push(
-            path.resolve(__dirname, './runtime/assets/compose-icon.css'),
-          );
-          addImportsDir(resolver.resolve('runtime/types'));
-          addImportsDir(resolver.resolve('runtime/utils'));
+          nuxt.options.css.push(path.resolve(__dirname, './runtime/assets/compose-icon.css'));
+          // addImportsDir(resolver.resolve('runtime/types'));
+          // addImportsDir(resolver.resolve('runtime/utils'));
         });
 
         // nuxt.hook('components:dirs', (dirs) => {
@@ -154,37 +147,21 @@ export default defineNuxtModule<ModuleOptions>({
         //   });
         // });
       } else {
+        // eslint-disable-next-line no-console
         console.error(`Folder does not exist: ${absolutePathToIcons}`);
       }
     } else if (iconComponentList) {
       Object.keys(iconComponentList).forEach((iconComponentName) => {
-        console.log(
-          '📟 - file: module.ts:111 - iconComponentName → ',
-          iconComponentName,
-        );
-        console.log(
-          '📟 - file: module.ts:111 - iconComponentList name → ',
-          iconComponentList[iconComponentName],
-        );
         // const test = resolveComponent(iconComponentList[iconComponentName]);
         // TODO: Check if necessary to handle snake case as well
-        const componentName = toPascalCase(iconComponentName).replace(
-          /&/g,
-          'And',
-        );
+        const componentName = toPascalCase(iconComponentName).replace(/&/g, 'And');
         // const svgContent = ''; // Placeholder: you need to load the actual SVG content as needed
         // const componentCode = createSvgComponentCode(componentName, svgContent);
         // const componentCode = iconComponentList[iconComponentName];
-        const generatedFilePath = path.resolve(
-          __dirname,
-          './playground/icon-list.ts',
-        );
-        console.log(
-          '📟 - file: module.ts:140 - generatedFilePath → ',
-          generatedFilePath,
-        );
+        const generatedFilePath = path.resolve(__dirname, './playground/icon-list.ts');
+
         const component = createComponentFromName({
-          ..._options.generatedComponentOptions,
+          ...moduleOptions.generatedComponentOptions,
           name: componentName,
           shortPath: generatedFilePath,
           filePath: generatedFilePath,

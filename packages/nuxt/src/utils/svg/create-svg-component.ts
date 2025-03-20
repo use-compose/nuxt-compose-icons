@@ -42,7 +42,6 @@ export function createSvgComponentCode(name: string, svgContent: string): string
 
     const svgAttributes = ${JSON.stringify(attributes)};
     const vnodeChildren = ${JSON.stringify(vnodeChildren)};
-    console.log('📟 - file: create-svg-component.ts:22 - vnodeChildren → ', vnodeChildren)
 
     export default defineComponent({
      name: '${name}',

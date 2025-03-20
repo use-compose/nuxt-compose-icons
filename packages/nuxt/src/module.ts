@@ -7,9 +7,8 @@ import {
   createComponentFromName,
   createSvgComponentCode,
   generateCssFile,
-  normalizeComponentName,
+  normalizeAndGenerateComponentName,
   readDirectoryRecursively,
-  toPascalCase,
   writeComponentFile,
 } from './utils';
 
@@ -23,9 +22,14 @@ export interface GeneratedComponentOptions {
    * default "Icon" ( PascalCase ) and "-icon" ( kebab-case )
    */
   suffix: string;
+  /**
+   * Case to use for the component name
+   * default "pascal"
+   */
+  case: 'pascal' | 'kebab';
 }
 
-export interface ModuleOptions {
+export interface NuxtComposeIconsOptions {
   /*
    * The path to the icons directory
    */
@@ -35,7 +39,7 @@ export interface ModuleOptions {
   generatedComponentOptions: GeneratedComponentOptions;
 }
 
-export default defineNuxtModule<ModuleOptions>({
+export default defineNuxtModule<NuxtComposeIconsOptions>({
   meta: {
     name: 'nuxt-compose-icons',
     configKey: 'composeIcons',
@@ -51,13 +55,12 @@ export default defineNuxtModule<ModuleOptions>({
     },
     // If not provided, the default will be to use the "Icon" suffix for the component without a prefix
     // e.g. "arrow-up.svg" will be "ArrowUpIcon"
-    generatedComponentOptions: { prefix: false, suffix: 'Icon' },
+    generatedComponentOptions: { prefix: false, suffix: 'Icon', case: 'pascal' },
   },
-  setup(moduleOptions, nuxt) {
-    const pathToIcons = moduleOptions.pathToIcons;
-    const iconComponentList = moduleOptions.iconComponentList;
-    const iconSizes = moduleOptions.iconSizes;
-    const generatedComponentOptions = moduleOptions.generatedComponentOptions;
+  setup(options, nuxt) {
+    const pathToIcons = options.pathToIcons;
+    const iconComponentList = options.iconComponentList;
+    const iconSizes = options.iconSizes;
 
     if (!pathToIcons && !iconComponentList) {
       // eslint-disable-next-line no-console
@@ -97,7 +100,7 @@ export default defineNuxtModule<ModuleOptions>({
 
           // TODO: Check if necessary to handle snake case as well
           // TODO: handle double dashes "--", and if ".svg" already present
-          const componentName = normalizeComponentName(fileInfo.name);
+          const componentName = normalizeAndGenerateComponentName(fileInfo.name, options);
 
           // 2. Create the component code as literal string template
           const componentCode = createSvgComponentCode(componentName, svgContent);
@@ -107,8 +110,6 @@ export default defineNuxtModule<ModuleOptions>({
 
           // 4. Create the "official" component object with the name and path
           const component = createComponentFromName({
-            prefix: generatedComponentOptions.prefix,
-            suffix: generatedComponentOptions.suffix,
             name: componentName,
             shortPath: generatedFilePath,
             filePath: generatedFilePath,
@@ -152,23 +153,24 @@ export default defineNuxtModule<ModuleOptions>({
       }
     } else if (iconComponentList) {
       Object.keys(iconComponentList).forEach((iconComponentName) => {
+        // eslint-disable-next-line no-console
+        console.log('📟 - iconComponentName → ', iconComponentName);
         // const test = resolveComponent(iconComponentList[iconComponentName]);
         // TODO: Check if necessary to handle snake case as well
-        const componentName = toPascalCase(iconComponentName).replace(/&/g, 'And');
-        // const svgContent = ''; // Placeholder: you need to load the actual SVG content as needed
-        // const componentCode = createSvgComponentCode(componentName, svgContent);
-        // const componentCode = iconComponentList[iconComponentName];
-        const generatedFilePath = path.resolve(__dirname, './playground/icon-list.ts');
-
-        const component = createComponentFromName({
-          ...moduleOptions.generatedComponentOptions,
-          name: componentName,
-          shortPath: generatedFilePath,
-          filePath: generatedFilePath,
-        });
-        nuxt.hook('components:extend', (components) => {
-          components.push(component);
-        });
+        // const componentName = toPascalCase(iconComponentName).replace(/&/g, 'And');
+        // // const svgContent = ''; // Placeholder: you need to load the actual SVG content as needed
+        // // const componentCode = createSvgComponentCode(componentName, svgContent);
+        // // const componentCode = iconComponentList[iconComponentName];
+        // const generatedFilePath = path.resolve(__dirname, './playground/icon-list.ts');
+        // const component = createComponentFromName({
+        //   ...options.generatedComponentOptions,
+        //   name: componentName,
+        //   shortPath: generatedFilePath,
+        //   filePath: generatedFilePath,
+        // });
+        // nuxt.hook('components:extend', (components) => {
+        //   components.push(component);
+        // });
       });
     }
   },

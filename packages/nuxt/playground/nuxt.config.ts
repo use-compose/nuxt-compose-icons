@@ -1,4 +1,5 @@
 import * as path from 'node:path';
+import NuxtComposeIcons from '../src/module';
 import { IconSize, type ComposeIconSize } from '../src/runtime/types';
 
 const iconSizes: ComposeIconSize = {
@@ -10,16 +11,17 @@ const iconSizes: ComposeIconSize = {
 };
 
 export default defineNuxtConfig({
-  modules: [
-    [
-      '../src/module',
-      {
-        pathToIcons: path.resolve(__dirname, 'assets/icons'),
-        // iconComponentList: iconComponentList,
-        iconSizes,
-      },
-    ],
-  ],
+  modules: [NuxtComposeIcons],
+  // Module options
+  composeIcons: {
+    pathToIcons: path.resolve(__dirname, 'assets/icons'),
+    iconSizes,
+    generatedComponentOptions: {
+      prefix: false,
+      suffix: 'Icon',
+      case: 'pascal',
+    },
+  },
   devtools: { enabled: true },
   compatibilityDate: '2024-12-14',
 });

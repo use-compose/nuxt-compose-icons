@@ -56,13 +56,14 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
     // If not provided, the default will be to use the "Icon" suffix for the component without a prefix
     // e.g. "arrow-up.svg" will be "ArrowUpIcon"
     generatedComponentOptions: { prefix: false, suffix: 'Icon', case: 'pascal' },
+    iconComponentList: {},
   },
   setup(options, nuxt) {
     const pathToIcons = options.pathToIcons;
     const iconComponentList = options.iconComponentList;
     const iconSizes = options.iconSizes;
     if (!pathToIcons && !iconComponentList) {
-       
+      // TODO: Use logger
       throw new Error('pathToIcons or iconComponentList is required');
       return;
     }

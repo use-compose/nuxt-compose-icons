@@ -10,7 +10,6 @@ export const iconSizeClass: { [key in IconSizeKeyValue]: string } = {
 };
 
 export function getIconSizeClass(size: IconSizeKeyValue | string): string {
-  console.log('📟 - file: icon-size-class.ts:12 - size → ', size);
   if (!size) {
     return iconSizeClass[IconSize.md];
   }

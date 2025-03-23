@@ -1,4 +1,4 @@
-import { resolve } from 'node:path';
+import * as path from 'node:path';
 import { IconSize, type ComposeIconSize } from '../src/runtime/types';
 
 const iconSizes: ComposeIconSize = {
@@ -14,7 +14,7 @@ export default defineNuxtConfig({
     [
       '../src/module',
       {
-        pathToIcons: resolve(__dirname, 'assets/icons'),
+        pathToIcons: path.resolve(__dirname, 'assets/icons'),
         // iconComponentList: iconComponentList,
         iconSizes,
       },

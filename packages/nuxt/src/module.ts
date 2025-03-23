@@ -61,10 +61,9 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
     const pathToIcons = options.pathToIcons;
     const iconComponentList = options.iconComponentList;
     const iconSizes = options.iconSizes;
-
     if (!pathToIcons && !iconComponentList) {
-      // eslint-disable-next-line no-console
-      console.error('pathToIcons or iconComponentList is required');
+       
+      throw new Error('pathToIcons or iconComponentList is required');
       return;
     }
 

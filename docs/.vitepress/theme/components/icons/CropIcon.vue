@@ -28,7 +28,6 @@ const vnodeChildren = [
     children: [],
   },
 ];
-console.log('📟 - file: create-svg-component.ts:22 - vnodeChildren → ', vnodeChildren);
 
 export default defineComponent({
   name: 'CropIcon',

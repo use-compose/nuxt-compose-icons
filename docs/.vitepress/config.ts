@@ -7,7 +7,7 @@ const sidebar = {
     {
       text: 'Introduction',
       items: [
-        { text: 'Introduction', link: '/guide/introduction' },
+        { text: 'Motivation', link: '/guide/motivation' },
         { text: 'Getting Started', link: '/guide/getting-started' },
       ],
     },
@@ -56,7 +56,7 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Introduction', link: '/guide' },
+      { text: 'Introduction', link: '/guide/introduction' },
       { text: 'Playground', link: 'https://compose-icons-playground.vercel.app/' },
     ],
 

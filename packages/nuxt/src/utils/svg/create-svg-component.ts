@@ -6,11 +6,6 @@ export function createSvgComponentCode(name: string, svgContent: string): string
 
   // const childrenWithAttributes = svgNodeChildren.map((child: HtmlNode) => {
   //   const childElement = child as HTMLElement;
-  //   console.log('📟 - file: create-svg-component.ts:19 - child → ', childElement);
-  //   console.log(
-  //     '📟 - file: create-svg-component.ts:19 - child → ',
-  //     childElement.getAttribute('fill'),
-  //   );
 
   //   if (childElement.getAttribute('fill')) {
   //     childElement.setAttribute('fill', 'var(--icon-fill)');
@@ -42,7 +37,6 @@ export function createSvgComponentCode(name: string, svgContent: string): string
 
     const svgAttributes = ${JSON.stringify(attributes)};
     const vnodeChildren = ${JSON.stringify(vnodeChildren)};
-    console.log('📟 - file: create-svg-component.ts:22 - vnodeChildren → ', vnodeChildren)
 
     export default defineComponent({
      name: '${name}',

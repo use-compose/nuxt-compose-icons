@@ -5,8 +5,11 @@
     "@/types": "./src/types"
   },
   "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./dist",
     "paths": {
       "~/*": ["./*"],
+      "@/*": ["src/*"],
       "@nuxt-compose-icons": ["./src/*"],
       "@nuxt-compose-icons/utils": ["./src/runtime/utils/*"],
       "@nuxt-compose-icons/assets": ["./src/runtime/assets/*"]

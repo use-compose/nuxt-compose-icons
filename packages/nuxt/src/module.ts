@@ -1,4 +1,4 @@
-import { defineNuxtModule } from '@nuxt/kit';
+import { addImportsDir, createResolver, defineNuxtModule } from '@nuxt/kit';
 import type { Component } from '@nuxt/schema';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
@@ -66,6 +66,14 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
       // TODO: Use logger
       throw new Error('pathToIcons or iconComponentList is required');
       return;
+    }
+
+    const resolver = createResolver(import.meta.url);
+
+    // Remove existing components directory if exists
+    const componentsDir = resolver.resolve('runtime/components/icons-generated');
+    if (fs.existsSync(componentsDir)) {
+      fs.rmSync(componentsDir, { recursive: true });
     }
 
     // const resolver = createResolver(import.meta.url);
@@ -137,8 +145,8 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
           // // Push the CSS file into the Nuxt app's CSS array
           nuxt.options.css.push(cssFilePath);
           nuxt.options.css.push(path.resolve(__dirname, './runtime/assets/compose-icon.css'));
-          // addImportsDir(resolver.resolve('runtime/types'));
-          // addImportsDir(resolver.resolve('runtime/utils'));
+          addImportsDir(resolver.resolve('runtime/types'));
+          addImportsDir(resolver.resolve('runtime/utils'));
         });
 
         // nuxt.hook('components:dirs', (dirs) => {

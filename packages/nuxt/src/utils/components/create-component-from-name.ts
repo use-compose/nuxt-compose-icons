@@ -29,7 +29,6 @@ function createComponentFromName(componentOptions: AddComponentOptions): Compone
     ...componentOptions,
     pascalName: pascalName,
     kebabName: kebabName,
-    // filePath: `components/${pascalName}.vue`,
     shortPath: `components/${pascalName}.vue`,
     chunkName: 'components/' + pascalName,
   };

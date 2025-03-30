@@ -59,7 +59,8 @@ function convertNodeToVNode(node: HtmlNode): VNode | string {
 
   if (attributes) {
     for (const [name, value] of Object.entries(attributes)) {
-      let attrValue = element.getAttribute(name);
+      // Remove extra spaces from the value
+      let attrValue = element.getAttribute(name)?.replace(/\s+/g, ' ').trim();
       console.log('📟 - value → ', name);
       console.log('📟 - value → ', value);
       console.log('📟 - lololol → ', attrValue);

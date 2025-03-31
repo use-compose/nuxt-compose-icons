@@ -1,12 +1,14 @@
 {
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
+    "baseUrl": ".",
     "moduleResolution": "node",
     "paths": {
       "~/*": ["./*"],
       "@nuxt-compose-icons": ["../src/runtime/*"],
-      "@nuxt-compose-icons/types": ["../src/runtime/types/*"],
-      "@nuxt-compose-icons/utils": ["../src/runtime/utils/*"]
+      "@nuxt-compose-icons/utils": ["nuxt-compose-icons"],
+      "@nuxt-compose-icons/types": ["nuxt-compose-icons"],
+      "@nuxt-compose-icons/assets": ["../src/runtime/assets/*"]
     }
   }
 }

@@ -1,6 +1,6 @@
 /* eslint no-console: 0 */
 import type { Node as HtmlNode } from 'node-html-parser';
-import { h, type RendererElement, type RendererNode, type VNode } from 'vue';
+import { h, type VNode } from 'vue';
 
 export { convertNodeToVNode };
 
@@ -15,27 +15,27 @@ function convertNodeToVNode(node: HtmlNode): VNode | string {
 
   const element = node as unknown as HTMLElement;
 
-  const serializedNode: {
-    type: string;
-    props: { [key: string]: unknown };
-    children: (
-      | string
-      | VNode<
-          RendererNode,
-          RendererElement,
-          {
-            [key: string]: any;
-          }
-        >
-    )[];
-  } =
-    // | string
+  // const serializedNode: {
+  //   type: string;
+  //   props: { [key: string]: unknown };
+  //   children: (
+  //     | string
+  //     | VNode<
+  //         RendererNode,
+  //         RendererElement,
+  //         {
+  //           [key: string]: any;
+  //         }
+  //       >
+  //   )[];
+  // } =
+  //   // | string
 
-    {
-      type: element.tagName ? element.tagName.toLowerCase() : '',
-      props: {},
-      children: [],
-    };
+  //   {
+  //     type: element.tagName ? element.tagName.toLowerCase() : '',
+  //     props: {},
+  //     children: [],
+  //   };
   // console.log('serializedNode', serializedNode);
   // console.log('node', element.children);
   // console.log('node', element.childNodes);
@@ -60,7 +60,7 @@ function convertNodeToVNode(node: HtmlNode): VNode | string {
   if (attributes) {
     for (const [name, value] of Object.entries(attributes)) {
       // Remove extra spaces from the value
-      let attrValue = element.getAttribute(name)?.replace(/\s+/g, ' ').trim();
+      const attrValue = element.getAttribute(name)?.replace(/\s+/g, ' ').trim();
       console.log('📟 - value → ', name);
       console.log('📟 - value → ', value);
       console.log('📟 - lololol → ', attrValue);

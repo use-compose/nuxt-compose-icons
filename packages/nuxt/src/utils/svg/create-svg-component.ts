@@ -40,14 +40,10 @@ export function createSvgComponentCode(name: string, svgContent: string): string
     <script lang="ts">
     import { computed, defineComponent, h } from 'vue';
     import type { PropType } from 'vue';
-    // import type { ComposeIconProps } from '@nuxt-compose-icons/types';
-    import type { ComposeIconProps } from '../../../runtime/types';
-    // import { IconSize } from '@nuxt-compose-icons/types';
-    import { IconSize } from '../../../runtime/types';
-    import type { VNode } from 'vue';
-    // import { getIconSizeClass } from '../src/runtime/utils';
-    import { getIconSizeClass, generateColorVariable } from '../../../runtime/utils';
-    import type { IconSizeKeyValue } from '../../../runtime/types';
+    // import type { ComposeIconProps } from 'nuxt-compose-icons';
+    // import { IconSize } from 'nuxt-compose-icons';
+    // import { getIconSizeClass } from 'nuxt-compose-icons';
+    // import type { IconSizeKeyValue } from 'nuxt-compose-icons';
 
 
     const svgAttributes = ${JSON.stringify(attributes)};

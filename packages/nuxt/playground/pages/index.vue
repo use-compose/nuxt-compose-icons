@@ -16,10 +16,10 @@
 
 <script setup lang="ts">
 import { computed, onMounted, ref, resolveComponent, type Component } from 'vue';
-import * as AllIcons from '../../src/runtime/components/icons-generated';
 import type { ComposeIconSize } from '../../src/runtime/types';
 import { IconSize } from '../../src/runtime/types';
 import { getIconSizeClass } from '../../src/runtime/utils';
+import * as AllIcons from '../components/nuxt-compose-icons';
 
 interface IconOverviewProps {
   size: ComposeIconSize;

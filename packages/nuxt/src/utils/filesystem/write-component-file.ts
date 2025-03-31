@@ -2,17 +2,15 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
-const componentsDir = path.resolve(__dirname, '../../runtime/components/icons-generated');
-const indexFilePath = path.join(componentsDir, 'index.ts');
-
 export function writeComponentFile(
   componentName: string,
+  componentDir: string = path.resolve(__dirname, '../../runtime/components/icons-generated'),
   componentCode?: string,
   withIndex?: boolean,
 ): string {
-  if (!fs.existsSync(componentsDir)) {
-    fs.mkdirSync(componentsDir, { recursive: true });
-  }
+  // TODO: Components dir parameter
+  const componentsDir = componentDir;
+  const indexFilePath = path.join(componentsDir, 'index.ts');
 
   const filePath = path.join(componentsDir, `${componentName}.vue`);
   if (componentCode) {

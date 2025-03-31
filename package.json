@@ -2,32 +2,13 @@
   "name": "nuxt-compose-icons",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/module.cjs",
-  "types": "./dist/types.d.ts",
-  "files": [
-    "dist"
-  ],
-  "type": "module",
-  "exports": {
-    ".": {
-      "types": "./dist/types.d.ts",
-      "import": "./dist/module.mjs",
-      "require": "./dist/module.cjs"
-    },
-    "./types": {
-      "import": "./dist/runtime/types",
-      "require": "./dist/runtime/types"
-    },
-    "./utils": {
-      "import": "./dist/runtime/utils",
-      "require": "./dist/runtime/utils"
-    }
-  },
   "scripts": {
     "test": "pnpm --filter core test",
     "lint": "eslint .",
     "format": "prettier --write .",
     "prepare": "husky",
+    "prepack": "pnpm --filter core prepack",
+    "release": "pnpm --filter core release",
     "dev": "pnpm --filter core dev",
     "dev:prepare": "pnpm --filter core dev:prepare",
     "dev:build": "pnpm --filter core dev:build",

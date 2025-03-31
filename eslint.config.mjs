@@ -11,6 +11,8 @@ export default [
     rules: { 'no-console': 'error' },
     settings: {
       'editor.formatOnSave': true,
+      failOnError: true,
+      failOnWarn: false,
     },
   },
   { languageOptions: { globals: globals.browser } },
@@ -39,6 +41,7 @@ export default [
       '**/.husky/',
       '**/icons-generated/',
       '**/.vitepress/theme/components/',
+      '**/nuxt-compose-icons/',
     ],
   },
   eslintConfigPrettier,

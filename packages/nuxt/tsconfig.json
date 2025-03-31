@@ -11,7 +11,8 @@
       "~/*": ["./*"],
       "@/*": ["src/*"],
       "@nuxt-compose-icons": ["./src/*"],
-      "@nuxt-compose-icons/utils": ["./src/runtime/utils/*"],
+      "@nuxt-compose-icons/utils": ["./dist/runtime/utils/*"],
+      "@nuxt-compose-icons/types": ["./dist/runtime/types/*"],
       "@nuxt-compose-icons/assets": ["./src/runtime/assets/*"]
     }
   },

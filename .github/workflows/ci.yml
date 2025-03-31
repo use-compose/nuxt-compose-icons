@@ -10,7 +10,7 @@ on:
 
 jobs:
   lint_format_build:
-    name: Node version ${{ matrix.node_version }}
+    name: Lint, Format and build - Node version ${{ matrix.node_version }}
     strategy:
       matrix:
         node_version: [18, 20, 22]
@@ -19,7 +19,7 @@ jobs:
       node_version: ${{ matrix.node_version }}
 
   test:
-    name: Node version ${{ matrix.node_version }}
+    name: Run Tests with Node version ${{ matrix.node_version }}
     strategy:
       matrix:
         node_version: [18, 20, 22]

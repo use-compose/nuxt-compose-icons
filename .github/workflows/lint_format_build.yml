@@ -12,8 +12,13 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Install dependencies
-        uses: ./.github/actions/install-dependencies.yml
+        uses: ./.github/actions/install-dependencies
         with:
           node_version: ${{ inputs.node_version }}
           pnpm_version: 8
@@ -29,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install dependencies
-        uses: ./.github/actions/install-dependencies.yml
+        uses: ./.github/actions/install-dependencies
         with:
           node_version: ${{ inputs.node_version }}
           pnpm_version: 8
@@ -45,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install dependencies
-        uses: ./.github/actions/install-dependencies.yml
+        uses: ./.github/actions/install-dependencies
         with:
           node_version: ${{ inputs.node_version }}
           pnpm_version: 8
@@ -62,7 +67,7 @@ jobs:
 
     steps:
       - name: Install dependencies
-        uses: ./.github/actions/install-dependencies.yml
+        uses: ./.github/actions/install-dependencies
         with:
           node_version: ${{ inputs.node_version }}
           pnpm_version: 8

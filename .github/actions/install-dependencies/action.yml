@@ -1,4 +1,5 @@
 name: Install Dependencies
+description: 'Install Node.js and pnpm, and install dependencies using pnpm'
 inputs:
   node_version:
     description: 'Node.js version to use'

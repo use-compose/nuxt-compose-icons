@@ -13,7 +13,16 @@ jobs:
     name: Node version ${{ matrix.node_version }}
     strategy:
       matrix:
-        node_version: [16, 18, 20]
+        node_version: [18, 20, 22]
     uses: ./.github/workflows/lint_format_build.yml
+    with:
+      node_version: ${{ matrix.node_version }}
+
+  test:
+    name: Node version ${{ matrix.node_version }}
+    strategy:
+      matrix:
+        node_version: [18, 20, 22]
+    uses: ./.github/workflows/test.yml
     with:
       node_version: ${{ matrix.node_version }}

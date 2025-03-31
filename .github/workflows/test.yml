@@ -1,0 +1,31 @@
+name: Run Tests
+
+on:
+  workflow_call:
+    inputs:
+      node_version:
+        required: true
+        type: string
+        default: 20
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
+        with:
+          node_version: ${{ inputs.node_version }}
+          pnpm_version: 8
+          cache: 'pnpm'
+
+      - name: Playground prepare
+        run: pnpm dev:prepare
+
+      - name: Test
+        run: pnpm test

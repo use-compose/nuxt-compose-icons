@@ -1,4 +1,4 @@
-name: Lint & Format & Test build
+name: Lint & Format & Build
 
 on:
   workflow_call:
@@ -24,9 +24,6 @@ jobs:
           pnpm_version: 8
           cache: 'pnpm'
 
-      - name: ls
-        run: ls -la && ls -la node_modules/
-
       - name: Lint
         run: pnpm lint
 
@@ -45,32 +42,9 @@ jobs:
           pnpm_version: 8
           cache: 'pnpm'
 
-      - name: ls
-        run: ls -la && ls -la node_modules/
-
       - name: Format
         run: pnpm format
 
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Install dependencies
-        uses: ./.github/actions/install-dependencies
-        with:
-          node_version: ${{ inputs.node_version }}
-          pnpm_version: 8
-          cache: 'pnpm'
-
-      - name: ls
-        run: ls -la && ls -la node_modules/
-
-      - name: Test
-        run: pnpm test
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -87,9 +61,6 @@ jobs:
           node_version: ${{ inputs.node_version }}
           pnpm_version: 8
           cache: 'pnpm'
-
-      - name: ls
-        run: ls -la && ls -la node_modules/
 
       - name: Playground prepare
         run: pnpm dev:prepare

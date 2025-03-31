@@ -9,7 +9,8 @@ on:
       - main
 
 jobs:
-  example_matrix:
+  lint_format_build:
+    name: Node version ${{ matrix.node_version }}
     strategy:
       matrix:
         node_version: [16, 18, 20]

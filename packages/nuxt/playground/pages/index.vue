@@ -7,7 +7,7 @@
         :key="index"
         :color="iconStyles"
         :class="iconSize"
-        :someProp="`Component ${index + 1}`"
+        :some-prop="`Component ${index + 1}`"
       />
       <AlarmBellIcon />
     </div>

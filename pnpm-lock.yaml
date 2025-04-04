@@ -104,8 +104,8 @@ importers:
         specifier: latest
         version: 22.14.0
       changelogen:
-        specifier: 0.6.0
-        version: 0.6.0(magicast@0.3.5)
+        specifier: 0.6.1
+        version: 0.6.1(magicast@0.3.5)
       eslint:
         specifier: 9.21.0
         version: 9.21.0(jiti@2.4.2)
@@ -2462,14 +2462,6 @@ packages:
       magicast:
         optional: true
 
-  c12@3.0.1:
-    resolution: {integrity: sha512-xuYi2qvu3ne8+5KchFjNLeK/j7Antw/18JCJyMI7lPoBeZ2aF1wK6rILCBkCoD+H2zG2SfjlanfLUNQ6v1bbNQ==}
-    peerDependencies:
-      magicast: ^0.3.5
-    peerDependenciesMeta:
-      magicast:
-        optional: true
-
   c12@3.0.2:
     resolution: {integrity: sha512-6Tzk1/TNeI3WBPpK0j/Ss4+gPj3PUJYbWl/MWDJBThFvwNGNkXtd7Cz8BJtD4aRwoGHtzQD0SnxamgUiBH0/Nw==}
     peerDependencies:
@@ -2507,8 +2499,8 @@ packages:
     resolution: {integrity: sha512-zgVZuo2WcZgfUEmsn6eO3kINexW8RAE4maiQ8QNs8CtpPCSyMiYsULR3HQYkm3w8FIA3SberyMJMSldGsW+U3w==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
 
-  changelogen@0.6.0:
-    resolution: {integrity: sha512-bw9NbPIpPxZbjbIxvXqs39qKwPIV3VsFbRdXPCphWsEp84mBCAEszBj67AqBXN719zPs/x5ABFFRoLoANMJSeQ==}
+  changelogen@0.6.1:
+    resolution: {integrity: sha512-rTw2bZgiEHMgyYzWFMH+qTMFOSpCf4qwmd8LyxLDUKCtL4T/7O7978tPPtKYpjiFbPoHG64y4ugdF0Mt/l+lQg==}
     hasBin: true
 
   character-entities-html4@2.1.0:
@@ -3179,9 +3171,6 @@ packages:
   expect-type@1.2.0:
     resolution: {integrity: sha512-80F22aiJ3GLyVnS/B3HzgR6RelZVumzj9jkL0Rhz4h0xYbNW9PjlQz5h3J/SShErbXBc295vseR4/MIbVmUbeA==}
     engines: {node: '>=12.0.0'}
-
-  exsolve@0.4.4:
-    resolution: {integrity: sha512-74RiT9i1G0eyFyE9n5f6mdX8+AicZFnhJ0CHB9VrkIl3Sy8vmW49ODbpwevdLswST7fhp3jvfPzD4DArTfjnsA==}
 
   exsolve@1.0.4:
     resolution: {integrity: sha512-xsZH6PXaER4XoV+NiT7JHp1bJodJVT+cxeSH1G0f0tlT0lJqYuHUP3bUx2HtfTDvOagMINYp8rsqusxud3RXhw==}
@@ -8478,23 +8467,6 @@ snapshots:
     optionalDependencies:
       magicast: 0.3.5
 
-  c12@3.0.1(magicast@0.3.5):
-    dependencies:
-      chokidar: 4.0.3
-      confbox: 0.1.8
-      defu: 6.1.4
-      dotenv: 16.4.7
-      exsolve: 0.4.4
-      giget: 2.0.0
-      jiti: 2.4.2
-      ohash: 2.0.11
-      pathe: 2.0.3
-      perfect-debounce: 1.0.0
-      pkg-types: 2.1.0
-      rc9: 2.1.2
-    optionalDependencies:
-      magicast: 0.3.5
-
   c12@3.0.2(magicast@0.3.5):
     dependencies:
       chokidar: 4.0.3
@@ -8542,10 +8514,10 @@ snapshots:
 
   chalk@5.4.1: {}
 
-  changelogen@0.6.0(magicast@0.3.5):
+  changelogen@0.6.1(magicast@0.3.5):
     dependencies:
-      c12: 3.0.1(magicast@0.3.5)
-      confbox: 0.1.8
+      c12: 3.0.2(magicast@0.3.5)
+      confbox: 0.2.1
       consola: 3.4.2
       convert-gitmoji: 0.1.5
       mri: 1.2.0
@@ -9367,8 +9339,6 @@ snapshots:
       yoctocolors: 2.1.1
 
   expect-type@1.2.0: {}
-
-  exsolve@0.4.4: {}
 
   exsolve@1.0.4: {}
 

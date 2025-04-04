@@ -7,7 +7,7 @@
         :key="index"
         :color="iconStyles"
         :class="iconSize"
-        :someProp="`Component ${index + 1}`"
+        :some-prop="`Component ${index + 1}`"
       />
       <AlarmBellIcon />
     </div>
@@ -16,10 +16,10 @@
 
 <script setup lang="ts">
 import { computed, onMounted, ref, resolveComponent, type Component } from 'vue';
-import * as AllIcons from '../../src/runtime/components/icons-generated';
 import type { ComposeIconSize } from '../../src/runtime/types';
 import { IconSize } from '../../src/runtime/types';
 import { getIconSizeClass } from '../../src/runtime/utils';
+import * as AllIcons from '../components/nuxt-compose-icons';
 
 interface IconOverviewProps {
   size: ComposeIconSize;
@@ -52,6 +52,9 @@ const iconStyles = computed(() => {
 </script>
 
 <style>
+body {
+  background-color: #1c1b1b;
+}
 .container {
   min-height: 100svh;
   align-content: center;

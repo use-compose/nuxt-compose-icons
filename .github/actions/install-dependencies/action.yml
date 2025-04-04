@@ -1,0 +1,40 @@
+name: Install Dependencies
+description: 'Install Node.js and pnpm, and install dependencies using pnpm'
+inputs:
+  node_version:
+    description: 'Node.js version to use'
+    required: true
+    default: '18'
+  pnpm_version:
+    description: 'pnpm version to use'
+    required: true
+    default: '8'
+  cache:
+    description: 'Cache key for pnpm'
+    required: false
+    default: 'pnpm'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js and pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: ${{ inputs.pnpm_version }}
+
+    - name: Install Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node_version }}
+        cache: ${{ inputs.cache }}
+
+    - name: Install dependencies
+      shell: bash
+      run: pnpm install
+
+    - name: ls
+      shell: bash
+      run: ls -la

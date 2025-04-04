@@ -9,41 +9,20 @@ on:
       - main
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js and pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 8
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Lint
-        run: pnpm run lint
+  lint_format_build:
+    name: Lint, Format and build - Node version ${{ matrix.node_version }}
+    strategy:
+      matrix:
+        node_version: [18, 20, 22]
+    uses: ./.github/workflows/lint_format_build.yml
+    with:
+      node_version: ${{ matrix.node_version }}
 
   test:
-    runs-on: ubuntu-latest
-
-    steps:
-     - name: Checkout code
-       uses: actions/checkout@v4
-
-     - name: Setup Node.js and pnpm
-       uses: pnpm/action-setup@v4
-       with:
-         version: 8
-
-     - name: Install dependencies
-       run: pnpm install
-       
-     - name: Playground prepare
-       run: pnpm dev:prepare
-
-     - name: Test
-       run: pnpm test
+    name: Run Tests with Node version ${{ matrix.node_version }}
+    strategy:
+      matrix:
+        node_version: [18, 20, 22]
+    uses: ./.github/workflows/test.yml
+    with:
+      node_version: ${{ matrix.node_version }}

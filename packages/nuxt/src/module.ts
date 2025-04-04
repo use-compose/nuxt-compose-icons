@@ -1,17 +1,26 @@
-import { defineNuxtModule } from '@nuxt/kit';
+import { addImportsDir, createResolver, defineNuxtModule } from '@nuxt/kit';
 import type { Component } from '@nuxt/schema';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { IconSize, type ComposeIconSize } from './runtime/types';
 import {
   createComponentFromName,
+  createComponentsDir,
   createSvgComponentCode,
   generateCssFile,
   normalizeAndGenerateComponentName,
   readDirectoryRecursively,
   writeComponentFile,
 } from './utils';
+// export { generateColorVariable, getIconSizeClass } from './runtime/utils';
 
+// export { IconSize } from './runtime/types';
+// export type {
+//   ComposeIconProps,
+//   ComposeIconSize,
+//   IconSizeKey,
+//   IconSizeKeyValue,
+// } from './runtime/types';
 export interface GeneratedComponentOptions {
   /**
    * The prefix to use for the component - default false
@@ -27,6 +36,11 @@ export interface GeneratedComponentOptions {
    * default "pascal"
    */
   case: 'pascal' | 'kebab';
+  /**
+   * TODO: The directory to save the generated components
+   * default "runtime/components/icons-generated"
+   */
+  componentsDestDir: string;
 }
 
 export interface NuxtComposeIconsOptions {
@@ -55,18 +69,32 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
     },
     // If not provided, the default will be to use the "Icon" suffix for the component without a prefix
     // e.g. "arrow-up.svg" will be "ArrowUpIcon"
-    generatedComponentOptions: { prefix: false, suffix: 'Icon', case: 'pascal' },
+    generatedComponentOptions: {
+      prefix: false,
+      suffix: 'Icon',
+      case: 'pascal',
+
+      // TODO: The directory to save the generated components
+      // default "runtime/components/icons-generated"
+      componentsDestDir: 'runtime/components/icons-generated',
+    },
     iconComponentList: {},
   },
   setup(options, nuxt) {
-    const pathToIcons = options.pathToIcons;
-    const iconComponentList = options.iconComponentList;
-    const iconSizes = options.iconSizes;
+    const { pathToIcons, iconComponentList, iconSizes } = options;
+
+    const { componentsDestDir } = options.generatedComponentOptions;
+
     if (!pathToIcons && !iconComponentList) {
       // TODO: Use logger
       throw new Error('pathToIcons or iconComponentList is required');
       return;
     }
+
+    const resolver = createResolver(import.meta.url);
+
+    // Create components directory and remove it first if it exists
+    const componentsDir = createComponentsDir(resolver.resolve(componentsDestDir));
 
     // const resolver = createResolver(import.meta.url);
 
@@ -106,7 +134,12 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
           const componentCode = createSvgComponentCode(componentName, svgContent);
 
           // 3. Write the component to the file system
-          const generatedFilePath = writeComponentFile(componentName, componentCode, true);
+          const generatedFilePath = writeComponentFile(
+            componentName,
+            componentsDir,
+            componentCode,
+            true,
+          );
 
           // 4. Create the "official" component object with the name and path
           const component = createComponentFromName({
@@ -120,26 +153,37 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
             components.push(component);
           });
 
-          // // 6. Generate a CSS file with the icon sizes and add it to the Nuxt app's CSS array at build time
-          const cssContent = generateCssFile(iconSizes);
-
-          // Define the path to save the CSS file within the module
-          const cssFilePath = path.resolve(__dirname, './runtime/assets/compose-sizes.css');
-          // // Ensure the directory exists
-          fs.mkdirSync(path.dirname(cssFilePath), { recursive: true });
-          // // Write the CSS content to the file
-          fs.writeFileSync(cssFilePath, cssContent, 'utf-8');
-
-          // nuxt.options.alias = {
-          //   '@': './runtime',
-          // };
-
-          // // Push the CSS file into the Nuxt app's CSS array
-          nuxt.options.css.push(cssFilePath);
-          nuxt.options.css.push(path.resolve(__dirname, './runtime/assets/compose-icon.css'));
-          // addImportsDir(resolver.resolve('runtime/types'));
-          // addImportsDir(resolver.resolve('runtime/utils'));
+          // addImportsSources({
+          //   from: resolver.resolve('runtime/types'),
+          //   imports: [
+          //     {
+          //       name: 'types',
+          //       as: 'types',
+          //     },
+          //   ],
+          // });
         });
+
+        // 6. Generate a CSS file with the icon sizes and add it to the Nuxt app's CSS array at build time
+        const cssContent = generateCssFile(iconSizes);
+
+        // Define the path to save the CSS file within the module
+        const cssFilePath = path.resolve(__dirname, './runtime/assets/compose-sizes.css');
+        // // Ensure the directory exists
+        fs.mkdirSync(path.dirname(cssFilePath), { recursive: true });
+        // // Write the CSS content to the file
+        fs.writeFileSync(cssFilePath, cssContent, 'utf-8');
+
+        // nuxt.options.alias = {
+        //   '@': './runtime',
+        // };
+
+        // // Push the CSS file into the Nuxt app's CSS array
+        nuxt.options.css.push(cssFilePath);
+        nuxt.options.css.push(path.resolve(__dirname, './runtime/assets/compose-icon.css'));
+
+        addImportsDir(resolver.resolve('runtime/types'));
+        addImportsDir(resolver.resolve('runtime/utils'));
 
         // nuxt.hook('components:dirs', (dirs) => {
         //   dirs.push({

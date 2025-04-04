@@ -17,10 +17,10 @@ export default {
   // },
   // enhanceApp({ app }: EnhanceAppContext) {
   // const moduleFile = import.meta.url('vue3-code-highlighter');
-  // console.log('📟 - file: index.ts:20 - moduleFile → ', moduleFile.VueCodeHighlighter);
+  // ('📟 - file: index.ts:20 - moduleFile → ', moduleFile.VueCodeHighlighter);
   // app.use(TwoslashFloatingVue);
   // app.component('VueCodeHighlighter', VueCodeHighlighter);
-  // console.log('📟 - file: index.ts:33 - VueCodeHighlighter → ', VueCodeHighlighter);
+  // ('📟 - file: index.ts:33 - VueCodeHighlighter → ', VueCodeHighlighter);
   // app.component('VueCodeHighlighterMulti', VueCodeHighlighterMulti);
   // },
 } satisfies Theme;

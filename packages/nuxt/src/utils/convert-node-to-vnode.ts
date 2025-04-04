@@ -1,12 +1,9 @@
-/* eslint no-console: 0 */
 import type { Node as HtmlNode } from 'node-html-parser';
 import { h, type VNode } from 'vue';
 
 export { convertNodeToVNode };
 
 function convertNodeToVNode(node: HtmlNode): VNode | string {
-  // console.log('📟 - node → ', node);
-  // console.log('📟 - nodechildN?ODEBBBB → ', node.childNodes);
   if (node.nodeType === 3) {
     // Text node
     // return;
@@ -50,38 +47,31 @@ function convertNodeToVNode(node: HtmlNode): VNode | string {
   const children = Array.from(node.childNodes || [])
     .filter((child) => child.nodeType !== 8 && child.nodeType !== 3)
     .map(convertNodeToVNode);
-  // es
-  console.log('📟 - children → ', children);
 
   const attributes = element.attributes;
-  console.log('📟 - attributes → ', attributes);
   const props: { [key: string]: unknown } = {};
 
   if (attributes) {
-    for (const [name, value] of Object.entries(attributes)) {
+    for (const name of Object.keys(attributes)) {
       // Remove extra spaces from the value
       const attrValue = element.getAttribute(name)?.replace(/\s+/g, ' ').trim();
-      console.log('📟 - value → ', name);
-      console.log('📟 - value → ', value);
-      console.log('📟 - lololol → ', attrValue);
+
+      /*
+       * We replace SVG attributes with CSS variables that
+       * can be used later if a theme is provided
+       * IF not, we fall back to the original value
+       */
       if (name === 'fill') {
         props[name] = `var(--icon-fill, ${attrValue})`;
       } else if (name === 'stroke') {
-        console.log('attrValue', attrValue);
         props[name] = `var(--icon-stroke, ${attrValue})`;
-        console.log('props[name]', props[name]);
       } else if (name === 'stroke-width') {
         props[name] = `var(--icon-stroke-width, ${attrValue})`;
       } else {
         props[name] = attrValue;
       }
-      // }
     }
   }
-  // serializedNode.props = props;
-  // serializedNode.children = children;
-  // console.log('📟 - serializedNode → ', serializedNode)
-  // return h(serializedNode);
-  // return serializedNode;
+
   return h(element.tagName ? element.tagName.toLowerCase() : '', props, children);
 }

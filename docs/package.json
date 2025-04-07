@@ -18,7 +18,7 @@
   "license": "ISC",
   "devDependencies": {
     "sass": "1.85.1",
-    "typescript": "5.8.2",
+    "typescript": "5.8.3",
     "vitepress": "1.6.3"
   },
   "dependencies": {

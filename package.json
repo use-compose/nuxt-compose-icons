@@ -6,6 +6,8 @@
     "test": "pnpm --filter core test",
     "lint": "eslint .",
     "format": "prettier --write .",
+    "rimraf": "./node_modules/rimraf/bin.js",
+    "clean": "find . -name 'node_modules' -exec rm -rf '{}' + && find . -name 'dist' -exec rm -rf '{}' + && find . -name '.nuxt' -exec rm -rf '{}' +",
     "prepare": "husky",
     "prepack": "pnpm --filter core prepack",
     "release": "pnpm --filter core release",
@@ -32,15 +34,14 @@
     "lint-staged": "15.4.3",
     "prettier": "3.5.2",
     "prettier-plugin-organize-imports": "4.1.0",
+    "typescript": "5.8.2",
     "typescript-eslint": "8.29.0",
-    "vite": "6.2.0",
-    "typescript": "5.8.2"
+    "vite": "6.2.0"
   },
   "lint-staged": {
     "**/*.{js,ts,tsx}": [
       "eslint --fix"
     ],
     "**/*": "prettier --write --ignore-unknown"
-  },
-  "dependencies": {}
+  }
 }

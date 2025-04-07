@@ -1,0 +1,55 @@
+
+    <script lang="ts">
+    import { computed, defineComponent, h } from 'vue';
+    import type { PropType } from 'vue';
+    // import type { ComposeIconProps } from 'nuxt-compose-icons';
+    // import { IconSize } from 'nuxt-compose-icons';
+    // import { getIconSizeClass } from 'nuxt-compose-icons';
+    // import type { IconSizeKeyValue } from 'nuxt-compose-icons';
+
+
+    const svgAttributes = {"width":"47","height":"68","viewBox":"0 0 47 68","fill":"none","xmlns":"http://www.w3.org/2000/svg"};
+    const children = [{"__v_isVNode":true,"__v_skip":true,"type":"g","props":{"clip-path":"url(#clip0_1_270)"},"key":null,"ref":null,"scopeId":null,"slotScopeIds":null,"children":["\n",{"__v_isVNode":true,"__v_skip":true,"type":"mask","props":{"id":"mask0_1_270","style":"mask-type:luminance","maskUnits":"userSpaceOnUse","x":"0","y":"0","width":"47","height":"68"},"key":null,"ref":null,"scopeId":null,"slotScopeIds":null,"children":["\n",{"__v_isVNode":true,"__v_skip":true,"type":"path","props":{"d":"M46.5 0H0.5V68H46.5V0Z","fill":"var(--icon-fill, white)"},"key":null,"ref":null,"scopeId":null,"slotScopeIds":null,"children":[],"component":null,"suspense":null,"ssContent":null,"ssFallback":null,"dirs":null,"transition":null,"el":null,"anchor":null,"target":null,"targetStart":null,"targetAnchor":null,"staticCount":0,"shapeFlag":17,"patchFlag":0,"dynamicProps":null,"dynamicChildren":null,"appContext":null,"ctx":null},"\n"],"component":null,"suspense":null,"ssContent":null,"ssFallback":null,"dirs":null,"transition":null,"el":null,"anchor":null,"target":null,"targetStart":null,"targetAnchor":null,"staticCount":0,"shapeFlag":17,"patchFlag":0,"dynamicProps":null,"dynamicChildren":null,"appContext":null,"ctx":null},"\n",{"__v_isVNode":true,"__v_skip":true,"type":"g","props":{"mask":"url(#mask0_1_270)"},"key":null,"ref":null,"scopeId":null,"slotScopeIds":null,"children":["\n",{"__v_isVNode":true,"__v_skip":true,"type":"path","props":{"d":"M35.7666 22.9214H19.6666C19.2432 22.9214 18.8999 23.2635 18.8999 23.6854V24.4495C18.8999 24.8714 19.2432 25.2135 19.6666 25.2135H35.7666C36.19 25.2135 36.5332 24.8714 36.5332 24.4495V23.6854C36.5332 23.2635 36.19 22.9214 35.7666 22.9214Z","fill":"var(--icon-fill, black)"},"key":null,"ref":null,"scopeId":null,"slotScopeIds":null,"children":[],"component":null,"suspense":null,"ssContent":null,"ssFallback":null,"dirs":null,"transition":null,"el":null,"anchor":null,"target":null,"targetStart":null,"targetAnchor":null,"staticCount":0,"shapeFlag":17,"patchFlag":0,"dynamicProps":null,"dynamicChildren":null,"appContext":null,"ctx":null},"\n",{"__v_isVNode":true,"__v_skip":true,"type":"path","props":{"d":"M44.9668 1.52832H10.4668V48.1351H44.9668V1.52832Z","stroke":"var(--icon-stroke, black)","stroke-width":"var(--icon-stroke-width, 3)","stroke-linecap":"round","stroke-linejoin":"round"},"key":null,"ref":null,"scopeId":null,"slotScopeIds":null,"children":[],"component":null,"suspense":null,"ssContent":null,"ssFallback":null,"dirs":null,"transition":null,"el":null,"anchor":null,"target":null,"targetStart":null,"targetAnchor":null,"staticCount":0,"shapeFlag":17,"patchFlag":0,"dynamicProps":null,"dynamicChildren":null,"appContext":null,"ctx":null},"\n",{"__v_isVNode":true,"__v_skip":true,"type":"path","props":{"d":"M22.2979 18.3368H24.4645L25.3477 16.1777H29.4324L30.3156 18.3368H32.5374L28.3975 8.64111H26.4379L22.2979 18.3368ZM26.1067 14.3073L27.3901 11.1854L28.6735 14.3073H26.1067Z","fill":"var(--icon-fill, black)"},"key":null,"ref":null,"scopeId":null,"slotScopeIds":null,"children":[],"component":null,"suspense":null,"ssContent":null,"ssFallback":null,"dirs":null,"transition":null,"el":null,"anchor":null,"target":null,"targetStart":null,"targetAnchor":null,"staticCount":0,"shapeFlag":17,"patchFlag":0,"dynamicProps":null,"dynamicChildren":null,"appContext":null,"ctx":null},"\n",{"__v_isVNode":true,"__v_skip":true,"type":"path","props":{"d":"M23.6025 39.7305H31.6479V37.8739H26.3349L31.6479 31.7126V30.1035H23.7681V31.9601H28.9155L23.6025 38.1214V39.7305Z","fill":"var(--icon-fill, black)"},"key":null,"ref":null,"scopeId":null,"slotScopeIds":null,"children":[],"component":null,"suspense":null,"ssContent":null,"ssFallback":null,"dirs":null,"transition":null,"el":null,"anchor":null,"target":null,"targetStart":null,"targetAnchor":null,"staticCount":0,"shapeFlag":17,"patchFlag":0,"dynamicProps":null,"dynamicChildren":null,"appContext":null,"ctx":null},"\n",{"__v_isVNode":true,"__v_skip":true,"type":"path","props":{"d":"M10.4665 49.2811V1.52832H5.86654C3.74945 1.52832 2.0332 3.2387 2.0332 5.34855V52.7193","stroke":"var(--icon-stroke, black)","stroke-width":"var(--icon-stroke-width, 3)","stroke-linejoin":"round"},"key":null,"ref":null,"scopeId":null,"slotScopeIds":null,"children":[],"component":null,"suspense":null,"ssContent":null,"ssFallback":null,"dirs":null,"transition":null,"el":null,"anchor":null,"target":null,"targetStart":null,"targetAnchor":null,"staticCount":0,"shapeFlag":17,"patchFlag":0,"dynamicProps":null,"dynamicChildren":null,"appContext":null,"ctx":null},"\n",{"__v_isVNode":true,"__v_skip":true,"type":"path","props":{"d":"M21.5832 58.0674H44.9665V48.1348H6.6332C4.09269 48.1348 2.0332 50.1872 2.0332 52.719V53.4831C2.0332 56.0149 4.09269 58.0674 6.6332 58.0674H11.8082","stroke":"var(--icon-stroke, black)","stroke-width":"var(--icon-stroke-width, 3)","stroke-linejoin":"round"},"key":null,"ref":null,"scopeId":null,"slotScopeIds":null,"children":[],"component":null,"suspense":null,"ssContent":null,"ssFallback":null,"dirs":null,"transition":null,"el":null,"anchor":null,"target":null,"targetStart":null,"targetAnchor":null,"staticCount":0,"shapeFlag":17,"patchFlag":0,"dynamicProps":null,"dynamicChildren":null,"appContext":null,"ctx":null},"\n",{"__v_isVNode":true,"__v_skip":true,"type":"path","props":{"d":"M44.2 51.9551H7.39997C6.97655 51.9551 6.6333 52.2972 6.6333 52.7191V53.4832C6.6333 53.9051 6.97655 54.2472 7.39997 54.2472H44.2C44.6234 54.2472 44.9666 53.9051 44.9666 53.4832V52.7191C44.9666 52.2972 44.6234 51.9551 44.2 51.9551Z","fill":"var(--icon-fill, black)"},"key":null,"ref":null,"scopeId":null,"slotScopeIds":null,"children":[],"component":null,"suspense":null,"ssContent":null,"ssFallback":null,"dirs":null,"transition":null,"el":null,"anchor":null,"target":null,"targetStart":null,"targetAnchor":null,"staticCount":0,"shapeFlag":17,"patchFlag":0,"dynamicProps":null,"dynamicChildren":null,"appContext":null,"ctx":null},"\n",{"__v_isVNode":true,"__v_skip":true,"type":"path","props":{"d":"M12.7666 53.4834H20.4333V65.7081L16.5999 63.1913L12.7666 65.7081V53.4834Z","stroke":"var(--icon-stroke, black)","stroke-width":"var(--icon-stroke-width, 3)"},"key":null,"ref":null,"scopeId":null,"slotScopeIds":null,"children":[],"component":null,"suspense":null,"ssContent":null,"ssFallback":null,"dirs":null,"transition":null,"el":null,"anchor":null,"target":null,"targetStart":null,"targetAnchor":null,"staticCount":0,"shapeFlag":17,"patchFlag":0,"dynamicProps":null,"dynamicChildren":null,"appContext":null,"ctx":null},"\n"],"component":null,"suspense":null,"ssContent":null,"ssFallback":null,"dirs":null,"transition":null,"el":null,"anchor":null,"target":null,"targetStart":null,"targetAnchor":null,"staticCount":0,"shapeFlag":17,"patchFlag":0,"dynamicProps":null,"dynamicChildren":null,"appContext":null,"ctx":null},"\n"],"component":null,"suspense":null,"ssContent":null,"ssFallback":null,"dirs":null,"transition":null,"el":null,"anchor":null,"target":null,"targetStart":null,"targetAnchor":null,"staticCount":0,"shapeFlag":17,"patchFlag":0,"dynamicProps":null,"dynamicChildren":null,"appContext":null,"ctx":null},{"__v_isVNode":true,"__v_skip":true,"type":"defs","props":{},"key":null,"ref":null,"scopeId":null,"slotScopeIds":null,"children":["\n",{"__v_isVNode":true,"__v_skip":true,"type":"clippath","props":{"id":"clip0_1_270"},"key":null,"ref":null,"scopeId":null,"slotScopeIds":null,"children":["\n",{"__v_isVNode":true,"__v_skip":true,"type":"rect","props":{"width":"46","height":"68","fill":"var(--icon-fill, white)","transform":"translate(0.5)"},"key":null,"ref":null,"scopeId":null,"slotScopeIds":null,"children":[],"component":null,"suspense":null,"ssContent":null,"ssFallback":null,"dirs":null,"transition":null,"el":null,"anchor":null,"target":null,"targetStart":null,"targetAnchor":null,"staticCount":0,"shapeFlag":17,"patchFlag":0,"dynamicProps":null,"dynamicChildren":null,"appContext":null,"ctx":null},"\n"],"component":null,"suspense":null,"ssContent":null,"ssFallback":null,"dirs":null,"transition":null,"el":null,"anchor":null,"target":null,"targetStart":null,"targetAnchor":null,"staticCount":0,"shapeFlag":17,"patchFlag":0,"dynamicProps":null,"dynamicChildren":null,"appContext":null,"ctx":null},"\n"],"component":null,"suspense":null,"ssContent":null,"ssFallback":null,"dirs":null,"transition":null,"el":null,"anchor":null,"target":null,"targetStart":null,"targetAnchor":null,"staticCount":0,"shapeFlag":17,"patchFlag":0,"dynamicProps":null,"dynamicChildren":null,"appContext":null,"ctx":null}];
+
+    export default defineComponent({
+      name: 'LexiqueIcon',
+      props: {
+        color: {
+          type: String,
+        },
+        size: {
+          type: String as PropType<IconSizeKeyValue>,
+          default: 'md',
+        },
+      },
+      setup(props: ComposeIconProps) {
+        const iconSize = computed(() => {
+          return getIconSizeClass(props.size || IconSize.md);
+        });
+
+        const styles = computed(() => ({
+          '--icon-stroke': props.color,
+          '--icon-fill': props.color,
+        }));
+
+        const iconClasses = computed(() => {
+          return ['compose-icon', getIconSizeClass(iconSize.value)];
+        });
+
+        const iconAttributes = computed(() => ({
+          ...svgAttributes,
+          style: styles.value,
+          class: iconClasses.value,
+        }));
+        return () => h('svg', iconAttributes.value, children);
+
+        // return {
+        //   iconAttributes,
+        //   children,
+        // };
+      },
+    });
+    </script>
+
+
+  

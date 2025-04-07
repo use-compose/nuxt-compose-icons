@@ -7,7 +7,9 @@ order: 0
 
 Implementing Icon Components in a Vue or Nuxt codebase represents several challenges, which can lead to different solutions:
 
-1. Use a library that can wrap your existing ones or provide an existing list of icons, and standardize the API
+## 1. Use an existing library
+
+Many libraries will wrap your existing icons or directly provide an existing list of icons, and standardize the API
 
 ```vue
 <template>
@@ -30,15 +32,15 @@ It's fast and efficient, but can present some limitations in terms of customizat
     fill="none"
     stroke="currentColor"
     stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
   >
     <!-- ... -->
   </svg>
 </div>
 ```
 
-2. Build your own components directly from SVGs file, puting the `<svg>` tag at the root of the component
+## 2. Build your own components manually
+
+Converting directly from SVGs file, allowing more granularity and a root `<svg>` tag on the component template
 
 ```vue MyIcon.vue
 <template>

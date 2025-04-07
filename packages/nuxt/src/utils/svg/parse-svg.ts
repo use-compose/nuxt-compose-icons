@@ -71,9 +71,7 @@ export function parseSvg(svgContent: string): {
 } {
   const doc = parse(svgContent);
   const svgElement = doc.querySelector('svg') as HTMLElement;
-  const children = svgElement.children
-    .filter((child) => child.nodeType !== 8 && child.nodeType !== 3)
-    .map(convertNodeToVNode);
+  const children = svgElement.children.map(convertNodeToVNode);
 
   return {
     attributes: svgElement.attributes,

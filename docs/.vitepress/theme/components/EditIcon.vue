@@ -1,0 +1,55 @@
+
+    <script lang="ts">
+    import { computed, defineComponent, h } from 'vue';
+    import type { PropType } from 'vue';
+    // import type { ComposeIconProps } from 'nuxt-compose-icons';
+    // import { IconSize } from 'nuxt-compose-icons';
+    // import { getIconSizeClass } from 'nuxt-compose-icons';
+    // import type { IconSizeKeyValue } from 'nuxt-compose-icons';
+
+
+    const svgAttributes = {"width":"68","height":"67","viewBox":"0 0 68 67","fill":"none","xmlns":"http://www.w3.org/2000/svg"};
+    const children = [{"__v_isVNode":true,"__v_skip":true,"type":"g","props":{"clip-path":"url(#clip0_1_188)"},"key":null,"ref":null,"scopeId":null,"slotScopeIds":null,"children":["\n",{"__v_isVNode":true,"__v_skip":true,"type":"path","props":{"d":"M51.0822 38.2916L23.9639 11.1733L11.683 23.4542L38.8013 50.5725L51.0822 38.2916Z","fill":"var(--icon-fill, #FEFEFE)"},"key":null,"ref":null,"scopeId":null,"slotScopeIds":null,"children":[],"component":null,"suspense":null,"ssContent":null,"ssFallback":null,"dirs":null,"transition":null,"el":null,"anchor":null,"target":null,"targetStart":null,"targetAnchor":null,"staticCount":0,"shapeFlag":17,"patchFlag":0,"dynamicProps":null,"dynamicChildren":null,"appContext":null,"ctx":null},"\n",{"__v_isVNode":true,"__v_skip":true,"type":"path","props":{"d":"M20.611 7.82144L12.79 0.000488281L0.499919 12.2906L8.32087 20.1115L20.611 7.82144Z","fill":"var(--icon-fill, #FEFEFE)"},"key":null,"ref":null,"scopeId":null,"slotScopeIds":null,"children":[],"component":null,"suspense":null,"ssContent":null,"ssFallback":null,"dirs":null,"transition":null,"el":null,"anchor":null,"target":null,"targetStart":null,"targetAnchor":null,"staticCount":0,"shapeFlag":17,"patchFlag":0,"dynamicProps":null,"dynamicChildren":null,"appContext":null,"ctx":null},"\n",{"__v_isVNode":true,"__v_skip":true,"type":"path","props":{"d":"M60.5786 60.0783L54.4336 41.6432L42.1435 53.9333L60.5786 60.0783Z","fill":"var(--icon-fill, #FEFEFE)"},"key":null,"ref":null,"scopeId":null,"slotScopeIds":null,"children":[],"component":null,"suspense":null,"ssContent":null,"ssFallback":null,"dirs":null,"transition":null,"el":null,"anchor":null,"target":null,"targetStart":null,"targetAnchor":null,"staticCount":0,"shapeFlag":17,"patchFlag":0,"dynamicProps":null,"dynamicChildren":null,"appContext":null,"ctx":null},"\n"],"component":null,"suspense":null,"ssContent":null,"ssFallback":null,"dirs":null,"transition":null,"el":null,"anchor":null,"target":null,"targetStart":null,"targetAnchor":null,"staticCount":0,"shapeFlag":17,"patchFlag":0,"dynamicProps":null,"dynamicChildren":null,"appContext":null,"ctx":null},{"__v_isVNode":true,"__v_skip":true,"type":"defs","props":{},"key":null,"ref":null,"scopeId":null,"slotScopeIds":null,"children":["\n",{"__v_isVNode":true,"__v_skip":true,"type":"clippath","props":{"id":"clip0_1_188"},"key":null,"ref":null,"scopeId":null,"slotScopeIds":null,"children":["\n",{"__v_isVNode":true,"__v_skip":true,"type":"rect","props":{"width":"67","height":"67","fill":"var(--icon-fill, white)","transform":"translate(0.5)"},"key":null,"ref":null,"scopeId":null,"slotScopeIds":null,"children":[],"component":null,"suspense":null,"ssContent":null,"ssFallback":null,"dirs":null,"transition":null,"el":null,"anchor":null,"target":null,"targetStart":null,"targetAnchor":null,"staticCount":0,"shapeFlag":17,"patchFlag":0,"dynamicProps":null,"dynamicChildren":null,"appContext":null,"ctx":null},"\n"],"component":null,"suspense":null,"ssContent":null,"ssFallback":null,"dirs":null,"transition":null,"el":null,"anchor":null,"target":null,"targetStart":null,"targetAnchor":null,"staticCount":0,"shapeFlag":17,"patchFlag":0,"dynamicProps":null,"dynamicChildren":null,"appContext":null,"ctx":null},"\n"],"component":null,"suspense":null,"ssContent":null,"ssFallback":null,"dirs":null,"transition":null,"el":null,"anchor":null,"target":null,"targetStart":null,"targetAnchor":null,"staticCount":0,"shapeFlag":17,"patchFlag":0,"dynamicProps":null,"dynamicChildren":null,"appContext":null,"ctx":null}];
+
+    export default defineComponent({
+      name: 'EditIcon',
+      props: {
+        color: {
+          type: String,
+        },
+        size: {
+          type: String as PropType<IconSizeKeyValue>,
+          default: 'md',
+        },
+      },
+      setup(props: ComposeIconProps) {
+        const iconSize = computed(() => {
+          return getIconSizeClass(props.size || IconSize.md);
+        });
+
+        const styles = computed(() => ({
+          '--icon-stroke': props.color,
+          '--icon-fill': props.color,
+        }));
+
+        const iconClasses = computed(() => {
+          return ['compose-icon', getIconSizeClass(iconSize.value)];
+        });
+
+        const iconAttributes = computed(() => ({
+          ...svgAttributes,
+          style: styles.value,
+          class: iconClasses.value,
+        }));
+        return () => h('svg', iconAttributes.value, children);
+
+        // return {
+        //   iconAttributes,
+        //   children,
+        // };
+      },
+    });
+    </script>
+
+
+  

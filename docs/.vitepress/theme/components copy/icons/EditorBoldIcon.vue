@@ -1,0 +1,81 @@
+<script lang="ts">
+import type { PropType, VNode } from 'vue';
+import { computed, defineComponent, h } from 'vue';
+import type { ComposeIconProps } from './types';
+import { IconSize } from './types';
+// import { getIconSizeClass } from '../src/runtime/utils';
+import type { IconSizeKeyValue } from './types';
+import { getIconSizeClass } from './utils';
+
+const svgAttributes = {
+  width: '24',
+  height: '24',
+  viewBox: '0 0 24 24',
+  fill: 'none',
+  xmlns: 'http://www.w3.org/2000/svg',
+};
+const vnodeChildren = [
+  {
+    type: 'path',
+    props: {
+      d: 'M18.1898 11C19.0777 10.1307 19.6872 9.0171 19.9411 7.80069C20.1949 6.58428 20.0816 5.31987 19.6155 4.16799C19.1494 3.01611 18.3515 2.0287 17.3232 1.33112C16.2948 0.633533 15.0824 0.257237 13.8398 0.25H5.2998C4.96828 0.25 4.65034 0.381696 4.41592 0.616117C4.1815 0.850537 4.0498 1.16848 4.0498 1.5C4.0498 1.83152 4.1815 2.14946 4.41592 2.38388C4.65034 2.6183 4.96828 2.75 5.2998 2.75H6.2998C6.33347 2.74865 6.36705 2.75412 6.39855 2.76608C6.43004 2.77804 6.4588 2.79624 6.48308 2.81959C6.50737 2.84294 6.52668 2.87096 6.53986 2.90196C6.55305 2.93296 6.55983 2.96631 6.5598 3V21C6.5598 21.0663 6.53347 21.1299 6.48658 21.1768C6.4397 21.2237 6.37611 21.25 6.3098 21.25H5.3098C4.97828 21.25 4.66034 21.3817 4.42592 21.6161C4.1915 21.8505 4.0598 22.1685 4.0598 22.5C4.0598 22.8315 4.1915 23.1495 4.42592 23.3839C4.66034 23.6183 4.97828 23.75 5.3098 23.75H15.3098C16.8103 23.7129 18.2554 23.176 19.4161 22.2244C20.5768 21.2729 21.3867 19.9611 21.7174 18.4971C22.0481 17.0331 21.8807 15.5006 21.2417 14.1425C20.6026 12.7844 19.5286 11.6785 18.1898 11ZM13.8398 2.75C14.837 2.75 15.7934 3.14614 16.4985 3.85128C17.2037 4.55642 17.5998 5.51279 17.5998 6.51C17.5998 7.50721 17.2037 8.46358 16.4985 9.16872C15.7934 9.87386 14.837 10.27 13.8398 10.27H9.3098C9.27522 10.2701 9.24099 10.263 9.20928 10.2492C9.17757 10.2355 9.14906 10.2152 9.12556 10.1899C9.10207 10.1645 9.08409 10.1345 9.07277 10.1018C9.06145 10.0691 9.05704 10.0345 9.0598 10V3C9.0598 2.9337 9.08614 2.87011 9.13303 2.82322C9.17991 2.77634 9.2435 2.75 9.3098 2.75H13.8398ZM15.2598 21.25H9.3098C9.2435 21.25 9.17991 21.2237 9.13303 21.1768C9.08614 21.1299 9.0598 21.0663 9.0598 21V13C9.0598 12.9337 9.08614 12.8701 9.13303 12.8232C9.17991 12.7763 9.2435 12.75 9.3098 12.75H15.2598C16.3843 12.75 17.4628 13.1967 18.2579 13.9919C19.0531 14.787 19.4998 15.8655 19.4998 16.99C19.4998 18.1145 19.0531 19.193 18.2579 19.9881C17.4628 20.7833 16.3843 21.23 15.2598 21.23V21.25Z',
+      fill: 'var(--icon-fill, #7D7898)',
+    },
+    children: [],
+  },
+];
+
+export default defineComponent({
+  name: 'EditorBoldIcon',
+  props: {
+    color: {
+      type: String,
+    },
+    size: {
+      type: String as PropType<IconSizeKeyValue>,
+      default: 'md',
+    },
+  },
+  setup(props: ComposeIconProps) {
+    const iconSize = computed(() => {
+      return getIconSizeClass(props.size || IconSize.M);
+    });
+
+    const styles = computed(() => ({
+      '--icon-stroke': props.color,
+      '--icon-fill': props.color,
+    }));
+
+    const iconClasses = computed(() => {
+      return ['compose-icon', getIconSizeClass(iconSize.value)];
+    });
+
+    function recreateVNodes(vnodeData: any[]): (VNode | string)[] {
+      return vnodeData.map((node) => {
+        if (typeof node === 'string') {
+          return node;
+        }
+        return h(
+          node.type,
+          node.props,
+          node.children ? recreateVNodes(node.children) : node.children,
+        );
+      });
+    }
+
+    const children = recreateVNodes(vnodeChildren);
+
+    const iconAttributes = computed(() => ({
+      ...svgAttributes,
+      style: styles.value,
+      class: iconClasses.value,
+    }));
+    return () => h('svg', iconAttributes.value, children);
+
+    // return {
+    //   iconAttributes,
+    //   children,
+    // };
+  },
+});
+</script>

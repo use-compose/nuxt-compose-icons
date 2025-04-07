@@ -5,9 +5,10 @@ const sidebar = {
   // is on `guide` directory.
   '/guide/': [
     {
-      text: 'Introduction',
+      text: 'Guide',
       items: [
-        { text: 'Motivation', link: '/guide/motivation' },
+        { text: 'Introduction', link: '/guide/concept' },
+        { text: 'Features', link: '/guide/features' },
         { text: 'Features', link: '/guide/features' },
         { text: 'Getting Started', link: '/guide/getting-started' },
       ],
@@ -57,7 +58,7 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Motivation', link: '/guide/motivation' },
+      { text: 'Introduction', link: '/guide/concept' },
       { text: 'Playground', link: 'https://compose-icons-playground.vercel.app/' },
     ],
 

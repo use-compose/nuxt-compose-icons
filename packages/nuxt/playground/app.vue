@@ -9,6 +9,7 @@
 <script setup lang="ts">
 import type { YTheme } from 'gamma-compose';
 import { AppCompose, Wrapper } from 'gamma-compose';
+import { useCookie } from 'nuxt/app';
 
 const theme: YTheme | undefined = useCookie<{ primary: string; background: string; dark: string }>(
   'theme',
@@ -19,8 +20,8 @@ const myTheme = {
   dark: '#0b0c0c',
 };
 
-const primary = ref(myTheme.primary);
-const background = ref(myTheme.background);
+// const primary = ref(myTheme.primary);
+// const background = ref(myTheme.background);
 
 theme.value = { ...myTheme };
 </script>

@@ -6,10 +6,6 @@ export { convertNodeToVNode };
 function convertNodeToVNode(node: HtmlNode): VNode | string {
   if (node.nodeType === 3) {
     // Text node
-    // return;
-    console.log('Text node', node);
-    console.log('node', node);
-    console.log('node', node.rawText);
     return node.rawText;
   }
 

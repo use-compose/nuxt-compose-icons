@@ -10,21 +10,22 @@
 <script setup>
 const features = [
   {
-    title: 'No extra wrapper needed',
-    details: 'Icon component names are derived from the initial SVG file name',
+    title: 'SVG to Vue Component at Build time',
+    details: 'One Vue component per SVG file, no extra wrapper needed',
   },
   {
-    title: 'Fully dynamic',
+    title: 'Auto-Registration in Nuxt',
+    details:
+      'Icons are generated and injected during the build process, and are available as any other components',
+  },
+  {
+    title: 'Theming and Runtime customization',
     details: 'Generated at build time, customizable at runtime using CSS custom properties',
   },
   {
-    title: 'Rendered as pure SVG',
-    details: 'The final output is a pure SVG element, avoiding any polluting parent elements',
-  },
-  {
-    title: 'Part of Nuxt build process',
-    details:
-      'Icons are generated and injected during the build process, and are available as any other components',
+    title: 'Developer Experience',
+    details: `Auto-completion as part of the Nuxt build process, no extra configuration needed.
+              Vue DevTools support`,
   },
 ];
 </script>
@@ -35,17 +36,17 @@ const features = [
 .features {
   // display: grid;
   // grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  height: 100%;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 3rem;
-  margin-top: 2rem;
+  gap: 2rem;
   display: grid;
 }
 
 .feature {
   display: flex;
-  min-height: 160px;
+  min-height: 120px;
   width: 100%;
   padding: 16px 24px;
   flex-direction: column;

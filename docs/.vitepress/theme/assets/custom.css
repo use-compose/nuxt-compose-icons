@@ -6,12 +6,64 @@
   transition: background-color 0.25s;
 }
 
+.home-layout .VPNavBarTitle a {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+.home-layout .VPNavBarTitle a svg {
+  height: 70%;
+}
+
+.home-layout .VPDoc.has-aside .content-container {
+  max-width: 768px;
+}
+
+.home-layout .VPNavBar,
+.home-layout .VPNavBar:not(.home) {
+  background-color: var(--vp-nav-bg-color);
+}
+
+@media (min-width: 1440px) {
+  .home-layout .VPSidebar,
+  .home-layout .VPNavBar.has-sidebar .title {
+    padding-left: max(32px, calc((98% - (var(--vp-layout-max-width) - 64px)) / 2));
+    /* width: calc((100% - (var(--vp-layout-max-width) - 64px)) / 2 + var(--vp-sidebar-width) - 32px); */
+    width: calc((100% - (var(--vp-layout-max-width) - 64px)) / 2 + var(--vp-sidebar-width));
+  }
+
+  .home-layout .VPNavBarTitle.has-sidebar .title {
+    padding-left: unset;
+    width: unset;
+  }
+}
+
 .vp-doc {
   --icon-size: 1rem;
 }
 
 .vp-doc h2 {
   --icon-size: 1.5rem;
+}
+
+.vp-doc strong {
+  position: relative;
+  z-index: 1;
+}
+
+.vp-doc strong::after {
+  content: '';
+  display: block;
+  width: 25%;
+  height: 3px;
+  background-color: var(--vp-c-brand-1);
+  margin-top: 4px;
+  position: absolute;
+  left: -2px;
+  bottom: -6px;
+  z-index: -1;
 }
 
 .vp-doc p {
@@ -95,7 +147,10 @@
 }
 
 .VPButton:active {
-  transition: color 0.1s, border-color 0.1s, background-color 0.1s;
+  transition:
+    color 0.1s,
+    border-color 0.1s,
+    background-color 0.1s;
 }
 
 #app .VPButton.medium {

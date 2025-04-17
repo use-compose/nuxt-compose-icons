@@ -5,17 +5,17 @@ order: 0
 
 # Concept
 
-Icons in a typical user interface can bring several challenges, as for example:
+Icons in user interfaces come with several challenges:
 
-- **Accessibility**: see [Accessible SVG Icons](https://css-tricks.com/accessible-svg-icons/)
+- **Accessibility**: Follow semantic best practices for screen readers - see [Accessible SVG Icons](https://css-tricks.com/accessible-svg-icons/)
 - **Consistency**: style, size, and color to create a cohesive user experience.
 - **Reusability**: reusable across different components and pages to reduce redundancy.
-- **Performance**: they should be optimized for performance to ensure fast loading times and smooth interactions.
-- **Customization**: they should be customizable to fit different themes or branding requirements.
+- **Performance**: Avoid too long loading times and large bundle sizes.
+- **Customization**: Adapt to different themes and brandings
 
 ---
 
-A typical approach is to create an **icon component library** — a collection of reusable UI components that can be used throughout the application. More developer-oriented, this library should be:
+A typical approach is to create an **icon component library** — a collection of reusable UI components that can be used by developers to build user interfaces:
 
 - **Auto-imported** like any other component
 - **Typed** for IDE autocompletion and safety
@@ -24,7 +24,10 @@ A typical approach is to create an **icon component library** — a collection o
 
 ## Motivation
 
-Implementing Icon Components in a Vue or Nuxt codebase represents several challenges, which can lead to different solutions:
+Icon components should be easy to use, style, and maintain.
+
+Existing solutions often force trade-offs between DX, accessibility, and flexibility.
+In a Vue or Nuxt codebase, we often lead to different solutions:
 
 ### 1. Third-party icon libraries
 
@@ -59,12 +62,12 @@ Example output:
 </div>
 ```
 
-| **Pros**               | **Cons**                                          |
-| ---------------------- | ------------------------------------------------- |
-| - Easy to integrate    | - Extra wrapper elements (`<div>`, `<span>`)      |
-| - Predefined icon sets | - Limited styling flexibility                     |
-| - Standardized API     | - Icons may not match your brand or design system |
-|                        | - Styling often relies on props or global rules   |
+| **Pros**               | **Cons**                                        |
+| ---------------------- | ----------------------------------------------- |
+| + Easy to integrate    | Extra wrapper elements (`<div>`, `<span>`)      |
+| + Predefined icon sets | Limited styling flexibility                     |
+| + Standardized API     | Icons may not match your brand or design system |
+|                        | Styling often relies on props or global rules   |
 
 ---
 
@@ -110,13 +113,13 @@ This solution is more flexible, as it gives more control over each SVG, but can 
 Tools like [`vite-svg-loader`](https://github.com/jpkleemans/vite-svg-loader) or [`vue-svg-loader`](https://github.com/visualfanatic/vue-svg-loader) allow importing SVGs directly as components:
 
 ```vue
-<script setup>
-import Icon from '@/icons/user-badge.svg';
-</script>
-
 <template>
   <Icon />
 </template>
+
+<script setup>
+import Icon from '@/icons/user-badge.svg';
+</script>
 ```
 
 | **Pros**                      | **Cons**                                                   |
@@ -128,5 +131,6 @@ import Icon from '@/icons/user-badge.svg';
 
 ## Nuxt Compose Icons
 
-The goal of this module is to propose a balanced approach which gives design flexibility and developer experience, by dynamically generating Vue components from existing SVG files, naming them accordingly and that will be accessible as individual components in the Nuxt project.
-Icon components should be easy to use, style, and maintain. Existing solutions often force trade-offs between DX, accessibility, and flexibility.
+The goal of this module is to propose a balanced approach which gives design flexibility and developer experience.
+
+It dynamically generates Vue components from initial SVG files, naming them accordingly and make them accessible as individual components in the Nuxt project.

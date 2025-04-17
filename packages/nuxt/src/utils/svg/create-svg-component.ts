@@ -88,7 +88,5 @@ export function createSvgComponentCode(name: string, svgContent: string): string
       },
     });
     </script>
-
-
   `;
 }

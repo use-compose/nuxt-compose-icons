@@ -53,6 +53,6 @@ const iconStyles = computed(() => {
 .icon-overview {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(1rem, 1fr));
-  gap: 2rem;
+  gap: 4rem;
 }
 </style>

@@ -1,0 +1,89 @@
+<script lang="ts">
+import type { PropType } from 'vue';
+import { computed, defineComponent, h } from 'vue';
+import type { ComposeIconProps, IconSizeKeyValue } from './types';
+import { IconSize } from './types';
+import { getIconSizeClass } from './utils';
+
+const svgAttributes = {
+  width: '56',
+  height: '61',
+  viewBox: '0 0 56 61',
+  fill: 'none',
+  xmlns: 'http://www.w3.org/2000/svg',
+};
+const children = [
+  {
+    __v_isVNode: true,
+    __v_skip: true,
+    type: 'path',
+    props: {
+      d: 'M53.5 5.65025C53.0526 3.87192 52.6053 2.44458 50.8158 2H5.18421C3.84211 2 2.94737 3.87192 2.5 5.65025V17.2094C2.5 18.0985 2.50008 18.0985 3.39474 18.0985H5.18421C6.52632 18.0985 6.52632 18.0985 6.52632 17.3341V14.5419C6.52632 13.2081 6.97368 12.7635 7.86842 12.319C14.5789 10.0961 14.8421 10.5406 22 12.7635V50.1084C22 52.7759 21.2895 52.7759 19.9474 52.7759H13.6842C11.8947 53.665 11.8947 54.5542 11.8947 55.8879C11.8947 57.2217 11.8947 58.1108 13.6842 59H42.3158C44.1053 58.1108 44.1053 57.2217 44.1053 55.8879C44.1053 54.5542 44.1053 53.665 42.3158 52.7759H36.5C34.7105 52.7759 34 52.7759 34 50.1084V12.7635C41.1579 10.9852 41.4211 10.5406 48.1316 12.319C49.0263 12.7635 49.4737 13.2081 49.4737 14.5419V17.2094C49.4737 18.0985 49.4737 18.0985 50.8158 18.0985H52.6053C53.5 18.0985 53.5 18.0985 53.5 17.3341V5.65025Z',
+      stroke: 'var(--icon-stroke, black)',
+      'stroke-width': 'var(--icon-stroke-width, 3)',
+    },
+    key: null,
+    ref: null,
+    scopeId: null,
+    slotScopeIds: null,
+    children: [],
+    component: null,
+    suspense: null,
+    ssContent: null,
+    ssFallback: null,
+    dirs: null,
+    transition: null,
+    el: null,
+    anchor: null,
+    target: null,
+    targetStart: null,
+    targetAnchor: null,
+    staticCount: 0,
+    shapeFlag: 17,
+    patchFlag: 0,
+    dynamicProps: null,
+    dynamicChildren: null,
+    appContext: null,
+    ctx: null,
+  },
+];
+
+export default defineComponent({
+  name: 'TexteIcon',
+  props: {
+    color: {
+      type: String,
+    },
+    size: {
+      type: String as PropType<IconSizeKeyValue>,
+      default: 'md',
+    },
+  },
+  setup(props: ComposeIconProps) {
+    const iconSize = computed(() => {
+      return getIconSizeClass(props.size || IconSize.md);
+    });
+
+    const styles = computed(() => ({
+      '--icon-stroke': props.color,
+      '--icon-fill': props.color,
+    }));
+
+    const iconClasses = computed(() => {
+      return ['compose-icon', getIconSizeClass(iconSize.value)];
+    });
+
+    const iconAttributes = computed(() => ({
+      ...svgAttributes,
+      style: styles.value,
+      class: iconClasses.value,
+    }));
+    return () => h('svg', iconAttributes.value, children);
+
+    // return {
+    //   iconAttributes,
+    //   children,
+    // };
+  },
+});
+</script>

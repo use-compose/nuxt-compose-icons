@@ -9,7 +9,6 @@ const sidebar = {
       items: [
         { text: 'Introduction', link: '/guide/concept' },
         { text: 'Features', link: '/guide/features' },
-        { text: 'Features', link: '/guide/features' },
         { text: 'Getting Started', link: '/guide/getting-started' },
       ],
     },
@@ -74,6 +73,7 @@ export default defineConfig({
         link: 'https://github.com/arthur-plazanet/nuxt-compose-icons',
       },
     ],
+    outline: [2, 3],
   },
   cleanUrls: true,
   vite: {

@@ -3,28 +3,11 @@ outline: [2, 3]
 order: 1
 ---
 
-# Features:
+# Features
 
-## Build-time parsing:
+From SVG files to Vue Components that you own.
 
--
-
-- Runtime access and accessibility / customization:
-
-  - Each `stroke`, `fill` or other style attributes will be automatically filled by CSS Custom Properties at build-time based on initial value or a theme
-  - Since CSS Custom Properties work at runtime, they can be used to dynamically change icons components in cascade for each individual icons and property (fill, stroke, stroke-width, etc.)
-  - No extra wrapper will be present aroung the SVG itself, ###### allowing for more flexibility in styling and accessibility
-
-- Customization and Developer Experience:
-
-  - Can provide auto-completion and type-checking in the IDE for each icons, as they are directly part of the Nuxt Build
-  - Full Vue DevTools support
-
-An overview of what this module provides at build and runtime.
-
-## Build-time Parsing
-
-### Component Generation
+## Build-time SVG to Vue Component:
 
 - One Vue component is created per `.svg` file
 - Use of the initial name of the icon, converted to PascalCase or snake-case with optional prefix and suffix.
@@ -34,7 +17,7 @@ An overview of what this module provides at build and runtime.
   - `<user-badge />`
 - Optional support for folder-based namespacing - icon Components can directly be generated in your codebase, making versioning possible
 
-### Nuxt Integration
+## Auto-Registration in Nuxt and Typing
 
 - Full auto-import support (no manual registration) - each icon will be automatically imported and registered in the Nuxt project as individual Vue component in the tree
 - Type-safe usage in `<template>`
@@ -46,12 +29,17 @@ An overview of what this module provides at build and runtime.
 - No additional wrappers or nested templates
 - Attributes from the original SVG are preserved
 
-## CSS Custom Properties
+## Theming with CSS Custom Properties and Runtime Access
 
-- `fill`, `stroke`, and `stroke-width` are replaced by `var(--icon-*)`
-- Original value is preserved as fallback
-- Enables runtime theming with CSS variables
+- `fill`, `stroke`, and `stroke-width` are replaced with CSS Custom Properties ([CSS Custom Properties Guide](https://css-tricks.com/a-complete-guide-to-custom-properties/)) making theming directly possible
+- Original values are preserved as fallbacks
+- Since CSS Custom Properties work at runtime, they can be used to dynamically change icons components in cascade for each individual icons and property (fill, stroke, stroke-width, etc.)
 - Compatible with global tokens or scoped styles
+
+## Developer Experience:
+
+- Can provide auto-completion and type-checking in your editor for each icons, as they are directly part of the Nuxt Build like any other component
+- Vue DevTools support - unlike other solutions, this module generates Vue components that can be inspected and debugged in the Vue DevTools
 
 The aim is to combine the control and quality of hand-authored components with the scalability and consistency of a build tool.
 
@@ -68,15 +56,21 @@ The aim is to combine the control and quality of hand-authored components with t
 
 ## Example
 
-```xml
-<!-- Input: user-badge.svg -->
+:::code-group
+
+```xml [user-badge.svg]
 <svg fill="#000" stroke="#fff" stroke-width="2">
   <path d="..." />
 </svg>
 ```
 
-```vue
-<!-- Output: IconUserBadge.vue -->
+:::
+
+**will generate:**
+
+:::code-group
+
+```vue [UserBadgeIcon.vue]
 <template>
   <svg
     :fill="var(--icon-fill, #000)"
@@ -87,5 +81,7 @@ The aim is to combine the control and quality of hand-authored components with t
   </svg>
 </template>
 ```
+
+:::
 
 This provides a balance of control, flexibility, and developer experience, tailored for projects using custom icons or building design systems.

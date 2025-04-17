@@ -21,8 +21,6 @@ Many libraries will wrap your existing icons or directly provide an existing lis
 </template>
 ```
 
-It's fast and efficient, but can present some limitations in terms of customizations, and often result in a wrapper `div` or `span` tag around the SVG icon in the HTML template, which can be a problem for styling and accessibility.
-
 ```html
 <div class="icon-wrapper">
   <!-- The real icon -->
@@ -61,7 +59,3 @@ Converting directly from SVGs file, allowing more granularity and a root `<svg>`
 ```
 
 This solution is more flexible, as it gives more control over each SVG, but can be time-consuming and repetitive, especially when you have a lot of icons to manage.
-
----
-
-The goal of this module is to propose a balanced approach which gives design flexibility and developer experience, by dynamically generating Vue components from existing SVG files, naming them accordingly and that will be accessible as individual components in the Nuxt project.

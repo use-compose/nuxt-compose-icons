@@ -6,8 +6,8 @@ const iconSizes: ComposeIconSize = {
   [IconSize.xs]: '0.5rem',
   [IconSize.sm]: '0.875rem',
   [IconSize.md]: '1rem',
-  [IconSize.lg]: '1.5rem',
-  [IconSize.xl]: '2.5rem',
+  [IconSize.lg]: '2rem',
+  [IconSize.xl]: '4rem',
 };
 
 export default defineNuxtConfig({

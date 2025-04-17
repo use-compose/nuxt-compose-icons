@@ -133,7 +133,9 @@
 
 .dark {
   --vp-c-bg: #1b1b1f;
-  --vp-c-bg-alt: #161618;
+  --vp-c-bg: #000;
+  --vp-c-bg-alt: #1c1b1b;
+  --vp-c-bg-alt: #000;
   --vp-c-bg-elv: #202127;
   --vp-c-bg-soft: #202127;
 }
@@ -311,7 +313,7 @@
  * -------------------------------------------------------------------------- */
 
 :root {
-  --vp-layout-max-width: 1440px;
+  --vp-layout-max-width: 1536px;
 }
 
 /**
@@ -371,15 +373,19 @@
 :lang(pt) {
   --vp-code-copy-copied-text-content: 'Copiado';
 }
+
 :lang(fa) {
   --vp-code-copy-copied-text-content: 'کپی شد';
 }
+
 :lang(ko) {
   --vp-code-copy-copied-text-content: '복사됨';
 }
+
 :lang(ru) {
   --vp-code-copy-copied-text-content: 'Скопировано';
 }
+
 :lang(zh) {
   --vp-code-copy-copied-text-content: '已复制';
 }
@@ -487,7 +493,7 @@
 :root {
   --vp-nav-height: 64px;
   /* --vp-nav-bg-color: var(--vp-c-bg); */
-  --vp-nav-bg-color: transparent;
+  --vp-nav-bg-color: #000;
   --vp-nav-screen-bg-color: var(--vp-c-bg);
   --vp-nav-logo-height: 24px;
 }
@@ -513,7 +519,7 @@
  * -------------------------------------------------------------------------- */
 
 :root {
-  --vp-sidebar-width: 272px;
+  --vp-sidebar-width: 220px;
   --vp-sidebar-bg-color: var(--vp-c-bg-alt);
 }
 

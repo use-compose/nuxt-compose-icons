@@ -3,11 +3,12 @@
   "name": "my-module-playground",
   "type": "module",
   "scripts": {
-    "dev": "nuxi dev",
+    "dev": "PORT=3007 nuxi dev",
     "build": "nuxi build",
     "generate": "nuxi generate"
   },
   "dependencies": {
+    "gamma-compose": "file:../../../gamma-compose-0.0.0.tgz",
     "nuxt": "^3.15.4",
     "nuxt-compose-icons": "file:../"
   }

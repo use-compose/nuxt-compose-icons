@@ -8,10 +8,13 @@
       <Separator />
     </HighlightedText>
 
-    <IconOverview />
     <ClientOnly>
       <ModuleTemplateExample />
     </ClientOnly>
+    <!-- <div class="parallax__layer parallax__layer--back">...</div>
+    <div class="parallax__layer parallax__layer--base"> -->
+    <IconOverview />
+    <!-- </div> -->
 
     <Features />
   </section>
@@ -28,7 +31,7 @@ import ModuleTemplateExample from './ModuleTemplateExample.vue';
 @import '../assets/scss/abstracts/mixins';
 
 .banner {
-  padding-top: 4svh;
+  padding-top: calc(var(--vp-nav-height) + 2svh);
   container-name: banner;
   container-type: inline-size;
   display: grid;
@@ -107,8 +110,10 @@ import ModuleTemplateExample from './ModuleTemplateExample.vue';
 
 @include media('md') {
   .banner {
+    // height: 100%;
     // align-content: center;
-    grid-template-columns: 1fr 3svw 1fr;
+    grid-template-columns: 1fr 1fr auto;
+    grid-template-rows: 30svh 400px;
     grid-template-areas:
       'heading heading icon-overview'
       'features . module-template-example';

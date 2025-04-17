@@ -6,7 +6,6 @@ export { convertNodeToVNode };
 function convertNodeToVNode(node: HtmlNode): VNode | string {
   if (node.nodeType === 3) {
     // Text node
-    // return;
     return node.rawText;
   }
 
@@ -45,7 +44,7 @@ function convertNodeToVNode(node: HtmlNode): VNode | string {
    * HTMLCollection is a collection of HTML elements - it is an "array-like object" which we can not use directly with array methods like forEach, map, etc.
    */
   const children = Array.from(node.childNodes || [])
-    .filter((child) => child.nodeType !== 8 && child.nodeType !== 3)
+    .filter((child) => child.nodeType !== 8)
     .map(convertNodeToVNode);
 
   const attributes = element.attributes;

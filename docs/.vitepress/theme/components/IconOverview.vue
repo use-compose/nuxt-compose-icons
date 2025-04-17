@@ -1,56 +1,195 @@
 <template>
-  <div class="icons-overview">
-    <component
-      v-for="(icon, index) in icons"
-      :is="icon"
-      :key="index"
-      class="icon"
-      size="xl"
-      color="red"
-      v-bind="randomStyles[index]"
-    />
+  <div class="icons-overview parallax">
+    <div class="parallax__layer parallax__layer--back"></div>
+    <div class="parallax__layer parallax__layer--base">
+      <Component
+        v-for="(icon, index) in icons"
+        :is="icon"
+        :key="index"
+        class="icon"
+        size="xl"
+        :style="generateRandomStyles(index)"
+      />
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import ArrowLeftIcon from './icons/ArrowLeftIcon.vue';
+import {
+  AjouterIcon,
+  ArticleIcon,
+  BoiteAQuestion2Icon,
+  BoiteAQuestionIcon,
+  BookmarkIcon,
+  BoutonFBIcon,
+  BoutonInstaIcon,
+  BoutonTwitterIcon,
+  BrouillonIcon,
+  ClocheIcon,
+  CroixFermerIcon,
+  CuicuiIcon,
+  DevelopperIcon,
+  EditIcon,
+  EnveloppeIcon,
+  FIcon,
+  FacebookIcon,
+  FlecheIcon,
+  FlecheRetourIcon,
+  Group37Icon,
+  Group38Icon,
+  GroupeIcon,
+  ImportIcon,
+  InstaIcon,
+  InstagramIcon,
+  LexiqueIcon,
+  LinkIcon,
+  LoupeIcon,
+  MegaphoneIcon,
+  MessageIcon,
+  PersonnagesClesIcon,
+  PictosCartes01Icon,
+  PictosCartes02Icon,
+  PictosCartes03Icon,
+  PictosCartes04Icon,
+  PictosCartes05Icon,
+  PictosCartes06Icon,
+  PictosEditeurAjouterImageIcon,
+  PictosEditeurAjouterLienIcon,
+  PictosEditeurAlignerDroiteIcon,
+  PictosEditeurAlignerGaucheIcon,
+  PictosEditeurAlignerMilieuIcon,
+  PictosEditeurCitationIcon,
+  PictosEditeurCommentaireIcon,
+  PictosEditeurCouleurBlancIcon,
+  PictosEditeurCouleurNoirIcon,
+  PictosEditeurCouleurRougeIcon,
+  PictosEditeurDeroulerIcon,
+  PictosEditeurEncartIcon,
+  PictosEditeurGrasIcon,
+  PictosEditeurItaliqueIcon,
+  PictosEditeurParagrapheIcon,
+  PictosEditeurPucesIcon,
+  PictosEditeurSouligneIcon,
+  PictosEditeurSurlignageBlancIcon,
+  PictosEditeurSurlignageNoirIcon,
+  PictosEditeurSurlignageRougeIcon,
+  PictosEditeurTitre1Icon,
+  PictosEditeurTitre2Icon,
+  PictosEditeurTraitIcon,
+  PictosModulesAnonymeIcon,
+  PictosModulesChronologieIcon,
+  PictosModulesMettreEnAvantIcon,
+  PictosModulesValiderIcon,
+  Placeholder01Icon,
+  PoingIcon,
+  ProfilIcon,
+  ReduireIcon,
+  RevueDePresseIcon,
+  SaveIcon,
+  TexteIcon,
+  TrashIcon,
+  TwitterIcon,
+} from './icons';
 import './icons/assets/compose-icon.css';
 import './icons/assets/compose-sizes.css';
-import AvatarUserIcon from './icons/AvatarUserIcon.vue';
-import CalendarIcon from './icons/CalendarIcon.vue';
-import CircleCheckIcon from './icons/CircleCheckIcon.vue';
-import CompletedIcon from './icons/CompletedIcon.vue';
-import CropIcon from './icons/CropIcon.vue';
-import DownloadIcon from './icons/DownloadIcon.vue';
-import DropboxIcon from './icons/DropboxIcon.vue';
-import EditorAlighRightIcon from './icons/EditorAlighRightIcon.vue';
-import EditorBoldIcon from './icons/EditorBoldIcon.vue';
 
 const icons = ref([
-  ArrowLeftIcon,
-  AvatarUserIcon,
-  CalendarIcon,
-  CircleCheckIcon,
-  CompletedIcon,
-  CropIcon,
-  DownloadIcon,
-  DropboxIcon,
-  EditorAlighRightIcon,
-  EditorBoldIcon,
+  AjouterIcon,
+  ArticleIcon,
+  BoiteAQuestion2Icon,
+  BoiteAQuestionIcon,
+  BookmarkIcon,
+  BoutonFBIcon,
+  BoutonInstaIcon,
+  BoutonTwitterIcon,
+  BrouillonIcon,
+  ClocheIcon,
+  CroixFermerIcon,
+  CuicuiIcon,
+  DevelopperIcon,
+  EditIcon,
+  EnveloppeIcon,
+  FIcon,
+  FacebookIcon,
+  FlecheIcon,
+  FlecheRetourIcon,
+  Group37Icon,
+  Group38Icon,
+  GroupeIcon,
+  ImportIcon,
+  InstaIcon,
+  InstagramIcon,
+  LexiqueIcon,
+  LinkIcon,
+  LoupeIcon,
+  MegaphoneIcon,
+  MessageIcon,
+  PersonnagesClesIcon,
+  PictosCartes01Icon,
+  PictosCartes02Icon,
+  PictosCartes03Icon,
+  PictosCartes04Icon,
+  PictosCartes05Icon,
+  PictosCartes06Icon,
+  PictosEditeurAjouterImageIcon,
+  PictosEditeurAjouterLienIcon,
+  PictosEditeurAlignerDroiteIcon,
+  PictosEditeurAlignerGaucheIcon,
+  PictosEditeurAlignerMilieuIcon,
+  PictosEditeurCitationIcon,
+  PictosEditeurCommentaireIcon,
+  PictosEditeurCouleurBlancIcon,
+  PictosEditeurCouleurNoirIcon,
+  PictosEditeurCouleurRougeIcon,
+  PictosEditeurDeroulerIcon,
+  PictosEditeurEncartIcon,
+  PictosEditeurGrasIcon,
+  PictosEditeurItaliqueIcon,
+  PictosEditeurParagrapheIcon,
+  PictosEditeurPucesIcon,
+  PictosEditeurSouligneIcon,
+  PictosEditeurSurlignageBlancIcon,
+  PictosEditeurSurlignageNoirIcon,
+  PictosEditeurSurlignageRougeIcon,
+  PictosEditeurTitre1Icon,
+  PictosEditeurTitre2Icon,
+  PictosEditeurTraitIcon,
+  PictosModulesAnonymeIcon,
+  PictosModulesChronologieIcon,
+  PictosModulesMettreEnAvantIcon,
+  PictosModulesValiderIcon,
+  Placeholder01Icon,
+  PoingIcon,
+  ProfilIcon,
+  ReduireIcon,
+  RevueDePresseIcon,
+  SaveIcon,
+  TexteIcon,
+  TrashIcon,
+  TwitterIcon,
 ]);
+console.log('📟 - icons → ', icons);
 
-const generateRandomStyles = () => {
-  return Array.from({ length: 10 }, () => ({
-    style: {
-      '--top': `${Math.random() * 70 + 1}%`, // 10% to 90%
-      '--left': `${Math.random() * 80 + 1}%`, // 10% to 90%
-      '--scale': `${Math.random() * 90 + 50}%`, // 50% to 100%
-    },
-  }));
-};
+const tt = icons.value.map((icon, index) => {
+  const newIcon = icon;
+  console.log('📟 - newIcon → ', newIcon);
+  return {
+    ...newIcon,
+    ...{ style: generateRandomStyles(index) },
+  };
+});
 
-const randomStyles = ref(generateRandomStyles());
+console.log('📟 - tt → ', tt);
+function generateRandomStyles(index) {
+  return {
+    '--top': `${Math.random() * 70 + index + 1}%`, // 10% to 90%
+    '--left': `${Math.random() * 80 + index + 1}%`, // 10% to 90%
+    '--scale': `${Math.random() * 90 + 50}%`, // 50% to 100%
+  };
+}
+
+const randomStyles = generateRandomStyles();
 </script>
 
 <style lang="scss">

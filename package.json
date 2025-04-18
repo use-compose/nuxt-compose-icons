@@ -17,7 +17,8 @@
     "dev:generate": "pnpm --filter core dev:generate",
     "docs:dev": "pnpm --filter docs docs:dev",
     "docs:build": "pnpm --filter docs docs:build",
-    "docs:preview": "pnpm --filter docs docs:preview"
+    "docs:preview": "pnpm --filter docs docs:preview",
+    "typedoc": "typedoc"
   },
   "keywords": [],
   "author": "",
@@ -36,7 +37,10 @@
     "prettier-plugin-organize-imports": "4.1.0",
     "typescript-eslint": "8.30.1",
     "vite": "6.3.1",
-    "typescript": "5.8.3"
+    "typescript": "5.8.3",
+    "typedoc": "0.28.2",
+    "typedoc-plugin-markdown": "4.6.2",
+    "typedoc-vitepress-theme": "1.1.2"
   },
   "lint-staged": {
     "**/*.{js,ts,tsx}": [

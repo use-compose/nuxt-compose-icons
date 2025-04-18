@@ -1,4 +1,4 @@
-import type { NuxtComposeIconsOptions } from '~/src/module';
+import type { NuxtComposeIconsOptions } from '../../module';
 import { toKebabCase, toPascalCase } from '../convert-cases';
 
 /**
@@ -29,7 +29,6 @@ export function normalizeComponentName(fileName: string): string {
       .replace(/\.(svg|png|jpg|jpeg|gif)$/i, '-')
   );
 }
-
 
 export function normalizeAndGenerateComponentName(
   fileName: string,

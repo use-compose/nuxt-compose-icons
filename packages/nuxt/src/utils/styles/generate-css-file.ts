@@ -3,11 +3,11 @@ import { IconSize } from '../../runtime/types';
 
 // Default icon sizes if none have been provided to the module
 const defaultSizes: ComposeIconSize = {
-  [IconSize.xs]: '0.5rem',
-  [IconSize.sm]: '0.75rem',
-  [IconSize.md]: '1rem',
-  [IconSize.lg]: '1.5rem',
-  [IconSize.xl]: '2rem',
+  [IconSize.XS]: '1rem',
+  [IconSize.SM]: '1.5rem',
+  [IconSize.MD]: '2rem',
+  [IconSize.LG]: '3rem',
+  [IconSize.XL]: '4rem',
 };
 
 /*
@@ -31,11 +31,11 @@ export function generateCssFile(iconSizes?: ComposeIconSize): string {
   const sizes = { ...defaultSizes, ...iconSizes };
 
   const cssContent = `:root {
-  --icon-size-${IconSize.xs}: ${sizes[IconSize.xs]};
-  --icon-size-${IconSize.sm}: ${sizes[IconSize.sm]};
-  --icon-size-${IconSize.md}: ${sizes[IconSize.md]};
-  --icon-size-${IconSize.lg}: ${sizes[IconSize.lg]};
-  --icon-size-${IconSize.xl}: ${sizes[IconSize.xl]};
+  --icon-size-${IconSize.XS}: ${sizes[IconSize.XS]};
+  --icon-size-${IconSize.SM}: ${sizes[IconSize.SM]};
+  --icon-size-${IconSize.MD}: ${sizes[IconSize.MD]};
+  --icon-size-${IconSize.LG}: ${sizes[IconSize.LG]};
+  --icon-size-${IconSize.XL}: ${sizes[IconSize.XL]};
 }
 `;
 

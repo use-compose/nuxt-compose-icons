@@ -38,7 +38,7 @@ export function createSvgComponentCode(name: string, svgContent: string): string
 
   return `
     <script lang="ts">
-    import { computed, defineComponent, h } from 'vue';
+    import { computed, defineComponent, h, watchEffect } from 'vue';
     import type { PropType } from 'vue';
     // import type { ComposeIconProps } from 'nuxt-compose-icons';
     // import { IconSize } from 'nuxt-compose-icons';
@@ -57,13 +57,11 @@ export function createSvgComponentCode(name: string, svgContent: string): string
         },
         size: {
           type: String as PropType<IconSizeKeyValue>,
-          default: 'md',
+          default: IconSize.MD,
         },
       },
       setup(props: ComposeIconProps) {
-        const iconSize = computed(() => {
-          return getIconSizeClass(props.size || IconSize.md);
-        });
+        const iconSize = ref(getIconSizeClass(props.size || IconSize.MD));
 
         const styles = computed(() => ({
           '--icon-stroke': props.color,
@@ -71,7 +69,7 @@ export function createSvgComponentCode(name: string, svgContent: string): string
         }));
 
         const iconClasses = computed(() => {
-          return ['compose-icon', getIconSizeClass(iconSize.value)];
+          return ['compose-icon', iconSize.value];
         });
 
         const iconAttributes = computed(() => ({
@@ -79,6 +77,13 @@ export function createSvgComponentCode(name: string, svgContent: string): string
           style: styles.value,
           class: iconClasses.value,
         }));
+
+         watchEffect(() => {
+            if (props.size) {
+              iconSize.value = getIconSizeClass(props.size);
+            }
+          });
+
         return () => h('svg', iconAttributes.value, children);
 
         // return {

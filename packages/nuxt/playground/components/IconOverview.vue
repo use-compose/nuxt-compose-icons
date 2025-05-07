@@ -5,7 +5,7 @@
       v-for="(component, index) in components"
       :key="index"
       :color="iconStyles"
-      :class="iconSize"
+      size="xl"
       :some-prop="`Component ${index + 1}`"
     />
     <AlarmBellIcon />
@@ -15,8 +15,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, resolveComponent, type Component } from 'vue';
 import type { ComposeIconSize } from '../../src/runtime/types';
-import { IconSize } from '../../src/runtime/types';
-import { getIconSizeClass } from '../../src/runtime/utils';
 import * as AllIcons from './nuxt-compose-icons';
 
 interface IconOverviewProps {
@@ -38,10 +36,6 @@ const loadComponents = () => {
 
 onMounted(() => {
   components.value = loadComponents();
-});
-
-const iconSize = computed(() => {
-  return getIconSizeClass(IconSize.xl || 'xl');
 });
 
 const iconStyles = computed(() => {

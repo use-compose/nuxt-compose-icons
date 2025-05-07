@@ -1,10 +1,14 @@
 {
-  "entryPoints": ["./packages/nuxt/src/*.ts"],
+  "entryPoints": ["./packages/nuxt/src/module.ts"],
   "plugin": ["typedoc-plugin-markdown", "typedoc-vitepress-theme"],
   "out": "./docs/typedoc-api",
   "docsRoot": "./docs/typedoc-api",
   "theme": "markdown",
-  "exclude": ["**/node_modules/**", "**/*.d.ts"],
+  "exclude": ["**/node_modules/**", "**/dist/**", "**/test/**", "**/tests/**", "**/__tests__/**"],
+  "excludeExternals": true,
+  "indexFormat": "table",
+  "useCodeBlocks": true,
+  "disableSources": true,
   "sidebar": {
     "autoConfiguration": true,
     "format": "vitepress",

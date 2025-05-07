@@ -5,31 +5,23 @@
  */
 
 .compose-icon {
-  --icon-size: var(--icon-size-md);
   width: var(--icon-size);
   height: var(--icon-size);
-}
-
-.compose-icon path,
-.compose-icon rect,
-.compose-icon circle,
-.compose-icon ellipse {
-  /* stroke: var(--icon-stroke); */
 }
 
 .compose-icon.size-xs {
   --icon-size: var(--icon-size-xs);
 }
 
-.compose-icon.size-s {
+.compose-icon.size-sm {
   --icon-size: var(--icon-size-sm);
 }
 
-.compose-icon.size-m {
+.compose-icon.size-md {
   --icon-size: var(--icon-size-md);
 }
 
-.compose-icon.size-l {
+.compose-icon.size-lg {
   --icon-size: var(--icon-size-lg);
 }
 

@@ -1,21 +1,32 @@
 {
   "extends": "./.nuxt/tsconfig.json",
-  "exclude": ["dist", "node_modules", "playground"],
-  "alias": {
-    "@/types": "./src/types"
-  },
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "./dist",
-    "module": "ESNext"
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+    "declaration": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+    "composite": true,
+    "rootDir": "src",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
-  "include": [
-    "**/*",
-    "src/**/*",
-    "../../src/**/*",
-    "../../src/runtime/**/*",
-    "../../src/runtime/assets/**/*",
-    "../../src/runtime/utils/**/*",
-    "../../eslint.config.mjs"
-  ]
+  "include": ["src"]
 }

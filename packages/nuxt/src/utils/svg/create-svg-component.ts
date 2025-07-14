@@ -55,6 +55,15 @@ export function createSvgComponentCode(name: string, svgContent: string): string
         color: {
           type: String,
         },
+        stroke: {
+          type: String,
+        },
+        strokeWidth: {
+          type: [String, Number] as PropType<ComposeIconProps['strokeWidth']>,
+        },
+        fill: {
+          type: String,
+        },
         size: {
           type: String as PropType<IconSizeKeyValue>,
           default: IconSize.MD,
@@ -64,8 +73,9 @@ export function createSvgComponentCode(name: string, svgContent: string): string
         const iconSize = ref(getIconSizeClass(props.size || IconSize.MD));
 
         const styles = computed(() => ({
-          '--icon-stroke': props.color,
-          '--icon-fill': props.color,
+          '--icon-stroke': props.stroke || props.color,
+          '--icon-stroke-width': props.strokeWidth ? props.strokeWidth : '',
+          '--icon-fill': props.fill,
         }));
 
         const iconClasses = computed(() => {

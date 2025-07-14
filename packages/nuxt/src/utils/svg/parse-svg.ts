@@ -65,12 +65,26 @@ import { convertNodeToVNode } from '../convert-node-to-vnode';
 //   return Array.from(svgElement.children || []).map(applyElementAttributes);
 // }
 
+function setParentSvgAttributes(svgElement: HTMLElement) {
+  if (svgElement.getAttribute('width')) {
+    svgElement.setAttribute('width', `var(--icon-size, ${svgElement.getAttribute('width')})`);
+  }
+  if (svgElement.getAttribute('height')) {
+    svgElement.setAttribute('height', `var(--icon-size, ${svgElement.getAttribute('height')})`);
+  }
+}
+
 export function parseSvg(svgContent: string): {
   attributes: { [key: string]: string };
   children: (string | VNode)[];
 } {
   const doc = parse(svgContent);
   const svgElement = doc.querySelector('svg') as HTMLElement;
+  if (!svgElement) {
+    throw new Error('No <svg> element found in the provided SVG content.');
+  }
+  // Set the parent SVG attributes to use CSS variables
+  setParentSvgAttributes(svgElement);
   const children = svgElement.children.map(convertNodeToVNode);
 
   return {

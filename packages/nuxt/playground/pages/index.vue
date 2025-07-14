@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <IconOverview />
+    <IconOverview color="green" stroke-width="3" />
   </div>
 </template>
 

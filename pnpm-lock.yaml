@@ -133,15 +133,9 @@ importers:
 
   packages/nuxt/playground:
     dependencies:
-      gamma-compose:
-        specifier: file:../../../gamma-compose-0.0.0.tgz
-        version: file:gamma-compose-0.0.0.tgz(typescript@5.8.3)
       nuxt:
         specifier: ^3.15.4
         version: 3.17.6(@netlify/blobs@8.2.0)(@parcel/watcher@2.5.1)(@types/node@24.0.10)(@vue/compiler-sfc@3.5.17)(db0@0.3.2)(eslint@9.30.1(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.44.2)(sass@1.89.2)(terser@5.43.1)(typescript@5.8.3)(vite@6.3.5(@types/node@24.0.10)(jiti@2.4.2)(sass@1.89.2)(terser@5.43.1)(yaml@2.8.0))(vue-tsc@2.2.12(typescript@5.8.3))(yaml@2.8.0)
-      nuxt-compose-icons:
-        specifier: file:../
-        version: link:..
 
   packages/nuxt/test/fixtures/basic: {}
 
@@ -3327,10 +3321,6 @@ packages:
   fuse.js@7.1.0:
     resolution: {integrity: sha512-trLf4SzuuUxfusZADLINj+dE8clK1frKdmqiJNb1Es75fmI5oY6X2mxLVUciLLjxqw/xr72Dhy+lER6dGd02FQ==}
     engines: {node: '>=10'}
-
-  gamma-compose@file:gamma-compose-0.0.0.tgz:
-    resolution: {integrity: sha512-JNDzXN/l5ZpsDggvBhH1eo/T5eUSAtDcI7Nrt6b+0bDpaEEepwJekjxKaLMGRmd7kNm2FWyFo3wjit2WDB7coA==, tarball: file:gamma-compose-0.0.0.tgz}
-    version: 0.0.0
 
   gensync@1.0.0-beta.2:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
@@ -9603,12 +9593,6 @@ snapshots:
   function-bind@1.1.2: {}
 
   fuse.js@7.1.0: {}
-
-  gamma-compose@file:gamma-compose-0.0.0.tgz(typescript@5.8.3):
-    dependencies:
-      vue: 3.5.13(typescript@5.8.3)
-    transitivePeerDependencies:
-      - typescript
 
   gensync@1.0.0-beta.2: {}
 

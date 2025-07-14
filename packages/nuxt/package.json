@@ -15,8 +15,8 @@
       "require": "./dist/index.cjs"
     },
     "./utils": {
-      "import": "./dist/runtime/utils",
-      "require": "./dist/runtime/utils"
+      "import": "./dist/utils",
+      "require": "./dist/utils"
     }
   },
   "main": "./dist/index.js",

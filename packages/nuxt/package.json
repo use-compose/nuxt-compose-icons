@@ -1,26 +1,27 @@
 {
-  "name": "core",
+  "name": "nuxt-compose-icons",
   "private": true,
-  "version": "1.0.0",
-  "description": "My new Nuxt module",
-  "repository": "your-org/my-module",
+  "version": "0.0.1",
+  "description": "Compose your own Icon components library",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arthur-plazanet/nuxt-compose-icons.git"
+  },
   "license": "MIT",
-  "type": "module",
   "exports": {
     "./package.json": "./package.json",
     ".": {
       "types": "./dist/types.d.mts",
-      "import": "./dist/index.mjs",
-      "module": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
     },
     "./utils": {
       "import": "./dist/utils",
       "require": "./dist/utils"
     }
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "main": "./dist/module.js",
+  "module": "./dist/module.mjs",
   "files": [
     "dist"
   ],

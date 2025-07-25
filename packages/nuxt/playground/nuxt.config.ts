@@ -1,13 +1,13 @@
 import * as path from 'node:path';
 import { IconsModule as NuxtComposeIcons } from '../index';
-import { IconSize, type ComposeIconSize } from '../src/runtime/types';
+import { type ComposeIconSize } from '../src/runtime/types';
 
 const iconSizes: ComposeIconSize = {
-  [IconSize.xs]: '0.5rem',
-  [IconSize.sm]: '0.875rem',
-  [IconSize.md]: '1rem',
-  [IconSize.lg]: '2rem',
-  [IconSize.xl]: '4rem',
+  xs: '0.5rem',
+  sm: '0.875rem',
+  md: '1rem',
+  lg: '2rem',
+  xl: '4rem',
 };
 
 export default defineNuxtConfig({
@@ -25,5 +25,5 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   compatibilityDate: '2024-12-14',
-  css: ['gamma-compose/dist/style.css'],
+  css: ['@use-compose/ui/style.css'],
 });

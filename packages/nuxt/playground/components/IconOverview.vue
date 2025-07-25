@@ -5,6 +5,9 @@
       v-for="(component, index) in components"
       :key="index"
       :color="iconStyles"
+      :stroke="props.stroke"
+      :stroke-width="props.strokeWidth"
+      :fill="props.fill"
       size="xl"
       :some-prop="`Component ${index + 1}`"
     />
@@ -20,6 +23,9 @@ import * as AllIcons from './nuxt-compose-icons';
 interface IconOverviewProps {
   size: ComposeIconSize;
   color: string;
+  stroke?: string;
+  strokeWidth?: string | number;
+  fill?: string;
 }
 
 const props = defineProps<IconOverviewProps>();

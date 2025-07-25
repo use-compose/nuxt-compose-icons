@@ -1,26 +1,27 @@
 {
-  "name": "core",
+  "name": "nuxt-compose-icons",
   "private": true,
-  "version": "1.0.0",
-  "description": "My new Nuxt module",
-  "repository": "your-org/my-module",
+  "version": "0.0.1",
+  "description": "Compose your own Icon components library",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arthur-plazanet/nuxt-compose-icons.git"
+  },
   "license": "MIT",
-  "type": "module",
   "exports": {
     "./package.json": "./package.json",
     ".": {
       "types": "./dist/types.d.mts",
-      "import": "./dist/index.mjs",
-      "module": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
     },
     "./utils": {
-      "import": "./dist/runtime/utils",
-      "require": "./dist/runtime/utils"
+      "import": "./dist/utils",
+      "require": "./dist/utils"
     }
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "main": "./dist/module.js",
+  "module": "./dist/module.mjs",
   "files": [
     "dist"
   ],
@@ -37,21 +38,22 @@
     "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
   },
   "dependencies": {
-    "@nuxt/kit": "3.17.5",
-    "node-html-parser": "7.0.1"
+    "@nuxt/kit": "3.17.6",
+    "node-html-parser": "7.0.1",
+    "@use-compose/ui": "0.0.72"
   },
   "devDependencies": {
-    "@nuxt/devtools": "2.5.0",
-    "@nuxt/eslint-config": "1.4.1",
-    "@nuxt/module-builder": "1.0.1",
-    "@nuxt/schema": "3.17.5",
-    "@nuxt/test-utils": "3.19.1",
+    "@nuxt/devtools": "2.6.2",
+    "@nuxt/eslint-config": "1.7.1",
+    "@nuxt/module-builder": "1.0.2",
+    "@nuxt/schema": "3.17.6",
+    "@nuxt/test-utils": "3.19.2",
     "@types/node": "latest",
-    "changelogen": "0.6.1",
-    "eslint": "9.29.0",
-    "nuxt": "3.17.5",
+    "changelogen": "0.6.2",
+    "eslint": "9.32.0",
+    "nuxt": "3.17.6",
     "typescript": "5.8.3",
     "vitest": "3.2.4",
-    "vue-tsc": "2.2.10"
+    "vue-tsc": "2.2.12"
   }
 }

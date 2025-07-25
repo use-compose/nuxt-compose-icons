@@ -7,8 +7,8 @@
 </template>
 
 <script setup lang="ts">
-import type { YTheme } from 'gamma-compose';
-import { AppCompose, Wrapper } from 'gamma-compose';
+import type { YTheme } from '@use-compose/ui';
+import { AppCompose, Wrapper } from '@use-compose/ui';
 import { useCookie } from 'nuxt/app';
 
 const theme: YTheme | undefined = useCookie<{ primary: string; background: string; dark: string }>(

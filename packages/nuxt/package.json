@@ -39,7 +39,8 @@
   },
   "dependencies": {
     "@nuxt/kit": "3.17.6",
-    "node-html-parser": "7.0.1"
+    "node-html-parser": "7.0.1",
+    "@use-compose/ui": "0.0.72"
   },
   "devDependencies": {
     "@nuxt/devtools": "2.6.2",

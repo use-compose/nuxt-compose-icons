@@ -61,11 +61,11 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
   // Default configuration options of the Nuxt module
   defaults: {
     iconSizes: {
-      [IconSize.xs]: '0.5rem',
-      [IconSize.sm]: '0.875rem',
-      [IconSize.md]: '1rem',
-      [IconSize.lg]: '1.5rem',
-      [IconSize.xl]: '2.5rem',
+      [IconSize.XS]: '0.5rem',
+      [IconSize.SM]: '0.875rem',
+      [IconSize.MD]: '1rem',
+      [IconSize.LG]: '1.5rem',
+      [IconSize.XL]: '2.5rem',
     },
     // If not provided, the default will be to use the "Icon" suffix for the component without a prefix
     // e.g. "arrow-up.svg" will be "ArrowUpIcon"

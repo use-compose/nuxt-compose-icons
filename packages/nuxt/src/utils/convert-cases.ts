@@ -5,7 +5,7 @@ function pascalCaseToKebabCase(str: string): string {
 }
 
 function toKebabCase(str: string): string {
-  return str.replace(/-([a-z0-9])/g, (_, match) => match.toUpperCase());
+  return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 }
 
 function toPascalCase(str: string): string {

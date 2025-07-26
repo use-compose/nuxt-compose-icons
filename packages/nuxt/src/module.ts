@@ -1,4 +1,4 @@
-import { addImportsDir, createResolver, defineNuxtModule } from '@nuxt/kit';
+import { addImportsDir, createResolver, defineNuxtModule, useLogger } from '@nuxt/kit';
 import type { Component } from '@nuxt/schema';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
@@ -40,7 +40,7 @@ export interface GeneratedComponentOptions {
    * TODO: The directory to save the generated components
    * default "runtime/components/icons-generated"
    */
-  componentsDestDir: string;
+  componentsDestDir?: string;
 }
 
 export interface NuxtComposeIconsOptions {
@@ -81,14 +81,15 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
     iconComponentList: {},
   },
   setup(options, nuxt) {
+    const logger = useLogger('nuxt-compose-icons');
     const { pathToIcons, iconComponentList, iconSizes } = options;
-
-    const { componentsDestDir } = options.generatedComponentOptions;
+    const componentsDestDir = options.generatedComponentOptions.componentsDestDir as string;
 
     if (!pathToIcons && !iconComponentList) {
-      // TODO: Use logger
+      logger.error(
+        'You must provide either pathToIcons or iconComponentList in the module options.',
+      );
       throw new Error('pathToIcons or iconComponentList is required');
-      return;
     }
 
     const resolver = createResolver(import.meta.url);

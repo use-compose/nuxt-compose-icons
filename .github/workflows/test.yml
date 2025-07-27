@@ -24,8 +24,8 @@ jobs:
           pnpm_version: 8
           cache: pnpm
 
-      # - name: Prepare playground
-      #   run: pnpm dev:prepare
+      - name: Prepare playground
+        run: pnpm dev:prepare
 
       - name: Install Playwright browsers
         run: pnpm exec playwright-core install --with-deps

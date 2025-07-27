@@ -75,6 +75,9 @@ jobs:
       - name: Prep test-results dir
         run: mkdir -p packages/nuxt/test-results && ls -la && ls -la packages/nuxt/test-results
 
+      - name: Install Playwright browsers
+        run: pnpm exec playwright-core install --with-deps
+
       - name: Run tests
         run: pnpm test
 

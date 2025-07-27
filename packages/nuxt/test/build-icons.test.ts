@@ -9,7 +9,12 @@ describe('ssr', async () => {
 
   it('renders the index page', async () => {
     const page = await createPage('/');
-    await page.screenshot({ path: 'screenshot.png' });
+    await page.screenshot({
+      path: fileURLToPath(new URL('screenshots/screenshot.jpeg', import.meta.url)),
+      type: 'jpeg',
+      fullPage: true,
+      quality: 100,
+    });
 
     const html = await $fetch('/');
     expect(html).toContain('<div>basic</div>');

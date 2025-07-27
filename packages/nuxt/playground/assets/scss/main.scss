@@ -1,10 +1,11 @@
-@import './_variables.scss';
+@use './variables';
 
 body {
   margin: 0;
   background-color: $slate-800;
-  font-family: 'gotham-book', sans-serif;
-  // font-family: "CaviarDreams", sans-serif;
+  font-family: gotham-book, sans-serif;
+
+  // font-family: "CaviarDreams", sans-serif;font-family
   font-weight: 400;
   color: #fff;
 }
@@ -27,7 +28,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'gotham-black', sans-serif;
+  font-family: gotham-black, sans-serif;
 }
 
 .primary {

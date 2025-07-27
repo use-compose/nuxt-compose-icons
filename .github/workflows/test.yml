@@ -36,7 +36,7 @@ jobs:
       - name: Upload Playwright report
         if: ${{ always() }}
         run: |
-          mkdir -p html
+          mkdir -p test-results
           ls -la
 
       - name: Upload Playwright report

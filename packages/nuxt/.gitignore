@@ -62,4 +62,5 @@ src/runtime/components/icons-generated
 src/runtime/assets/compose-sizes.css
 
 # Playwright generated report files
-test-results
+test/coverage
+test/screenshots

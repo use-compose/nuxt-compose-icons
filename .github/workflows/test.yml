@@ -87,15 +87,15 @@ jobs:
           pwd
           echo "Directory contents:"
           ls -la
-          ls -la packages/nuxt
-          ls -la packages/nuxt/test-results
+          ls -la packages/nuxt/test
+          ls -la packages/nuxt/test/coverage
 
       - name: Upload HTML report
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
         with:
-          name: test-results-${{ inputs.node_version }}
-          path: packages/nuxt/test-results
+          name: test-coverage-${{ inputs.node_version }}
+          path: packages/nuxt/test/coverage
           retention-days: 30
 
       - name: Upload Screenshot
@@ -103,5 +103,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: screenshot-${{ inputs.node_version }}
-          path: packages/nuxt/screenshot.png
+          path: packages/nuxt/test/screenshots/screenshot.png
           retention-days: 30

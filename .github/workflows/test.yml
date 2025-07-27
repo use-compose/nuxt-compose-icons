@@ -27,8 +27,8 @@ jobs:
       - name: Playground prepare
         run: pnpm dev:prepare
 
-      - name: Install Playwright browsers
-        run: pnpm --filter nuxt-compose-icons exec playwright-core install --with-deps
+      # - name: Install Playwright browsers
+      #   run: pnpm exec playwright-core install --with-deps
 
       - name: Test
         run: pnpm test --reporter=html --outputFile=test-results/test-report.html

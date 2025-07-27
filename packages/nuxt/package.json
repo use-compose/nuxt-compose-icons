@@ -32,7 +32,7 @@
     "dev:generate": "nuxi generate playground",
     "release": "pnpm publish && git push --follow-tags",
     "lint": "eslint .",
-    "test": "vitest run",
+    "test": "vitest run --reporter=html --outputFile=./test-results/test-report.html",
     "test:watch": "vitest watch",
     "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
   },

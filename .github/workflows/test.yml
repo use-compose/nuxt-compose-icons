@@ -31,7 +31,7 @@ jobs:
       #   run: pnpm exec playwright-core install --with-deps
 
       - name: Test
-        run: pnpm test --reporter=html --outputFile=test-results/test-report.html
+        run: pnpm --filter nuxt-compose-icons test
 
       - name: Upload Playwright report
         if: ${{ always() }}

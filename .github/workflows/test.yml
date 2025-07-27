@@ -95,7 +95,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: test-results-${{ inputs.node_version }}
-          path: packages/nuxt/test-results/
+          path: packages/nuxt/test-results
           retention-days: 30
 
       - name: Upload Screenshot

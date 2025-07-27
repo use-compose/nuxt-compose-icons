@@ -4,7 +4,16 @@ export default defineConfig({
   test: {
     passWithNoTests: true,
     coverage: {
-      reporter: ['text', 'json', 'html'],
+      reporter: [
+        [
+          'html',
+          {
+            outputFile: './test-results/test-report.html',
+            open: false,
+          },
+        ],
+      ],
+      reportsDirectory: './test-results',
     },
   },
 });

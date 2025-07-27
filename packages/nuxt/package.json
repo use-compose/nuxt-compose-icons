@@ -52,6 +52,7 @@
     "changelogen": "0.6.2",
     "eslint": "9.32.0",
     "nuxt": "3.17.6",
+    "playwright-core": "^1.54.1",
     "typescript": "5.8.3",
     "vitest": "3.2.4",
     "vue-tsc": "3.0.4"

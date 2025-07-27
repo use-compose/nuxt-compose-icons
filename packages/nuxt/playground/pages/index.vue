@@ -10,6 +10,7 @@
 body {
   background-color: #1c1b1b;
 }
+
 .container {
   min-height: 100svh;
   align-content: center;

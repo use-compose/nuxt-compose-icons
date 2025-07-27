@@ -10,7 +10,6 @@ $green-700: #007f45;
 $green-800: #016538;
 $green-900: #0a5331;
 $green-950: #052e16;
-
 $slate-50: #f8fafc;
 $slate-100: #f1f5f9;
 $slate-200: #e2e8f0;
@@ -42,7 +41,6 @@ $breakpoint-tablet: 768px;
 $breakpoint-desktop: 1024px;
 $breakpoint-desktop-xl: 1280px;
 $breakpoint-desktop-xxl: 1820px;
-
 $little-screen: '(min-width : 350px)';
 $mobile: '(min-width : #{$breakpoint-mobile})';
 $mobile-landscape: '(min-height : #{$breakpoint-mobile}) and (orientation: landscape)';
@@ -57,7 +55,7 @@ $desktop: '(min-width : #{$breakpoint-desktop})';
 }
 
 // :root {
-//   --text-color: #fff;
+//   --text-color: #fff;--text-color
 //   --text-2: #{$text-2};
 //   --text-1: #{$text-1};
 //   --text-md: #{$text-md};
@@ -70,7 +68,7 @@ $desktop: '(min-width : #{$breakpoint-desktop})';
 
 @mixin media($media) {
   @if $media == little-screen {
-    @media screen and (min-width: 350px) {
+    @media screen and (width >= 350px) {
       @content;
     }
   } @else if $media == mobile {
@@ -86,7 +84,7 @@ $desktop: '(min-width : #{$breakpoint-desktop})';
       @content;
     }
   } @else if $media == small-desktop {
-    @media screen and (max-height: 810px) and (min-width: #{$breakpoint-desktop}) {
+    @media screen and (height <= 810px) and (min-width: #{$breakpoint-desktop}) {
       @content;
     }
   } @else if $media == desktop {
@@ -111,9 +109,7 @@ $desktop: '(min-width : #{$breakpoint-desktop})';
 $header-footer-height: 55px;
 $header-footer-height-desktop-xxl: 65px;
 $small-header-height: 35px;
-// $small-header-height: 4rem;
 $footer-height: 75px;
-
 $header-mobile: 50px;
 $header-tablet: 60px;
 $header-desktop-xl: 65px;

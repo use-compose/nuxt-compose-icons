@@ -30,6 +30,7 @@ theme.value = { ...myTheme };
 body {
   margin: 0;
 }
+
 /* https://css-tricks.com/use-css-clamp-to-create-a-more-flexible-wrapper-utility/ */
 .wrapper {
   width: clamp(16rem, 90vw, 120rem);

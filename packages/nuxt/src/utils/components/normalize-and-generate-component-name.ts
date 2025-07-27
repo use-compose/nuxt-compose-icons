@@ -49,7 +49,7 @@ export function normalizeAndGenerateComponentName(
   }
 
   if (suffix) {
-    componentName += suffix || 'Icon';
+    componentName += `-${suffix || 'icon'}`;
   }
 
   const normalizedComponentName = normalizeComponentName(componentName);

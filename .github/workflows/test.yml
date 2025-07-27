@@ -5,7 +5,7 @@ on:
     inputs:
       node_version:
         required: true
-        type: string
+        type: number
         default: 20
 
 jobs:
@@ -22,10 +22,29 @@ jobs:
         with:
           node_version: ${{ inputs.node_version }}
           pnpm_version: 8
-          cache: 'pnpm'
+          cache: pnpm
 
-      - name: Playground prepare
+      - name: Prepare playground
         run: pnpm dev:prepare
 
-      - name: Test
+      - name: Install Playwright browsers
+        run: pnpm exec playwright-core install --with-deps
+
+      - name: Run tests
         run: pnpm test
+
+      - name: Upload HTML report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-coverage-${{ inputs.node_version }}
+          path: packages/nuxt/test/coverage
+          retention-days: 30
+
+      - name: Upload Screenshot
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshot-${{ inputs.node_version }}
+          path: packages/nuxt/test/screenshots/screenshot.jpeg
+          retention-days: 30

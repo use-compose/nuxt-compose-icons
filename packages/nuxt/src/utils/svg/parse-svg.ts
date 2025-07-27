@@ -66,11 +66,12 @@ import { convertNodeToVNode } from '../convert-node-to-vnode';
 // }
 
 function setParentSvgAttributes(svgElement: HTMLElement) {
+  // TODO: Break svg width and height - to remove?
   if (svgElement.getAttribute('width')) {
-    svgElement.setAttribute('width', `var(--icon-size, ${svgElement.getAttribute('width')})`);
+    // svgElement.setAttribute('width', `var(--icon-size, ${svgElement.getAttribute('width')})`);
   }
   if (svgElement.getAttribute('height')) {
-    svgElement.setAttribute('height', `var(--icon-size, ${svgElement.getAttribute('height')})`);
+    // svgElement.setAttribute('height', `var(--icon-size, ${svgElement.getAttribute('height')})`);
   }
 }
 

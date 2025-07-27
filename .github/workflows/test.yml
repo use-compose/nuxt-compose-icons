@@ -103,5 +103,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: screenshot-${{ inputs.node_version }}
-          path: packages/nuxt/test/screenshots/screenshot.png
+          path: packages/nuxt/test/screenshots/screenshot.jpeg
           retention-days: 30

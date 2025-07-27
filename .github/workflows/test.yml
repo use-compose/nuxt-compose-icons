@@ -27,17 +27,16 @@ jobs:
       - name: Playground prepare
         run: pnpm dev:prepare
 
-      # - name: Install Playwright browsers
-      #   run: pnpm exec playwright-core install --with-deps
-
-      - name: Test
-        run: pnpm --filter nuxt-compose-icons test
-
       - name: Upload Playwright report
         if: ${{ always() }}
         run: |
           mkdir -p test-results
           ls -la
+      # - name: Install Playwright browsers
+      #   run: pnpm exec playwright-core install --with-deps
+
+      - name: Test
+        run: pnpm --filter nuxt-compose-icons test
 
       - name: Upload Playwright report
         uses: actions/upload-artifact@v4

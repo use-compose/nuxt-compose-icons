@@ -73,10 +73,18 @@ jobs:
         run: pnpm dev:prepare
 
       - name: Prep test-results dir
-        run: mkdir -p packages/nuxt/test-results
+        run: mkdir -p packages/nuxt/test-results && ls -la && ls -la packages/nuxt/test-results
 
       - name: Run tests
-        run: pnpm --filter nuxt-compose-icons test
+        run: pnpm test
+
+      - name: debug
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Directory contents:"
+          ls -la
+          ls -la packages/nuxt/test-results
 
       - name: Upload HTML report
         if: ${{ always() }}

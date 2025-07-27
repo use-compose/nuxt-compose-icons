@@ -94,7 +94,7 @@ jobs:
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
         with:
-          name: test-results
+          name: test-results-${{ inputs.node_version }}
           path: packages/nuxt/test-results/
           retention-days: 30
 
@@ -102,6 +102,6 @@ jobs:
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
         with:
-          name: screenshot
+          name: screenshot-${{ inputs.node_version }}
           path: packages/nuxt/test-results/screenshot.png
           retention-days: 30

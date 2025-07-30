@@ -1,0 +1,25 @@
+# .github/workflows/release-and-publish.yml
+name: Release Package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create GitHub Release from package.json version (if not exists)
+        run: |
+          TAG_NAME="v$(jq -r .version package.json)"
+          if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
+            echo "Tag $TAG_NAME already exists. Skipping release."
+            exit 0
+          fi
+
+          echo "Creating release $TAG_NAME..."
+          gh release create "$TAG_NAME" --title "$TAG_NAME" --notes "Release $TAG_NAME" --target main --latest
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

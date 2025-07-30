@@ -23,7 +23,11 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
-        run: npm ci
+        uses: ./.github/actions/install-dependencies
+        with:
+          node_version: ${{ inputs.node_version }}
+          pnpm_version: 8
+          cache: 'pnpm'
 
       - name: Publish to npm
         run: npm publish --provenance --access public

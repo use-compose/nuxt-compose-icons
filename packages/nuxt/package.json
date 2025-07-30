@@ -1,6 +1,6 @@
 {
   "name": "nuxt-compose-icons",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Compose your own Icon components library",
   "repository": {
     "type": "git",

@@ -2,7 +2,7 @@ name: Publish NPM Package
 
 on:
   release:
-    types: [published]
+    types: [created]
   workflow_dispatch:
 
 permissions:
@@ -33,7 +33,15 @@ jobs:
       - name: Nuxt prepare
         run: pnpm dev:prepare
 
+      - name: Debug
+        run: |
+          ls -la
+          git status
+
+      - name: Clean working directory
+        run: git checkout pnpm-lock.yaml # in case for whatever reason the lockfile is out of sync, there won't be interference with npm publish.
+
       - name: Publish to npm
-        run: pnpm publish
+        run: pnpm publish --no-git-checks # temporary workaround for ERR_PNPM_GIT_UNCLEAN  Unclean working tree. Commit or stash changes first.
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

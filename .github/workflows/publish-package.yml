@@ -42,6 +42,9 @@ jobs:
         run: git checkout pnpm-lock.yaml # in case for whatever reason the lockfile is out of sync, there won't be interference with npm publish.
 
       - name: Publish to npm
-        run: pnpm publish --no-git-checks # temporary workaround for ERR_PNPM_GIT_UNCLEAN  Unclean working tree. Commit or stash changes first.
+        run:
+          | # --no-git-checks: temporary workaround for ERR_PNPM_GIT_UNCLEAN  Unclean working tree. Commit or stash changes first.
+          cd packages/nuxt
+          pnpm publish --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

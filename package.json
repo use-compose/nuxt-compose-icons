@@ -13,6 +13,7 @@
     "prepare": "husky",
     "prepack": "pnpm --filter nuxt-compose-icons prepack",
     "release": "pnpm --filter nuxt-compose-icons release",
+    "publish": "pnpm --filter nuxt-compose-icons publish",
     "dev": "pnpm --filter nuxt-compose-icons dev",
     "dev:prepare": "pnpm --filter nuxt-compose-icons dev:prepare",
     "dev:build": "pnpm --filter nuxt-compose-icons dev:build",

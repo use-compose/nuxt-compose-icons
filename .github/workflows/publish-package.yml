@@ -30,6 +30,9 @@ jobs:
           pnpm_version: 8
           cache: 'pnpm'
 
+      - name: Nuxt prepare
+        run: pnpm dev:prepare
+
       - name: Publish to npm
         run: npm publish --provenance --access public
         env:

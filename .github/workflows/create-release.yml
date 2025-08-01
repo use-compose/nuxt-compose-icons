@@ -11,9 +11,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Create GitHub Release from package.json version (if not exists)
         run: |
-          TAG_NAME="v$(jq -r .version package.json)"
+          CORE_PACKAGE_PATH="packages/nuxt/package.json"
+          TAG_NAME="v$(jq -r .version "$CORE_PACKAGE_PATH")"
           if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
             echo "Tag $TAG_NAME already exists. Skipping release."
             exit 0

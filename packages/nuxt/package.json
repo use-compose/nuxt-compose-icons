@@ -1,6 +1,7 @@
 {
   "name": "nuxt-compose-icons",
   "version": "0.0.2",
+  "private": false,
   "description": "Compose your own Icon components library",
   "repository": {
     "type": "git",
@@ -30,7 +31,6 @@
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
     "dev:generate": "nuxi generate playground",
     "release": "pnpm publish && git push --follow-tags",
-    "publish": "npm publish --access public",
     "lint": "eslint .",
     "test": "vitest run --coverage",
     "test:watch": "vitest watch",

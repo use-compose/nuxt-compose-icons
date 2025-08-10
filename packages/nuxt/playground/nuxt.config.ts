@@ -17,11 +17,11 @@ export default defineNuxtConfig({
     pathToIcons: path.resolve(__dirname, 'assets/icons'),
     iconSizes,
     generatedComponentOptions: {
-      prefix: false,
       suffix: 'Icon',
       case: 'pascal',
       componentsDestDir: path.resolve(__dirname, './components/nuxt-compose-icons'),
     },
+    // dryRun: true,
   },
   devtools: { enabled: true },
   compatibilityDate: '2024-12-14',

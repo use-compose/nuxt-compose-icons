@@ -52,6 +52,7 @@ export interface NuxtComposeIconsOptions {
   iconComponentList?: { [key: string]: Component };
   iconSizes?: ComposeIconSize;
   generatedComponentOptions: GeneratedComponentOptions;
+  dryRun?: boolean;
 }
 
 export default defineNuxtModule<NuxtComposeIconsOptions>({
@@ -77,7 +78,7 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
 
       // TODO: The directory to save the generated components
       // default "runtime/components/icons-generated"
-      componentsDestDir: 'runtime/components/icons-generated',
+      // componentsDestDir: 'runtime/components/icons-generated',
     },
     iconComponentList: {},
   },
@@ -85,6 +86,9 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
     const logger = useLogger('nuxt-compose-icons');
     const { pathToIcons, iconComponentList, iconSizes } = options;
     const componentsDestDir = options.generatedComponentOptions.componentsDestDir as string;
+
+    // .nuxt/compose-icons
+    const defaultDir = path.resolve(nuxt.options.buildDir, 'compose-icons');
 
     if (!pathToIcons && !iconComponentList) {
       logger.error(
@@ -96,7 +100,9 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
     const resolver = createResolver(import.meta.url);
 
     // Create components directory and remove it first if it exists
-    const componentsDir = createComponentsDir(resolver.resolve(componentsDestDir));
+    const componentsDir = componentsDestDir
+      ? createComponentsDir(resolver.resolve(componentsDestDir)) || defaultDir
+      : createComponentsDir(defaultDir);
 
     if (pathToIcons) {
       // Resolve the path to the icons directory provided
@@ -105,6 +111,24 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
       if (fs.existsSync(absolutePathToIcons) && fs.statSync(absolutePathToIcons).isDirectory()) {
         // We first read all the files recursively to flatten the structure
         const files = await readDirectoryRecursively(absolutePathToIcons);
+
+        /*
+         * Dry run mode: log the component names and paths without writing files
+         */
+        /*
+         * Dry run mode: log the component names and paths without writing files
+         */
+        if (options.dryRun) {
+          nuxt.hook('build:before', () => {
+            logger.info(`🔍 Dry-run mode: No files will be written.`);
+            files.forEach((file) => {
+              const fileInfo = path.parse(file);
+              const name = generateComponentName(fileInfo.name, options);
+              logger.info(`${fileInfo.base} Would generate: ${name}`);
+            });
+            process.exit();
+          });
+        }
 
         /*
          * For each file we:

@@ -111,6 +111,9 @@ importers:
       svg-parser:
         specifier: 2.0.4
         version: 2.0.4
+      svgo:
+        specifier: 4.0.0
+        version: 4.0.0
     devDependencies:
       '@nuxt/devtools':
         specifier: 2.6.2

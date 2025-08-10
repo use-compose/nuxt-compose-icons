@@ -17,9 +17,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "sass": "1.89.2",
+    "sass": "1.90.0",
     "typescript": "5.9.2",
-    "vitepress": "1.6.3"
+    "vitepress": "1.6.4"
   },
   "dependencies": {
     "@wdns/vue-code-block": "2.3.5",

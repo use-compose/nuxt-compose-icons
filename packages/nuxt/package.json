@@ -1,6 +1,6 @@
 {
   "name": "nuxt-compose-icons",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": false,
   "description": "Compose your own Icon components library",
   "repository": {
@@ -26,7 +26,7 @@
   ],
   "scripts": {
     "prepack": "nuxt-module-build build",
-    "dev": "PORT=3007 nuxi dev playground",
+    "dev": "PORT=3008 nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
     "dev:generate": "nuxi generate playground",
@@ -39,7 +39,8 @@
   "dependencies": {
     "@nuxt/kit": "3.17.6",
     "@use-compose/ui": "0.0.72",
-    "node-html-parser": "7.0.1"
+    "node-html-parser": "7.0.1",
+    "svg-parser": "2.0.4"
   },
   "devDependencies": {
     "@nuxt/devtools": "2.6.2",
@@ -48,6 +49,7 @@
     "@nuxt/schema": "3.17.6",
     "@nuxt/test-utils": "3.19.2",
     "@types/node": "latest",
+    "@types/svg-parser": "2.0.6",
     "@vitest/coverage-v8": "3.2.4",
     "@vitest/ui": "3.2.4",
     "changelogen": "0.6.2",

@@ -5,7 +5,7 @@
       v-for="(component, index) in components"
       :key="index"
       :color="iconStyles"
-      :stroke="props.stroke"
+      :stroke="getRandomColor()"
       :stroke-width="props.strokeWidth"
       :fill="props.fill"
       size="xl"
@@ -39,20 +39,32 @@ const loadComponents = () => {
     return component;
   });
 };
+const { iconSizeClass } = useComposeIcon({ size: 'sm' });
+// eslint-disable-next-line no-console
+console.log('📟 - iconSizeClass → ', iconSizeClass);
 
 onMounted(() => {
   components.value = loadComponents();
 });
 
 const iconStyles = computed(() => {
-  return props.color;
+  return getRandomColor();
 });
+
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
 </script>
 
 <style>
 .icon-overview {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(1rem, 1fr));
   gap: 4rem;
+  grid-template-columns: repeat(auto-fill, minmax(var(--icon-size-xl), 1fr));
 }
 </style>

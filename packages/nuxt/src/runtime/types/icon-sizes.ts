@@ -1,17 +1,14 @@
-// Define the enum with size keys
-// TODO: Create more dynamic sizes from the module options?
-export enum IconSize {
-  XS = 'xs',
-  SM = 'sm',
-  MD = 'md',
-  LG = 'lg',
-  XL = 'xl',
-}
+// Define the icon sizes as a literal object
+export const IconSize = {
+  XS: 'xs',
+  SM: 'sm',
+  MD: 'md',
+  LG: 'lg',
+  XL: 'xl',
+} as const;
 
 export type IconSizeKey = keyof typeof IconSize;
 export type IconSizeKeyValue = (typeof IconSize)[IconSizeKey];
-
-// This define the interface for size real values
 export interface ComposeIconSize {
   [IconSize.XS]: string;
   [IconSize.SM]: string;

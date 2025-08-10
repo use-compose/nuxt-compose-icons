@@ -1,10 +1,12 @@
 <template>
   <div class="container">
-    <IconOverview color="green" stroke-width="3" />
+    <IconOverview stroke-width="3" />
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+// import { useComposeIcon } from 'nuxt-compose-icons';
+</script>
 
 <style>
 body {

@@ -2,13 +2,12 @@ import { addImportsDir, createResolver, defineNuxtModule, useLogger } from '@nux
 import type { Component } from '@nuxt/schema';
 import * as fs from 'node:fs';
 import { promises as fsp } from 'node:fs';
-
 import * as path from 'node:path';
+import { createSvgComponentCode } from './render/svg-codegen';
 import { IconSize, type ComposeIconSize } from './runtime/types';
 import {
   createComponentFromName,
   createComponentsDir,
-  createSvgComponentCode,
   generateComponentName,
   generateCssFile,
   readDirectoryRecursively,
@@ -32,7 +31,7 @@ export interface GeneratedComponentOptions {
    * The suffix to use for the component
    * default "Icon" ( PascalCase ) and "-icon" ( kebab-case )
    */
-  suffix: string;
+  suffix?: string;
   /**
    * Case to use for the component name
    * default "pascal"
@@ -53,6 +52,7 @@ export interface NuxtComposeIconsOptions {
   iconComponentList?: { [key: string]: Component };
   iconSizes?: ComposeIconSize;
   generatedComponentOptions: GeneratedComponentOptions;
+  dryRun?: boolean;
 }
 
 export default defineNuxtModule<NuxtComposeIconsOptions>({
@@ -78,7 +78,7 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
 
       // TODO: The directory to save the generated components
       // default "runtime/components/icons-generated"
-      componentsDestDir: 'runtime/components/icons-generated',
+      // componentsDestDir: 'runtime/components/icons-generated',
     },
     iconComponentList: {},
   },
@@ -86,6 +86,9 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
     const logger = useLogger('nuxt-compose-icons');
     const { pathToIcons, iconComponentList, iconSizes } = options;
     const componentsDestDir = options.generatedComponentOptions.componentsDestDir as string;
+
+    // .nuxt/compose-icons
+    const defaultDir = path.resolve(nuxt.options.buildDir, 'compose-icons');
 
     if (!pathToIcons && !iconComponentList) {
       logger.error(
@@ -97,7 +100,9 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
     const resolver = createResolver(import.meta.url);
 
     // Create components directory and remove it first if it exists
-    const componentsDir = createComponentsDir(resolver.resolve(componentsDestDir));
+    const componentsDir = componentsDestDir
+      ? createComponentsDir(resolver.resolve(componentsDestDir)) || defaultDir
+      : createComponentsDir(defaultDir);
 
     if (pathToIcons) {
       // Resolve the path to the icons directory provided
@@ -106,6 +111,24 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
       if (fs.existsSync(absolutePathToIcons) && fs.statSync(absolutePathToIcons).isDirectory()) {
         // We first read all the files recursively to flatten the structure
         const files = await readDirectoryRecursively(absolutePathToIcons);
+
+        /*
+         * Dry run mode: log the component names and paths without writing files
+         */
+        /*
+         * Dry run mode: log the component names and paths without writing files
+         */
+        if (options.dryRun) {
+          nuxt.hook('build:before', () => {
+            logger.info(`🔍 Dry-run mode: No files will be written.`);
+            files.forEach((file) => {
+              const fileInfo = path.parse(file);
+              const name = generateComponentName(fileInfo.name, options);
+              logger.info(`${fileInfo.base} Would generate: ${name}`);
+            });
+            process.exit();
+          });
+        }
 
         /*
          * For each file we:
@@ -136,6 +159,7 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
           const componentName = generateComponentName(fileInfo.name, options);
 
           // 2. Create the component code as literal string template
+          // const componentCode = createSvgComponentCode(componentName, svgContent);
           const componentCode = createSvgComponentCode(componentName, svgContent);
 
           // 3. Write the component to the file system
@@ -199,6 +223,8 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
         addImportsDir(resolver.resolve('runtime/types'));
         addImportsDir(resolver.resolve('runtime/utils'));
 
+        // Add composables
+        addImportsDir(resolver.resolve('runtime/composables'));
         // nuxt.hook('components:dirs', (dirs) => {
         //   dirs.push({
         //     path: path.resolve(__dirname, './runtime/components/icon-generated'),

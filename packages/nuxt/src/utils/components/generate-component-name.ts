@@ -12,7 +12,7 @@ export function normalizeComponentName(fileName: string): string {
       // TODO: Verify if it covers all cases
       // https://www.amitmerchant.com/replace-accented-characters-with-plain-english/
       .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[\u0300-\u036F]/g, '')
       // Replace '&' with 'And'
       .replace(/&/g, '-and-')
 

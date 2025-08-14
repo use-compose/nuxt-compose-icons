@@ -441,23 +441,6 @@
             ]
           },
           {
-            "text": "svg-codegen",
-            "link": "/api/utils/svg/svg-codegen/",
-            "collapsed": true,
-            "items": [
-              {
-                "text": "Functions",
-                "collapsed": true,
-                "items": [
-                  {
-                    "text": "createSvgComponentCode",
-                    "link": "/api/utils/svg/svg-codegen/functions/createSvgComponentCode.md"
-                  }
-                ]
-              }
-            ]
-          },
-          {
             "text": "svgo-optimize",
             "link": "/api/utils/svg/svgo-optimize/",
             "collapsed": true,

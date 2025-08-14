@@ -6,7 +6,7 @@
 function toKebabCase(str): string;
 ```
 
-Defined in: [packages/nuxt/src/utils/convert-cases.ts:7](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/c22743e58fa2192095f1d2cf040e9229cacd5882/packages/nuxt/src/utils/convert-cases.ts#L7)
+Defined in: [packages/nuxt/src/utils/convert-cases.ts:7](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/99c7adb9fc4bc50d94b098116a004219498c2ced/packages/nuxt/src/utils/convert-cases.ts#L7)
 
 ## Parameters
 

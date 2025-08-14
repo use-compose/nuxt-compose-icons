@@ -2,7 +2,7 @@
 
 # Interface: NuxtComposeIconsOptions
 
-Defined in: [packages/nuxt/src/module.ts:49](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/c22743e58fa2192095f1d2cf040e9229cacd5882/packages/nuxt/src/module.ts#L49)
+Defined in: [packages/nuxt/src/module.ts:49](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/99c7adb9fc4bc50d94b098116a004219498c2ced/packages/nuxt/src/module.ts#L49)
 
 ## Properties
 
@@ -12,7 +12,7 @@ Defined in: [packages/nuxt/src/module.ts:49](https://github.com/arthur-plazanet/
 optional dryRun: boolean;
 ```
 
-Defined in: [packages/nuxt/src/module.ts:57](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/c22743e58fa2192095f1d2cf040e9229cacd5882/packages/nuxt/src/module.ts#L57)
+Defined in: [packages/nuxt/src/module.ts:57](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/99c7adb9fc4bc50d94b098116a004219498c2ced/packages/nuxt/src/module.ts#L57)
 
 ---
 
@@ -22,7 +22,7 @@ Defined in: [packages/nuxt/src/module.ts:57](https://github.com/arthur-plazanet/
 generatedComponentOptions: GeneratedComponentOptions;
 ```
 
-Defined in: [packages/nuxt/src/module.ts:56](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/c22743e58fa2192095f1d2cf040e9229cacd5882/packages/nuxt/src/module.ts#L56)
+Defined in: [packages/nuxt/src/module.ts:56](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/99c7adb9fc4bc50d94b098116a004219498c2ced/packages/nuxt/src/module.ts#L56)
 
 ---
 
@@ -32,7 +32,7 @@ Defined in: [packages/nuxt/src/module.ts:56](https://github.com/arthur-plazanet/
 optional iconComponentList: object;
 ```
 
-Defined in: [packages/nuxt/src/module.ts:54](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/c22743e58fa2192095f1d2cf040e9229cacd5882/packages/nuxt/src/module.ts#L54)
+Defined in: [packages/nuxt/src/module.ts:54](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/99c7adb9fc4bc50d94b098116a004219498c2ced/packages/nuxt/src/module.ts#L54)
 
 #### Index Signature
 
@@ -48,7 +48,7 @@ Defined in: [packages/nuxt/src/module.ts:54](https://github.com/arthur-plazanet/
 optional iconSizes: ComposeIconSize;
 ```
 
-Defined in: [packages/nuxt/src/module.ts:55](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/c22743e58fa2192095f1d2cf040e9229cacd5882/packages/nuxt/src/module.ts#L55)
+Defined in: [packages/nuxt/src/module.ts:55](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/99c7adb9fc4bc50d94b098116a004219498c2ced/packages/nuxt/src/module.ts#L55)
 
 ---
 
@@ -58,4 +58,4 @@ Defined in: [packages/nuxt/src/module.ts:55](https://github.com/arthur-plazanet/
 optional pathToIcons: string;
 ```
 
-Defined in: [packages/nuxt/src/module.ts:53](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/c22743e58fa2192095f1d2cf040e9229cacd5882/packages/nuxt/src/module.ts#L53)
+Defined in: [packages/nuxt/src/module.ts:53](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/99c7adb9fc4bc50d94b098116a004219498c2ced/packages/nuxt/src/module.ts#L53)

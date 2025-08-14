@@ -2,7 +2,7 @@
 
 # Interface: GeneratedComponentOptions
 
-Defined in: [packages/nuxt/src/module.ts:27](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/c22743e58fa2192095f1d2cf040e9229cacd5882/packages/nuxt/src/module.ts#L27)
+Defined in: [packages/nuxt/src/module.ts:27](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/99c7adb9fc4bc50d94b098116a004219498c2ced/packages/nuxt/src/module.ts#L27)
 
 ## Properties
 
@@ -12,7 +12,7 @@ Defined in: [packages/nuxt/src/module.ts:27](https://github.com/arthur-plazanet/
 case: "pascal" | "kebab";
 ```
 
-Defined in: [packages/nuxt/src/module.ts:41](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/c22743e58fa2192095f1d2cf040e9229cacd5882/packages/nuxt/src/module.ts#L41)
+Defined in: [packages/nuxt/src/module.ts:41](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/99c7adb9fc4bc50d94b098116a004219498c2ced/packages/nuxt/src/module.ts#L41)
 
 Case to use for the component name
 default "pascal"
@@ -25,7 +25,7 @@ default "pascal"
 optional componentsDestDir: string;
 ```
 
-Defined in: [packages/nuxt/src/module.ts:46](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/c22743e58fa2192095f1d2cf040e9229cacd5882/packages/nuxt/src/module.ts#L46)
+Defined in: [packages/nuxt/src/module.ts:46](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/99c7adb9fc4bc50d94b098116a004219498c2ced/packages/nuxt/src/module.ts#L46)
 
 TODO: The directory to save the generated components
 default "runtime/components/icons-generated"
@@ -38,7 +38,7 @@ default "runtime/components/icons-generated"
 optional prefix: string;
 ```
 
-Defined in: [packages/nuxt/src/module.ts:31](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/c22743e58fa2192095f1d2cf040e9229cacd5882/packages/nuxt/src/module.ts#L31)
+Defined in: [packages/nuxt/src/module.ts:31](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/99c7adb9fc4bc50d94b098116a004219498c2ced/packages/nuxt/src/module.ts#L31)
 
 The prefix to use for the component - default false
 
@@ -50,7 +50,7 @@ The prefix to use for the component - default false
 optional suffix: string;
 ```
 
-Defined in: [packages/nuxt/src/module.ts:36](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/c22743e58fa2192095f1d2cf040e9229cacd5882/packages/nuxt/src/module.ts#L36)
+Defined in: [packages/nuxt/src/module.ts:36](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/99c7adb9fc4bc50d94b098116a004219498c2ced/packages/nuxt/src/module.ts#L36)
 
 The suffix to use for the component
 default "Icon" ( PascalCase ) and "-icon" ( kebab-case )

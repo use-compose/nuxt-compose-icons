@@ -26,5 +26,4 @@
 - [utils/styles/generate-css-file](utils/styles/generate-css-file/index.md)
 - [utils/svg/create-svg-component](utils/svg/create-svg-component/index.md)
 - [utils/svg/parse-svg](utils/svg/parse-svg/index.md)
-- [utils/svg/svg-codegen](utils/svg/svg-codegen/index.md)
 - [utils/svg/svgo-optimize](utils/svg/svgo-optimize/index.md)

@@ -2,7 +2,7 @@
 
 # Interface: ComposeIconSize
 
-Defined in: [packages/nuxt/src/runtime/types/icon-sizes.ts:12](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/c22743e58fa2192095f1d2cf040e9229cacd5882/packages/nuxt/src/runtime/types/icon-sizes.ts#L12)
+Defined in: [packages/nuxt/src/runtime/types/icon-sizes.ts:12](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/99c7adb9fc4bc50d94b098116a004219498c2ced/packages/nuxt/src/runtime/types/icon-sizes.ts#L12)
 
 ## Properties
 
@@ -12,7 +12,7 @@ Defined in: [packages/nuxt/src/runtime/types/icon-sizes.ts:12](https://github.co
 lg: string;
 ```
 
-Defined in: [packages/nuxt/src/runtime/types/icon-sizes.ts:16](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/c22743e58fa2192095f1d2cf040e9229cacd5882/packages/nuxt/src/runtime/types/icon-sizes.ts#L16)
+Defined in: [packages/nuxt/src/runtime/types/icon-sizes.ts:16](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/99c7adb9fc4bc50d94b098116a004219498c2ced/packages/nuxt/src/runtime/types/icon-sizes.ts#L16)
 
 ---
 
@@ -22,7 +22,7 @@ Defined in: [packages/nuxt/src/runtime/types/icon-sizes.ts:16](https://github.co
 md: string;
 ```
 
-Defined in: [packages/nuxt/src/runtime/types/icon-sizes.ts:15](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/c22743e58fa2192095f1d2cf040e9229cacd5882/packages/nuxt/src/runtime/types/icon-sizes.ts#L15)
+Defined in: [packages/nuxt/src/runtime/types/icon-sizes.ts:15](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/99c7adb9fc4bc50d94b098116a004219498c2ced/packages/nuxt/src/runtime/types/icon-sizes.ts#L15)
 
 ---
 
@@ -32,7 +32,7 @@ Defined in: [packages/nuxt/src/runtime/types/icon-sizes.ts:15](https://github.co
 sm: string;
 ```
 
-Defined in: [packages/nuxt/src/runtime/types/icon-sizes.ts:14](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/c22743e58fa2192095f1d2cf040e9229cacd5882/packages/nuxt/src/runtime/types/icon-sizes.ts#L14)
+Defined in: [packages/nuxt/src/runtime/types/icon-sizes.ts:14](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/99c7adb9fc4bc50d94b098116a004219498c2ced/packages/nuxt/src/runtime/types/icon-sizes.ts#L14)
 
 ---
 
@@ -42,7 +42,7 @@ Defined in: [packages/nuxt/src/runtime/types/icon-sizes.ts:14](https://github.co
 xl: string;
 ```
 
-Defined in: [packages/nuxt/src/runtime/types/icon-sizes.ts:17](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/c22743e58fa2192095f1d2cf040e9229cacd5882/packages/nuxt/src/runtime/types/icon-sizes.ts#L17)
+Defined in: [packages/nuxt/src/runtime/types/icon-sizes.ts:17](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/99c7adb9fc4bc50d94b098116a004219498c2ced/packages/nuxt/src/runtime/types/icon-sizes.ts#L17)
 
 ---
 
@@ -52,4 +52,4 @@ Defined in: [packages/nuxt/src/runtime/types/icon-sizes.ts:17](https://github.co
 xs: string;
 ```
 
-Defined in: [packages/nuxt/src/runtime/types/icon-sizes.ts:13](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/c22743e58fa2192095f1d2cf040e9229cacd5882/packages/nuxt/src/runtime/types/icon-sizes.ts#L13)
+Defined in: [packages/nuxt/src/runtime/types/icon-sizes.ts:13](https://github.com/arthur-plazanet/nuxt-compose-icons/blob/99c7adb9fc4bc50d94b098116a004219498c2ced/packages/nuxt/src/runtime/types/icon-sizes.ts#L13)

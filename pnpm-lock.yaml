@@ -54,14 +54,14 @@ importers:
         specifier: ^15.0.1
         version: 15.0.1(postcss@8.5.6)(stylelint@16.23.1(typescript@5.9.2))
       typedoc:
-        specifier: 0.28.10
-        version: 0.28.10(typescript@5.9.2)
+        specifier: 0.28.11
+        version: 0.28.11(typescript@5.9.2)
       typedoc-plugin-markdown:
         specifier: 4.8.1
-        version: 4.8.1(typedoc@0.28.10(typescript@5.9.2))
+        version: 4.8.1(typedoc@0.28.11(typescript@5.9.2))
       typedoc-vitepress-theme:
         specifier: 1.1.2
-        version: 1.1.2(typedoc-plugin-markdown@4.8.1(typedoc@0.28.10(typescript@5.9.2)))
+        version: 1.1.2(typedoc-plugin-markdown@4.8.1(typedoc@0.28.11(typescript@5.9.2)))
       typescript:
         specifier: 5.9.2
         version: 5.9.2
@@ -5885,8 +5885,8 @@ packages:
     peerDependencies:
       typedoc-plugin-markdown: '>=4.4.0'
 
-  typedoc@0.28.10:
-    resolution: {integrity: sha512-zYvpjS2bNJ30SoNYfHSRaFpBMZAsL7uwKbWwqoCNFWjcPnI3e/mPLh2SneH9mX7SJxtDpvDgvd9/iZxGbo7daw==}
+  typedoc@0.28.11:
+    resolution: {integrity: sha512-1FqgrrUYGNuE3kImAiEDgAVVVacxdO4ZVTKbiOVDGkoeSB4sNwQaDpa8mta+Lw5TEzBFmGXzsg0I1NLRIoaSFw==}
     engines: {node: '>= 18', pnpm: '>= 10'}
     hasBin: true
     peerDependencies:
@@ -13010,15 +13010,15 @@ snapshots:
 
   type-level-regexp@0.1.17: {}
 
-  typedoc-plugin-markdown@4.8.1(typedoc@0.28.10(typescript@5.9.2)):
+  typedoc-plugin-markdown@4.8.1(typedoc@0.28.11(typescript@5.9.2)):
     dependencies:
-      typedoc: 0.28.10(typescript@5.9.2)
+      typedoc: 0.28.11(typescript@5.9.2)
 
-  typedoc-vitepress-theme@1.1.2(typedoc-plugin-markdown@4.8.1(typedoc@0.28.10(typescript@5.9.2))):
+  typedoc-vitepress-theme@1.1.2(typedoc-plugin-markdown@4.8.1(typedoc@0.28.11(typescript@5.9.2))):
     dependencies:
-      typedoc-plugin-markdown: 4.8.1(typedoc@0.28.10(typescript@5.9.2))
+      typedoc-plugin-markdown: 4.8.1(typedoc@0.28.11(typescript@5.9.2))
 
-  typedoc@0.28.10(typescript@5.9.2):
+  typedoc@0.28.11(typescript@5.9.2):
     dependencies:
       '@gerrit0/mini-shiki': 3.9.0
       lunr: 2.3.9

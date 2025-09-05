@@ -1,6 +1,10 @@
 # Nuxt-Compose-Icons
 
+<img width="1400" height="416" alt="Frame 206" src="https://github.com/user-attachments/assets/4aaba37a-4cd8-4ac3-b12b-f98171869a28" />
+
 Compose your own Icon components library, from SVG files to Vue Components that you own.
+
+<img width="200" alt="logo" src="https://github.com/user-attachments/assets/71be7ce7-54ef-401e-84df-8dde0891cc9d" />
 
 ## Build-time SVG to Vue Component:
 

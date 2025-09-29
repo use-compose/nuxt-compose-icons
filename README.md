@@ -1,10 +1,30 @@
 # Nuxt-Compose-Icons
 
+![npm-version-src](https://img.shields.io/npm/v/nuxt-compose-icons.svg?style=flat&colorA=000&colorB=C1272D)
+
 <img width="1400" height="416" alt="Frame 206" src="https://github.com/user-attachments/assets/4aaba37a-4cd8-4ac3-b12b-f98171869a28" />
 
-Compose your own Icon components library, from SVG files to Vue Components that you own.
+Compose your own Icon components library, from SVG files to customizable Vue Components that you own.
 
 <img width="200" alt="logo" src="https://github.com/user-attachments/assets/71be7ce7-54ef-401e-84df-8dde0891cc9d" />
+
+Using pnpm:
+
+```bash
+pnpm add -D nuxt-compose-icons
+```
+
+Using npm
+
+```bash
+npm install -D nuxt-compose-icons
+```
+
+Using yarn
+
+```bash
+yarn add -D nuxt-compose-icons
+```
 
 ## Build-time SVG to Vue Component:
 
@@ -56,6 +76,7 @@ The aim is to combine the control and quality of hand-authored components with t
 ## Example
 
 **`user-badge.svg`**
+
 ```xml
 <svg viewBox="0 0 24 24" width="...">
   <path d="..." fill="#000" stroke="#fff" stroke-width="2" />
@@ -65,6 +86,7 @@ The aim is to combine the control and quality of hand-authored components with t
 **will generate:**
 
 **`UserBadgeIcon.vue`** (default naming - using PascalCase and `Icon` suffix)
+
 ```vue
 <template>
   <svg viewBox="0 0 24 24">

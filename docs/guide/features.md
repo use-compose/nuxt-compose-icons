@@ -5,7 +5,7 @@ order: 1
 
 # Features
 
-From SVG files to Vue Components that you own.
+Compose your own Icon components library, from SVG files to customizable Vue Components that you own.
 
 ## Build-time SVG to Vue Component:
 

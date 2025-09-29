@@ -8,7 +8,7 @@ interface ParsedSvgResult {
   children: string[];
 }
 
-/*
+/**
  * 1. We first parse the SVG content and convert it to HAST (https://github.com/syntax-tree/hast)
  *
  *
@@ -35,6 +35,9 @@ interface ParsedSvgResult {
  *     },
  *   ],
  * }
+ *
+ * @param {string} svgContent
+ * @returns {SvgElement}
  */
 function convertSVGToHast(svgContent: string): SvgElement {
   const root = parse(svgContent);

@@ -18,6 +18,13 @@ interface UseComposeIcon {
     class: string[];
   };
 }
+
+/**
+ * Composes the icon styles, classes, and attributes based on the provided props.
+ *
+ * @param {ComposeIconProps} props
+ * @returns {UseComposeIcon} The composed icon styles, classes, and attributes.
+ */
 function useComposeIcon(props: ComposeIconProps): UseComposeIcon {
   // 1) Size
   const size = computed<IconSizeKeyValue>(() => props.size ?? IconSize.MD);

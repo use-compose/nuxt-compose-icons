@@ -19,6 +19,12 @@ const defaultComponent: Component = {
   priority: 0,
 };
 
+/**
+ * Creates a Nuxt component object from the provided options, applying paths and naming conventions.
+ *
+ * @param {AddComponentOptions} componentOptions
+ * @returns {Component} component
+ */
 function createComponentFromName(componentOptions: AddComponentOptions): Component {
   const { name } = componentOptions;
   const pascalName = toPascalCase(name);

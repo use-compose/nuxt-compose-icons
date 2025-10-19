@@ -51,9 +51,34 @@ export interface NuxtComposeIconsOptions {
    * The path to the icons directory
    */
   pathToIcons?: string;
+
+  /**
+   * TODO: An object containing icon components to register
+   * e.g. { 'custom-icon': CustomIconComponent }
+   * This allows to register custom icon components directly without generating them from SVG files
+   * Useful for registering third-party icon libraries or custom components
+   * Note: The keys will be used as the component names (with prefix/suffix and case applied)
+   * e.g. { 'custom-icon': CustomIconComponent } will be registered as "CustomIcon" or "custom-icon-icon" depending on the case option
+   * default: {}
+   */
   iconComponentList?: { [key: string]: Component };
+  /**
+   * The icon sizes to generate CSS classes for
+   * default:
+   * {
+   *   xs: '0.5rem',
+   *   sm: '0.875rem',
+   *   md: '1rem',
+   *   lg: '1.5rem',
+   *   xl: '2.5rem',
+   * }
+   */
   iconSizes?: ComposeIconSize;
   generatedComponentOptions: GeneratedComponentOptions;
+  /**
+   * Dry run mode: log the component names and paths without writing files
+   * default: false
+   */
   dryRun?: boolean;
 }
 

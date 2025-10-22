@@ -1,24 +1,3 @@
-@font-face {
-  font-family: 'gotham';
-  src: url('/fonts/GOTHAM-BOOK.OTF') format('opentype');
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'gotham';
-  src: url('/fonts/GOTHAM-BOLD.woff') format('opentype');
-  font-weight: 700;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'gotham';
-  src: url('/fonts/GOTHAM-BLACK.OTF') format('opentype');
-  font-weight: 900;
-  font-display: swap;
-}
-
 @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
@@ -28,43 +7,4 @@ body {
 
   background-color: var(--clr-background);
   color: var(--clr-text);
-}
-
-h1,
-h2,
-h3 {
-  line-height: 1.1;
-  font-family: gotham;
-  // text-transform: uppercase;
-}
-
-h1,
-.text-xxl {
-  font-size: var(--text-xxl);
-  font-size: clamp(1.5625rem, 4.1vw + 0.1rem, 4.5rem);
-  font-size: clamp(1.5625rem, 4.1vw + 0.1rem, 3.375rem);
-  // font-size: clamp(1.25rem, 4.1vw + 0.1rem, 4.5rem);
-  line-height: 1.2;
-}
-
-h2,
-.text-xl {
-  font-size: var(--text-xl);
-}
-
-h3,
-.text-lg {
-  font-size: var(--text-lg);
-}
-
-p {
-  font-size: var(--text-md);
-}
-
-.text-sm {
-  font-size: var(--text-sm);
-}
-
-.text-lg {
-  font-size: var(--text-xs);
 }

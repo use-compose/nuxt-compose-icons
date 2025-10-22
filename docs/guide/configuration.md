@@ -1,54 +1,155 @@
-## Configuration Options
+---
+outline: [2, 3]
+order: 3
+---
 
-- `dir`: source directory for SVGs
-- `prefix` / `suffix`: component name modifiers
-- `case`: PascalCase or kebab-case
-- `namespaced`: use folder names in component name
+# Configuration
 
-## Compatibility
+This module supports multiple configuration options to control icon generation, theming, and component registration. All options are passed under the `composeIcons` key in your `nuxt.config.ts`.
 
-- Nuxt 3 (Vite-based)
-- No runtime dependencies
-- Fully static, tree-shakable
+## Basic example
 
-## Quick Reference
+```ts
+// nuxt.config.ts
+export default defineNuxtConfig({
+  modules: ['nuxt-compose-icons'],
+  composeIcons: {
+    pathToIcons: './assets/icons',
+  },
+});
+```
 
-| Capability           | Notes                                 |
-| -------------------- | ------------------------------------- |
-| Component per SVG    | One `.vue` per `.svg`                 |
-| No wrappers          | `<svg>` is the root                   |
-| CSS variable support | `var(--icon-fill, fallback)`          |
-| Auto-import          | Via Nuxt `components`                 |
-| Typing support       | IDE autocompletion + type safety      |
-| Configurable names   | Prefix, suffix, folders, case style   |
-| Theming              | Compatible with runtime CSS overrides |
+---
 
-This module was built with the following goals:
+## Options
 
-- **No wrappers** — the root element of each component is the `<svg>` tag.
-- **Styling through CSS custom properties** — `fill`, `stroke`, and `stroke-width` are automatically replaced with `var(--...)`, with a fallback to the original SVG value
-- **Component-level usage** — not runtime rendering, not prop-based injection.
-- **Scalability** — works for 5 icons or 500, with consistent naming and structure.
-- **IDE support** — full auto-import, autocompletion, and type inference in Nuxt.
+### `pathToIcons`
 
-The goal is to provide a system that feels like hand-authored components, but is generated automatically.
+- **Type:** `string`
+- **Required unless `iconComponentList` is used**
+- Directory containing your `.svg` icon files.
+- The module will scan and convert each file into a Vue component.
 
-This module is designed to eliminate the trade-offs of the above approaches.
+```ts
+composeIcons: {
+  pathToIcons: './assets/icons',
+}
+```
 
-Goals:
+---
 
-- **No wrappers** — the root element is always the `<svg>` itself
-- **Type-safe and auto-imported** — each icon is a Vue component with a predictable name and full IDE support
-- **Build-time generation** — components are created during the build, with no runtime overhead
-- **Theming flexibility** — CSS variables allow icons to inherit styles from light/dark themes or scoped tokens
+### `iconComponentList`
 
-## This Module
+- **Type:** `Record<string, Component>`
+- **Default:** `{}`
+- An alternative to `pathToIcons`, for manually registering Vue components.
 
-This module:
+Use this to:
 
-- Parses `.svg` files at build time
-- Outputs one Vue component per icon
-- Rewrites `fill`, `stroke`, etc. using `var(--icon-*, originalValue)`
-- Generates predictable component names (`user-badge.svg` → `IconUserBadge`)
-- Registers components with Nuxt auto-import
-- Supports type inference and autocomplete in templates
+- Register pre-existing or third-party icon components
+- Integrate with other icon sets
+- Skip file system parsing
+
+```ts
+composeIcons: {
+  iconComponentList: {
+    'custom-icon': CustomIcon,
+    'logo': LogoIcon,
+  }
+}
+```
+
+> Component names are still processed using `prefix`, `suffix`, and `case` rules.
+
+---
+
+### `generatedComponentOptions`
+
+Controls how generated component names are formatted and where they are written.
+
+```ts
+composeIcons: {
+  generatedComponentOptions: {
+    prefix: 'My',
+    suffix: 'Icon',
+    case: 'kebab',
+    componentsDestDir: 'components/generated',
+  }
+}
+```
+
+| Option              | Type                  | Default               | Description                                         |
+| ------------------- | --------------------- | --------------------- | --------------------------------------------------- |
+| `prefix`            | `string \| undefined` | `undefined`           | Prepended to the component name (e.g. `MyUserIcon`) |
+| `suffix`            | `string`              | `"Icon"`              | Appended to the name (e.g. `UserIcon`)              |
+| `case`              | `'pascal' \| 'kebab'` | `'pascal'`            | Naming convention for the component file name       |
+| `componentsDestDir` | `string`              | `.nuxt/compose-icons` | Directory for generated Vue components              |
+
+---
+
+### `iconSizes`
+
+- **Type:** `Record<string, string>`
+- **Default:**
+
+```ts
+{
+  xs: '0.5rem',
+  sm: '0.875rem',
+  md: '1rem',
+  lg: '1.5rem',
+  xl: '2.5rem',
+}
+```
+
+- Used to generate utility-friendly `--icon-size-*` variables
+- CSS file is automatically injected into the Nuxt build
+- Can be overridden by your own theming layer
+
+---
+
+### `dryRun`
+
+- **Type:** `boolean`
+- **Default:** `false`
+- Enables preview mode without writing files. Logs intended component names and exits before build continues.
+
+```ts
+composeIcons: {
+  dryRun: true;
+}
+```
+
+---
+
+## CSS Integration
+
+The module generates and injects two files into `nuxt.options.css` at build time:
+
+- `compose-sizes.css`: exposes `--icon-size-{key}` variables
+- `compose-icon.css`: optional base styling for icon components
+
+You can override them or provide your own themes using these variables.
+
+---
+
+## Required Conditions
+
+You **must provide either**:
+
+- `pathToIcons`: to generate icons from `.svg` files
+- **or** `iconComponentList`: to manually register existing components
+
+Providing neither will result in a build error.
+
+---
+
+## Advanced Notes
+
+- All icons are auto-registered via `components:extend`
+- The module supports HMR and SSR
+- Future features may include:
+  - per-icon config
+  - composables and variants
+
+For implementation details, see [why we use literal templates](https://nuxt-compose-icons.arthurplazanet.com/why-literal-strings-to-create-vue-components).

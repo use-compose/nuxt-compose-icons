@@ -1,12 +1,12 @@
 <template>
   <section class="banner">
-    <HighlightedText tag="h1" labeled class="heading">
+    <YHighlightedText tag="h1" active stick-to-left>
       <template #highlighted> Compose </template>your own Icon components library
       <h2 class="tagline text-xl">
         Automatically generates customizable Vue components based on SVG files
       </h2>
       <Separator />
-    </HighlightedText>
+    </YHighlightedText>
 
     <ClientOnly>
       <ModuleTemplateExample />
@@ -21,8 +21,8 @@
 </template>
 
 <script setup>
+import { YHighlightedText } from '@use-compose/ui';
 import Features from './Features.vue';
-import HighlightedText from './HighlightedText.vue';
 import IconOverview from './IconOverview.vue';
 import ModuleTemplateExample from './ModuleTemplateExample.vue';
 </script>
@@ -36,7 +36,7 @@ import ModuleTemplateExample from './ModuleTemplateExample.vue';
   container-type: inline-size;
   display: grid;
   align-items: center;
-  // padding: 7.5rem 0;
+  color: white;
   margin-bottom: 1rem;
   width: 100%;
   // min-height: 100svh;

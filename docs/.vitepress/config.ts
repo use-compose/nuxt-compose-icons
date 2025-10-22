@@ -6,9 +6,12 @@ const sidebar = {
     {
       text: 'Guide',
       items: [
-        { text: 'Introduction', link: '/guide/concept' },
+        { text: 'Introduction', link: '/guide/introduction' },
+        { text: 'Concept', link: '/guide/concept' },
+        { text: 'Motivation', link: '/guide/concept#motivation' }, // 📎 anchor within concept.md
         { text: 'Features', link: '/guide/features' },
-        { text: 'Getting Started', link: '/guide/getting-started' },
+        { text: 'Installation', link: '/guide/installation' },
+        { text: 'Configuration', link: '/guide/configuration' },
       ],
     },
     {
@@ -81,6 +84,18 @@ export default defineConfig({
   },
   cleanUrls: true,
   vite: {
+    publicDir: 'public',
+    build: {
+      rollupOptions: {
+        // external: ['@use-compose/ui', '@use-compose/ui/dist/*'],
+        output: {
+          globals: {
+            vue: 'Vue',
+          },
+        },
+        external: ['@use-compose/ui'],
+      },
+    },
     server: {
       allowedHosts: ['http://arthur.icon-docs'],
     },

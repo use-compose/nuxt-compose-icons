@@ -93,7 +93,7 @@ export default defineConfig({
             vue: 'Vue',
           },
         },
-        external: ['@use-compose/ui'],
+        external: ['@use-compose/ui/style.css', '@use-compose/ui'],
       },
     },
     server: {

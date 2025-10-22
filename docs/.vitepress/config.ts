@@ -94,6 +94,7 @@ export default defineConfig({
           },
         },
         external: ['@use-compose/ui/style.css', '@use-compose/ui'],
+        noExternal: [ /\.css$/],
       },
     },
     server: {

@@ -78,11 +78,11 @@ importers:
   docs:
     dependencies:
       '@use-compose/logger':
-        specifier: latest
-        version: 0.0.6
+        specifier: 0.0.5
+        version: 0.0.5
       '@use-compose/ui':
-        specifier: 0.2.7
-        version: 0.2.7(typescript@5.9.2)
+        specifier: 0.2.8
+        version: 0.2.8(typescript@5.9.2)
       '@wdns/vue-code-block':
         specifier: 2.3.5
         version: 2.3.5(typescript@5.9.2)
@@ -2061,6 +2061,9 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@use-compose/logger@0.0.5':
+    resolution: {integrity: sha512-7By7naxy2GHwsVzu3v+JQw0zTAHZw0sD9GAUn75e+8nXIGmW2nyIUIVIxcocdGMEIMd58AgTAiduBrI8B+JM4A==}
+
   '@use-compose/logger@0.0.6':
     resolution: {integrity: sha512-9/TvTkHP6miDTyTXxfROcCy7aNp5f4xVyS39nEK0vem46A30fZKY3XJejspfFblB6FoNyTxsPoBL+C8DV1Ivdw==}
 
@@ -2072,8 +2075,8 @@ packages:
     resolution: {integrity: sha512-YT5zRyljAaUu9iCU3ejHJSGd7ihRipaw0sKoouHtB/1G12BLYDBndL/eMgHNxVzNCt6UdoygB5txqm12yXdcQQ==}
     hasBin: true
 
-  '@use-compose/ui@0.2.7':
-    resolution: {integrity: sha512-4a/tun751lIh0rXXXYDoP1y62KBYVPNT1gmtu3NK8LnQyjcEWzfgnUSaF9LBJkRDoCsqk5jepWcvwXMT9ooGDQ==}
+  '@use-compose/ui@0.2.8':
+    resolution: {integrity: sha512-u72j6shQJiM8r/u1Oj4SnfU+g1XA1CoftVVNM9V4/1sg3zuf9nFMzaCgUS70FAnhPI2AzOz65v9jIIeLeRFfHQ==}
     hasBin: true
 
   '@vercel/nft@0.30.3':
@@ -8289,6 +8292,8 @@ snapshots:
   '@unrs/resolver-binding-win32-x64-msvc@1.11.1':
     optional: true
 
+  '@use-compose/logger@0.0.5': {}
+
   '@use-compose/logger@0.0.6': {}
 
   '@use-compose/ui@0.2.3(typescript@5.9.2)':
@@ -8313,7 +8318,7 @@ snapshots:
       - supports-color
       - typescript
 
-  '@use-compose/ui@0.2.7(typescript@5.9.2)':
+  '@use-compose/ui@0.2.8(typescript@5.9.2)':
     dependencies:
       compression: 1.8.1
       culori: 4.0.1

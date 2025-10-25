@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@use-compose/logger": "0.0.5",
-    "@use-compose/ui": "0.2.7",
+    "@use-compose/ui": "0.2.8",
     "@wdns/vue-code-block": "2.3.5",
     "highlight.js": "11.11.1",
     "vue": "3.5.20",

@@ -100,10 +100,13 @@ export default defineConfig({
             vue: 'Vue',
           },
         },
-        external: ['@use-compose/ui/style.css'],
+        // external: ['@use-compose/ui', '@use-compose/ui/style.css'],
         // , '@use-compose/ui'],
         // noExternal: [/\.css$/],
       },
+    },
+    ssr: {
+      noExternal: [/\.css$/, '@use-compose/ui', '@use-compose/ui/style.css'],
     },
     server: {
       allowedHosts: ['http://arthur.icon-docs'],

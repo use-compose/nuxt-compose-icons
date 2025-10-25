@@ -81,8 +81,8 @@ importers:
         specifier: 0.0.5
         version: 0.0.5
       '@use-compose/ui':
-        specifier: 0.2.8
-        version: 0.2.8(typescript@5.9.2)
+        specifier: 0.2.9
+        version: 0.2.9(typescript@5.9.2)
       '@wdns/vue-code-block':
         specifier: 2.3.5
         version: 2.3.5(typescript@5.9.2)
@@ -2075,8 +2075,8 @@ packages:
     resolution: {integrity: sha512-YT5zRyljAaUu9iCU3ejHJSGd7ihRipaw0sKoouHtB/1G12BLYDBndL/eMgHNxVzNCt6UdoygB5txqm12yXdcQQ==}
     hasBin: true
 
-  '@use-compose/ui@0.2.8':
-    resolution: {integrity: sha512-u72j6shQJiM8r/u1Oj4SnfU+g1XA1CoftVVNM9V4/1sg3zuf9nFMzaCgUS70FAnhPI2AzOz65v9jIIeLeRFfHQ==}
+  '@use-compose/ui@0.2.9':
+    resolution: {integrity: sha512-4otBMbF/LBGLFr5UC4GiIKvSU9mtwYL6EUyEvdhpJdvGJsdLXlXCy89iopT21i7vo9nD49KxrtN995FStqeOQQ==}
     hasBin: true
 
   '@vercel/nft@0.30.3':
@@ -8318,7 +8318,7 @@ snapshots:
       - supports-color
       - typescript
 
-  '@use-compose/ui@0.2.8(typescript@5.9.2)':
+  '@use-compose/ui@0.2.9(typescript@5.9.2)':
     dependencies:
       compression: 1.8.1
       culori: 4.0.1

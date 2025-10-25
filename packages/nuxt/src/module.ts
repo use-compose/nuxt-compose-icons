@@ -1,4 +1,10 @@
-import { addImportsDir, createResolver, defineNuxtModule, useLogger } from '@nuxt/kit';
+import {
+  addImportsDir,
+  checkNuxtCompatibility,
+  createResolver,
+  defineNuxtModule,
+  useLogger,
+} from '@nuxt/kit';
 import type { Component } from '@nuxt/schema';
 import * as fs from 'node:fs';
 import { promises as fsp } from 'node:fs';
@@ -26,22 +32,42 @@ import { optimizeSvg } from './utils/svg/svgo-optimize';
 // } from './runtime/types';
 export interface GeneratedComponentOptions {
   /**
-   * The prefix to use for the component - default false
+   * The prefix to use for the component
+   *
+   * @type {?string}
+   * @default undefined
    */
   prefix?: string;
+
   /**
    * The suffix to use for the component
-   * default "Icon" ( PascalCase ) and "-icon" ( kebab-case )
+   *
+   * @type {?string}
+   * @default "Icon" ( PascalCase ) and "-icon" ( kebab-case )
    */
   suffix?: string;
+
   /**
    * Case to use for the component name
-   * default "pascal"
+   *
+   * @type {'pascal' | 'kebab'}
+   * @default "pascal" ( PascalCase ) and "kebab" ( kebab-case )
    */
   case: 'pascal' | 'kebab';
+
+  /**
+   * Wether to create an index file or not in the components directory
+   *
+   * @type {boolean}
+   * @default false
+   */
+  hasIndexFile?: boolean;
+
   /**
    * TODO: The directory to save the generated components
-   * default "runtime/components/icons-generated"
+   *
+   * @type {?string}
+   * @default "runtime/components/icons-generated"
    */
   componentsDestDir?: string;
 }
@@ -60,8 +86,11 @@ export interface NuxtComposeIconsOptions {
    * Note: The keys will be used as the component names (with prefix/suffix and case applied)
    * e.g. { 'custom-icon': CustomIconComponent } will be registered as "CustomIcon" or "custom-icon-icon" depending on the case option
    * default: {}
+   *
+   * @type {?{ [key: string]: Component }}
    */
   iconComponentList?: { [key: string]: Component };
+
   /**
    * The icon sizes to generate CSS classes for
    * default:
@@ -72,12 +101,22 @@ export interface NuxtComposeIconsOptions {
    *   lg: '1.5rem',
    *   xl: '2.5rem',
    * }
+   *
+   * @type {?ComposeIconSize}
    */
   iconSizes?: ComposeIconSize;
+
+  /**
+   *
+   * @type {GeneratedComponentOptions}
+   */
   generatedComponentOptions: GeneratedComponentOptions;
+
   /**
    * Dry run mode: log the component names and paths without writing files
-   * default: false
+   *
+   * @type {?boolean}
+   * @default false
    */
   dryRun?: boolean;
 }
@@ -86,6 +125,10 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
   meta: {
     name: 'nuxt-compose-icons',
     configKey: 'composeIcons',
+    compatibility: {
+      // Required nuxt version in semver format.
+      nuxt: '>=3.0.0', // or use '^3.0.0'
+    },
   },
   // Default configuration options of the Nuxt module
   defaults: {
@@ -111,6 +154,29 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
   },
   async setup(options, nuxt) {
     const logger = useLogger('nuxt-compose-icons');
+    const issues = await checkNuxtCompatibility({ nuxt: '^2.16.0' }, nuxt);
+    if (issues.length) {
+      logger.warn('Nuxt compatibility issues found:\n' + issues.toString());
+    } else {
+      // do something
+    }
+    const nuxt3 = await checkNuxtCompatibility({ nuxt: '^3.0.0' }, nuxt);
+    if (nuxt3.length) {
+      logger.warn('Nuxt 3 compatibility issues found:\n' + nuxt3.toString());
+    }
+    const nuxt4 = await checkNuxtCompatibility({ nuxt: '^4.0.0' }, nuxt);
+    if (nuxt4.length) {
+      logger.warn('Nuxt 4 compatibility issues found:\n' + nuxt4.toString());
+    }
+
+    logger.debug('🖼️ - nuxt-compose-icons nuxt versions compatibilities');
+    logger.info('Nuxt 2 compatibility issues');
+    logger.debug(issues);
+    logger.info('Nuxt 3 compatibility issues');
+    logger.debug(nuxt3);
+    logger.info('Nuxt 4 compatibility issues');
+    logger.debug(nuxt4);
+
     const { pathToIcons, iconComponentList, iconSizes } = options;
     const componentsDestDir = options.generatedComponentOptions.componentsDestDir as string;
 
@@ -243,7 +309,7 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
         //   filename: 'compose-icons.css',
         //   getContents: () => `${iconRootVars}\n\n${iconClasses}`,
         // });
-        // console.log('📟 - tpl → ', tpl);
+        // logger.log('📟 - tpl → ', tpl);
 
         // 3. Inject into the Nuxt build
         // nuxt.options.css.push(tpl.dst);

@@ -55,7 +55,7 @@ const features = [
   background: rgba(91, 18, 21, 0.25);
 
   .feature-title {
-    font-size: var(--text-lg);
+    // font-size: var(--text-lg);
   }
 }
 

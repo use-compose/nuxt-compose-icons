@@ -42,7 +42,8 @@
   },
   "dependencies": {
     "@nuxt/kit": "3.18.1",
-    "@use-compose/ui": "0.0.72",
+    "@use-compose/logger": "latest",
+    "@use-compose/ui": "0.2.3",
     "node-html-parser": "7.0.1",
     "svg-parser": "2.0.4",
     "svgo": "4.0.0"

@@ -6,9 +6,19 @@ const sidebar = {
     {
       text: 'Guide',
       items: [
-        { text: 'Introduction', link: '/guide/concept' },
+        { text: 'Concept', link: '/guide/concept' },
+        // { text: 'Motivation', link: '/guide/concept#motivation' }, // 📎 anchor within concept.md
         { text: 'Features', link: '/guide/features' },
-        { text: 'Getting Started', link: '/guide/getting-started' },
+        { text: 'Installation', link: '/guide/installation' },
+        { text: 'Configuration', link: '/guide/configuration' },
+      ],
+    },
+    {
+      text: 'Utilities',
+      items: [
+        { text: 'useComposeIcon', link: '/utilities/use-compose-icon' },
+        { text: 'Interactivity', link: '/utilities/interactivity' },
+        { text: 'Icon Size', link: '/utilities/theming' },
       ],
     },
     {
@@ -81,6 +91,23 @@ export default defineConfig({
   },
   cleanUrls: true,
   vite: {
+    publicDir: 'public',
+    build: {
+      rollupOptions: {
+        // external: ['@use-compose/ui', '@use-compose/ui/dist/*'],
+        output: {
+          globals: {
+            vue: 'Vue',
+          },
+        },
+        // external: ['@use-compose/ui', '@use-compose/ui/style.css'],
+        // , '@use-compose/ui'],
+        // noExternal: [/\.css$/],
+      },
+    },
+    ssr: {
+      noExternal: [/\.css$/, '@use-compose/ui', '@use-compose/ui/style.css'],
+    },
     server: {
       allowedHosts: ['http://arthur.icon-docs'],
     },

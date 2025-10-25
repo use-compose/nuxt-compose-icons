@@ -82,6 +82,12 @@ function convertNodeToVNode(node: string | SvgNode): string | null {
 /*
  * TODO: Description
  */
+/**
+ * Description placeholder
+ *
+ * @param {Record<string, string | number>} attrs
+ * @returns {Record<string, string | number>}
+ */
 function transformAttributes(
   attrs: Record<string, string | number>,
 ): Record<string, string | number> {
@@ -102,6 +108,13 @@ function transformAttributes(
   return transformed;
 }
 
+/**
+ * Parses and transforms SVG content into attributes and children to be used in a Vue component.
+ *
+ * @export
+ * @param {string} svgContent
+ * @returns {ParsedSvgResult}
+ */
 export function parseAndTransformSvg(svgContent: string): ParsedSvgResult {
   const svgParentNode = convertSVGToHast(svgContent);
 

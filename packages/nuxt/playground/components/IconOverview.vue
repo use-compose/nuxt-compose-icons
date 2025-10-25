@@ -7,7 +7,7 @@
       :color="iconStyles"
       :stroke="getRandomColor()"
       :stroke-width="props.strokeWidth"
-      :fill="props.fill"
+      :fill="true ? getRandomColor() : undefined"
       size="xl"
       :some-prop="`Component ${index + 1}`"
     />

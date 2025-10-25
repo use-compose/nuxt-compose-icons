@@ -6,12 +6,19 @@ const sidebar = {
     {
       text: 'Guide',
       items: [
-        { text: 'Introduction', link: '/guide/introduction' },
         { text: 'Concept', link: '/guide/concept' },
-        { text: 'Motivation', link: '/guide/concept#motivation' }, // 📎 anchor within concept.md
+        // { text: 'Motivation', link: '/guide/concept#motivation' }, // 📎 anchor within concept.md
         { text: 'Features', link: '/guide/features' },
         { text: 'Installation', link: '/guide/installation' },
         { text: 'Configuration', link: '/guide/configuration' },
+      ],
+    },
+    {
+      text: 'Utilities',
+      items: [
+        { text: 'useComposeIcon', link: '/utilities/use-compose-icon' },
+        { text: 'Interactivity', link: '/utilities/interactivity' },
+        { text: 'Icon Size', link: '/utilities/theming' },
       ],
     },
     {
@@ -94,8 +101,8 @@ export default defineConfig({
           },
         },
         external: ['@use-compose/ui/style.css'],
-                   // , '@use-compose/ui'],
-        noExternal: [ /\.css$/],
+        // , '@use-compose/ui'],
+        // noExternal: [/\.css$/],
       },
     },
     server: {

@@ -1,12 +1,15 @@
 <template>
   <section class="banner">
-    <YHighlightedText tag="h1" active stick-to-left>
-      <template #highlighted> Compose </template>your own Icon components library
+    <header class="heading">
+      <h1>
+        <YHighlightedText level="span" active stick-to-left> Compose </YHighlightedText>
+        your own Icon components library
+      </h1>
       <h2 class="tagline text-xl">
         Automatically generates customizable Vue components based on SVG files
       </h2>
       <Separator />
-    </YHighlightedText>
+    </header>
 
     <ClientOnly>
       <ModuleTemplateExample />

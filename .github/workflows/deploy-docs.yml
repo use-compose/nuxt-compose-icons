@@ -1,9 +1,8 @@
-name: Buid and Deploy docs
+name: Build and Deploy docs
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
 
 jobs:
@@ -12,34 +11,30 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
       - name: Install dependencies
         uses: ./.github/actions/install-dependencies
         with:
           node_version: ${{ inputs.node_version }}
           pnpm_version: 8
-          cache: 'pnpm'
+          cache: pnpm
 
       - name: Build with VitePress
         run: pnpm docs:build
 
-      - name: Install SSH Key
-        uses: shimataro/ssh-key-action@v2
+      - name: Start ssh-agent and add key
+        uses: webfactory/ssh-agent@v0.9.0
         with:
-          # TODO: add to Wiki https://github.com/github/vscode-github-actions/issues/222
-          key: ${{ secrets.SSH_KEY }}
-          known_hosts: unnecessary
+          ssh-private-key: ${{ secrets.SSH_KEY }}
 
-      - name: Set up SSH key
+      - name: Add deploy host to known_hosts
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-
-      - name: Adding Known Hosts
-        run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy build with rsync
-        run: rsync -avz ./.vitepress/dist/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/var/www/nuxt-icons.use-compose.com/
+        run: |
+          rsync -avz -e "ssh -o StrictHostKeyChecking=yes" \
+            ./.vitepress/dist/ \
+            ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/var/www/nuxt-icons.use-compose.com/

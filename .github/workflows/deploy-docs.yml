@@ -1,4 +1,4 @@
-name: Buid and Deploy
+name: Buid and Deploy docs
 
 on:
   push:

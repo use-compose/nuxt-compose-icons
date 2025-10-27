@@ -1,44 +1,13 @@
-name: ci
+name: Build
 
 on:
-  push:
-    branches:
-      - main
-      - dev
-  pull_request:
-    branches:
-      - main
-      - dev
-  workflow_dispatch:
-
+  workflow_call:
+    inputs:
+      node_version:
+        required: true
+        type: string
+        default: 20
 jobs:
-  lint_format_build:
-    if: ${{ ! startsWith(github.event.pull_request.head.ref, 'renovate/') }}
-    name: Lint, Format and build - Node version ${{ matrix.node_version }}
-    strategy:
-      matrix:
-        node_version: [20, 22, 24]
-    uses: ./.github/workflows/lint_format_build.yml
-    with:
-      node_version: ${{ matrix.node_version }}
-
-  test:
-    if: ${{ ! startsWith(github.event.pull_request.head.ref, 'renovate/') }}
-    name: Run Tests with Node version ${{ matrix.node_version }}
-    strategy:
-      matrix:
-        node_version: [20, 22, 24]
-    uses: ./.github/workflows/test.yml
-    with:
-      node_version: ${{ matrix.node_version }}
-
-  build:
-  uses: ./.github/workflows/build.yml
-  with:
-    node_version: 22
-    pnpm_version: 8
-    cache: 'pnpm'
-
   build-playground:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest

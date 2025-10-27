@@ -40,7 +40,7 @@ jobs:
 
   deploy:
     # if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-    needs: build-playground
+    needs: build
     runs-on: ubuntu-latest
 
     steps:

@@ -7,9 +7,7 @@ on:
         required: true
         type: string
         default: 20
-      SSH_KEY:
-        required: true
-        type: string
+
 jobs:
   build-playground:
     # The type of runner that the job will run on

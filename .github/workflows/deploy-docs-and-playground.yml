@@ -59,7 +59,7 @@ jobs:
         run: pnpm dev:prepare
 
       - name: Build
-        run: pnpm build
+        run: pnpm dev:build
 
       - name: Generate playground
         run: pnpm dev:generate

@@ -16,10 +16,17 @@
   ],
   "indexFormat": "list",
   "useCodeBlocks": true,
+  "disableSources": true,
   "sidebar": {
-    "collapsed": true,
     "autoConfiguration": true,
     "format": "vitepress",
-    "pretty": true
+    "pretty": true,
+    "collapsed": true
+  },
+  "jsDocCompatibility": {
+    "exampleTag": true,
+    "defaultTag": true,
+    "inheritDocTag": true,
+    "ignoreUnescapedBraces": true
   }
 }

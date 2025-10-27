@@ -16,10 +16,10 @@ import {
   createComponentsDir,
   generateComponentName,
   generateCssFile,
+  optimizeSvg,
   readDirectoryRecursively,
   writeComponentFile,
 } from './utils';
-import { optimizeSvg } from './utils/svg/svgo-optimize';
 // export * from './runtime/composables/index';
 // export { generateColorVariable, getIconSizeClass } from './runtime/utils';
 

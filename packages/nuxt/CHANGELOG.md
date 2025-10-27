@@ -1,5 +1,11 @@
 # nuxt-compose-icons
 
+## 0.1.0
+
+### Minor Changes
+
+- d463490: Migrate/support Nuxt 4
+
 ## 0.0.5
 
 ### Patch Changes

@@ -1,5 +1,4 @@
 // https://vitepress.dev/guide/custom-theme
-import '@use-compose/ui/style.css';
 import type { Theme } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
 import 'vue-code-highlighter/dist/style.css'; // dont forget to import

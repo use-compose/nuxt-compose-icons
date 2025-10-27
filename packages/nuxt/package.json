@@ -1,11 +1,11 @@
 {
   "name": "nuxt-compose-icons",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": false,
   "description": "Compose your own Icon components library",
   "repository": {
     "type": "git",
-    "url": "https://github.com/arthur-plazanet/nuxt-compose-icons.git"
+    "url": "https://github.com/use-compose/nuxt-compose-icons"
   },
   "license": "MIT",
   "exports": {
@@ -31,14 +31,18 @@
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
     "dev:generate": "nuxi generate playground",
     "release": "pnpm publish && git push --follow-tags",
+    "changeset": "changeset",
+    "changeset:version": "changeset version && pnpm install --lockfile-only",
+    "changeset:publish": "changeset publish",
+    "changeset:snapshot": "changeset version --snapshot && changeset publish --tag snapshot",
     "lint": "eslint .",
     "test": "vitest run --coverage",
     "test:watch": "vitest watch",
     "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
   },
   "dependencies": {
-    "@nuxt/kit": "3.18.1",
-    "@use-compose/ui": "0.0.72",
+    "@nuxt/kit": "4.0.3",
+    "@use-compose/logger": "latest",
     "node-html-parser": "7.0.1",
     "svg-parser": "2.0.4",
     "svgo": "4.0.0"
@@ -47,7 +51,7 @@
     "@nuxt/devtools": "2.6.3",
     "@nuxt/eslint-config": "1.9.0",
     "@nuxt/module-builder": "1.0.2",
-    "@nuxt/schema": "3.18.1",
+    "@nuxt/schema": "4.0.3",
     "@nuxt/test-utils": "3.19.2",
     "@types/node": "latest",
     "@types/svg-parser": "2.0.6",
@@ -55,7 +59,7 @@
     "@vitest/ui": "3.2.4",
     "changelogen": "0.6.2",
     "eslint": "9.34.0",
-    "nuxt": "3.18.1",
+    "nuxt": "4.0.3",
     "playwright-core": "1.55.0",
     "typescript": "5.9.2",
     "vitest": "3.2.4",

@@ -194,7 +194,9 @@ const randomStyles = generateRandomStyles();
 
 <style lang="scss">
 .icons-overview {
-  position: relative;
+  z-index: 0;
+  position: absolute;
+  inset: 0;
 
   .icon {
     position: absolute;

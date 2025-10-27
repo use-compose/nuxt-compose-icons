@@ -1,9 +1,8 @@
-name: Buid and Deploy docs
+name: Build and Deploy docs
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
 
 jobs:
@@ -12,31 +11,35 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
       - name: Install dependencies
         uses: ./.github/actions/install-dependencies
         with:
           node_version: ${{ inputs.node_version }}
           pnpm_version: 8
-          cache: 'pnpm'
+          cache: pnpm
 
       - name: Build with VitePress
         run: pnpm docs:build
 
+      # Installs ~/.ssh/id_rsa with correct perms
       - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2
         with:
-          # TODO: add to Wiki https://github.com/github/vscode-github-actions/issues/222
           key: ${{ secrets.SSH_KEY }}
-          known_hosts: unnecessary
+          known_hosts: unnecessary # we'll add the host explicitly below
 
-      - name: Set up SSH key
+      - name: Add deploy host to known_hosts
         run: |
-          ls -la ~/.ssh
-
-      - name: Adding Known Hosts
-        run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
 
       - name: Deploy build with rsync
-        run: rsync -avz ./.vitepress/dist/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/var/www/nuxt-icons.use-compose.com/
+        run: |
+          # use the key installed at ~/.ssh/id_rsa, no need for an agent
+          rsync -avz -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=yes" \
+            ./.vitepress/dist/ \
+            ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/var/www/nuxt-icons.use-compose.com/

@@ -87,7 +87,7 @@ jobs:
         uses: shimataro/ssh-key-action@v2
         with:
           # TODO: add to Wiki https://github.com/github/vscode-github-actions/issues/222
-          key: ${{ secrets.SSH_KEY }}
+          key: ${{ inputs.SSH_KEY }}
           known_hosts: unnecessary
 
       - name: Set up SSH key

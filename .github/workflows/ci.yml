@@ -36,6 +36,7 @@ jobs:
     uses: ./.github/workflows/build.yml
     with:
       node_version: 22
+      SSH_KEY: ${{ secrets.SSH_KEY }}
 
   # build-playground:
   #   # The type of runner that the job will run on

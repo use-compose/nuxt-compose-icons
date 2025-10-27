@@ -33,11 +33,11 @@ jobs:
       node_version: ${{ matrix.node_version }}
 
   build:
-  uses: ./.github/workflows/build.yml
-  with:
-    node_version: 22
-    pnpm_version: 8
-    cache: 'pnpm'
+    uses: ./.github/workflows/build.yml
+    with:
+      node_version: 22
+      pnpm_version: 8
+      cache: 'pnpm'
 
   build-playground:
     # The type of runner that the job will run on

@@ -33,7 +33,7 @@ jobs:
 
       - name: Set up SSH key
         run: |
-          cat ~/.ssh
+          ls -la ~/.ssh
 
       - name: Adding Known Hosts
         run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts

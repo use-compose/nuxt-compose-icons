@@ -3,6 +3,7 @@
   flex-direction: column;
   min-height: 100vh;
   background: linear-gradient(0deg, #070101 0%, #2f0a0b 50%, #070101 100%);
+  z-index: -1;
 }
 
 .wrapper {
@@ -39,10 +40,7 @@
 }
 .parallax__layer {
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  inset: 0;
   // padding: 100vh 0;
 }
 .parallax__layer--base {

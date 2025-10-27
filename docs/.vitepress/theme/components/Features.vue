@@ -1,7 +1,7 @@
 <template>
   <div class="features">
     <div v-for="feature in features" :key="feature.title" class="feature">
-      <h3 class="feature-title">{{ feature.title }}</h3>
+      <p class="feature-title">{{ feature.title }}</p>
       <p>{{ feature.details }}</p>
     </div>
   </div>
@@ -56,6 +56,10 @@ const features = [
 
   .feature-title {
     // font-size: var(--text-lg);
+    font-family: gotham, sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin: 0;
   }
 }
 

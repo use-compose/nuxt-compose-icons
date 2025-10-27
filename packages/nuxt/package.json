@@ -1,11 +1,11 @@
 {
   "name": "nuxt-compose-icons",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": false,
   "description": "Compose your own Icon components library",
   "repository": {
     "type": "git",
-    "url": "https://github.com/arthur-plazanet/nuxt-compose-icons.git"
+    "url": "https://github.com/use-compose/nuxt-compose-icons"
   },
   "license": "MIT",
   "exports": {
@@ -31,6 +31,10 @@
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
     "dev:generate": "nuxi generate playground",
     "release": "pnpm publish && git push --follow-tags",
+    "changeset": "changeset",
+    "changeset:version": "changeset version && pnpm install --lockfile-only",
+    "changeset:publish": "changeset publish",
+    "changeset:snapshot": "changeset version --snapshot && changeset publish --tag snapshot",
     "lint": "eslint .",
     "test": "vitest run --coverage",
     "test:watch": "vitest watch",
@@ -38,7 +42,7 @@
   },
   "dependencies": {
     "@nuxt/kit": "4.0.3",
-    "@use-compose/ui": "0.0.72",
+    "@use-compose/logger": "latest",
     "node-html-parser": "7.0.1",
     "svg-parser": "2.0.4",
     "svgo": "4.0.0"

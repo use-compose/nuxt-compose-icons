@@ -1,19 +1,24 @@
 <template>
   <section class="banner">
-    <HighlightedText tag="h1" labeled class="heading">
-      <template #highlighted> Compose </template>your own Icon components library
+    <header class="heading">
+      <h1>
+        <YHighlightedText level="span" active stick-to-left>
+          <span style="color: white">Compose</span>
+        </YHighlightedText>
+        your own Icon components library
+      </h1>
       <h2 class="tagline text-xl">
         Automatically generates customizable Vue components based on SVG files
       </h2>
       <Separator />
-    </HighlightedText>
+    </header>
 
     <ClientOnly>
       <ModuleTemplateExample />
     </ClientOnly>
-    <!-- <div class="parallax__layer parallax__layer--back">...</div>
-    <div class="parallax__layer parallax__layer--base"> -->
-    <IconOverview />
+    <!-- <div class="parallax__layer parallax__layer--back"> -->
+    <!-- <div class="parallax__layer parallax__layer--base"> -->
+    <!-- </div> -->
     <!-- </div> -->
 
     <Features />
@@ -21,9 +26,8 @@
 </template>
 
 <script setup>
+import { YHighlightedText } from '@use-compose/ui';
 import Features from './Features.vue';
-import HighlightedText from './HighlightedText.vue';
-import IconOverview from './IconOverview.vue';
 import ModuleTemplateExample from './ModuleTemplateExample.vue';
 </script>
 
@@ -36,9 +40,10 @@ import ModuleTemplateExample from './ModuleTemplateExample.vue';
   container-type: inline-size;
   display: grid;
   align-items: center;
-  // padding: 7.5rem 0;
+  color: white;
   margin-bottom: 1rem;
   width: 100%;
+  z-index: 1;
   // min-height: 100svh;
 
   row-gap: 1rem;
@@ -88,6 +93,7 @@ import ModuleTemplateExample from './ModuleTemplateExample.vue';
 .heading {
   grid-area: heading;
   align-self: end;
+  color: white;
 }
 
 .tagline {
@@ -113,7 +119,7 @@ import ModuleTemplateExample from './ModuleTemplateExample.vue';
     // height: 100%;
     // align-content: center;
     grid-template-columns: 1fr 1fr auto;
-    grid-template-rows: 30svh 400px;
+    grid-template-rows: 30svh auto;
     grid-template-areas:
       'heading heading icon-overview'
       'features . module-template-example';

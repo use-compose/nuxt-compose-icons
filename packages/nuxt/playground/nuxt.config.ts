@@ -25,5 +25,5 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   compatibilityDate: '2024-12-14',
-  css: ['@use-compose/ui/style.css'],
+  // css: ['@use-compose/ui/style.css'],
 });

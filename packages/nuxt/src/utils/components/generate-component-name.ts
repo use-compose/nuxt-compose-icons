@@ -13,6 +13,10 @@ export function normalizeComponentName(fileName: string): string {
       // https://www.amitmerchant.com/replace-accented-characters-with-plain-english/
       .normalize('NFD')
       .replace(/[\u0300-\u036F]/g, '')
+
+      // Remove all characters that are not alphanumeric, hyphens, underscores, or spaces
+      .replace(/[^\w\- &]/g, '')
+
       // Replace '&' with 'And'
       .replace(/&/g, '-and-')
 

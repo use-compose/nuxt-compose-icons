@@ -85,7 +85,7 @@ jobs:
           path: ./docs/.vitepress/dist/
 
   deploy:
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    # if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     needs: build-playground
     runs-on: ubuntu-latest
 

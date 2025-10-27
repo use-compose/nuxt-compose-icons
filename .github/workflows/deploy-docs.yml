@@ -32,9 +32,8 @@ jobs:
 
       - name: Add deploy host to known_hosts
         run: |
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          echo "use-compose.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMEx5DynticxLg9Iwur18v9TqoRZLav3bD6A71cYA3JV" >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
       - name: Deploy build with rsync

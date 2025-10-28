@@ -96,6 +96,10 @@ import Separator from './Separator.vue';
   }
 }
 
+.highlighted-text > span {
+  padding-top: 4.55px;
+}
+
 .heading {
   max-width: 700px;
   grid-area: heading;

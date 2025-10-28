@@ -1,5 +1,11 @@
 # nuxt-compose-icons
 
+## 0.1.1
+
+### Patch Changes
+
+- cf0505d: Trigger changeset
+
 ## 0.1.0
 
 ### Minor Changes

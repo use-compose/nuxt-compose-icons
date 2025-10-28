@@ -81,8 +81,8 @@ importers:
         specifier: 0.0.5
         version: 0.0.5
       '@use-compose/ui':
-        specifier: 0.2.9
-        version: 0.2.9(typescript@5.9.2)
+        specifier: 0.3.0
+        version: 0.3.0(typescript@5.9.2)
       '@wdns/vue-code-block':
         specifier: 2.3.5
         version: 2.3.5(typescript@5.9.2)
@@ -176,8 +176,8 @@ importers:
   packages/nuxt/playground:
     dependencies:
       '@use-compose/ui':
-        specifier: 0.2.6
-        version: 0.2.6(typescript@5.9.2)
+        specifier: 0.3.0
+        version: 0.3.0(typescript@5.9.2)
       nuxt:
         specifier: ^4.0.0
         version: 4.0.3(@parcel/watcher@2.5.1)(@types/node@24.9.1)(@vue/compiler-sfc@3.5.22)(db0@0.3.4)(eslint@9.34.0(jiti@2.6.1))(ioredis@5.8.2)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.52.5)(sass@1.90.0)(stylelint@16.25.0(typescript@5.9.2))(terser@5.44.0)(typescript@5.9.2)(vite@7.1.3(@types/node@24.9.1)(jiti@2.6.1)(sass@1.90.0)(terser@5.44.0)(yaml@2.8.1))(vue-tsc@3.0.6(typescript@5.9.2))(yaml@2.8.1)
@@ -2068,12 +2068,8 @@ packages:
   '@use-compose/logger@0.0.6':
     resolution: {integrity: sha512-9/TvTkHP6miDTyTXxfROcCy7aNp5f4xVyS39nEK0vem46A30fZKY3XJejspfFblB6FoNyTxsPoBL+C8DV1Ivdw==}
 
-  '@use-compose/ui@0.2.6':
-    resolution: {integrity: sha512-YT5zRyljAaUu9iCU3ejHJSGd7ihRipaw0sKoouHtB/1G12BLYDBndL/eMgHNxVzNCt6UdoygB5txqm12yXdcQQ==}
-    hasBin: true
-
-  '@use-compose/ui@0.2.9':
-    resolution: {integrity: sha512-4otBMbF/LBGLFr5UC4GiIKvSU9mtwYL6EUyEvdhpJdvGJsdLXlXCy89iopT21i7vo9nD49KxrtN995FStqeOQQ==}
+  '@use-compose/ui@0.3.0':
+    resolution: {integrity: sha512-5WBrRfkDWCFsiDT6YfQf5CGZ1UN15s8ZtjUdZECwmBHLvR9RlBJf2AVbKpo0hRsx81YykI1oG7FlIVBYj8NnPA==}
     hasBin: true
 
   '@vercel/nft@0.30.3':
@@ -8180,18 +8176,7 @@ snapshots:
 
   '@use-compose/logger@0.0.6': {}
 
-  '@use-compose/ui@0.2.6(typescript@5.9.2)':
-    dependencies:
-      compression: 1.8.1
-      culori: 4.0.1
-      express: 5.1.0
-      sirv: 3.0.2
-      vue: 3.5.16(typescript@5.9.2)
-    transitivePeerDependencies:
-      - supports-color
-      - typescript
-
-  '@use-compose/ui@0.2.9(typescript@5.9.2)':
+  '@use-compose/ui@0.3.0(typescript@5.9.2)':
     dependencies:
       compression: 1.8.1
       culori: 4.0.1

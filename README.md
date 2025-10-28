@@ -1,1 +1,1 @@
-README.md
+packages/nuxt/README.md

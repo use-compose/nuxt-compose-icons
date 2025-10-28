@@ -6,19 +6,10 @@
   z-index: -1;
 }
 
-.wrapper {
-  // width: clamp(16rem, 100svw, 90rem);
-  max-width: 90rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
 .home-content {
   min-height: calc(100svh - var(--vp-nav-height));
-  // display: flex;
-  // align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 // @media (min-width: 960px) {
@@ -33,10 +24,10 @@
 
 .parallax {
   perspective: 1px;
-  height: 100%;
+  height: 100svh;
   overflow-x: hidden;
   overflow-y: auto;
-  position: relative;
+  // position: relative;
 }
 .parallax__layer {
   position: absolute;

@@ -11,7 +11,7 @@ interface SeparatorProps {
   noMargin?: boolean;
 }
 const props = withDefaults(defineProps<SeparatorProps>(), {
-  width: '25%',
+  width: '20%',
   noMargin: false,
 });
 
@@ -35,7 +35,7 @@ const getStyles = computed(() => {
   height: 5px;
 
   @include media('lg') {
-    height: 12px;
+    height: 0.5rem;
   }
 }
 </style>

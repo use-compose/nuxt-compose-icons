@@ -48,6 +48,10 @@ h6 {
   }
 }
 
+.VPPage {
+  /* min-height: 100svh; */
+}
+
 .vp-doc {
   --icon-size: 1rem;
 }
@@ -127,7 +131,7 @@ h6 {
   margin: 16px 0;
 }
 
-.vp-doc .brand {
+.brand {
   color: var(--vp-c-brand);
 }
 

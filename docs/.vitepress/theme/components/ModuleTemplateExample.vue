@@ -14,7 +14,7 @@
       lang="bash"
       theme="neon-bunny"
     /> -->
-    <CodeHighlighter :code="arrayCode" />
+    <CodeHighlighter multi :code="arrayCode" />
   </div>
 </template>
 

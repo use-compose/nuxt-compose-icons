@@ -1,5 +1,6 @@
 {
   "name": "nuxt-compose-icons-root",
+  "private": true,
   "scripts": {
     "test": "pnpm --filter nuxt-compose-icons test",
     "lint": "eslint .",

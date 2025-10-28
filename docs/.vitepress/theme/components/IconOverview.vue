@@ -190,8 +190,6 @@ function generateRandomStyles(index) {
     '--scale': `${Math.random() * 90 + 50}%`, // 50% to 100%
   };
 }
-
-const randomStyles = generateRandomStyles();
 </script>
 
 <style lang="scss">
@@ -205,6 +203,10 @@ const randomStyles = generateRandomStyles();
     top: var(--top);
     left: var(--left);
     transform: scale(var(--scale));
+  }
+
+  .parallax__layer--back {
+    opacity: 0.3;
   }
 }
 </style>

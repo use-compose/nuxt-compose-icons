@@ -97,7 +97,7 @@ import Separator from './Separator.vue';
 }
 
 .highlighted-text > span {
-  padding-top: 4.55px;
+  padding: 4.55px 2px 0 2px;
 }
 
 .heading {

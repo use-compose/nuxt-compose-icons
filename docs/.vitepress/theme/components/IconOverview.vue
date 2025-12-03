@@ -1,7 +1,6 @@
 <template>
   <div class="icons-overview parallax">
-    <div class="parallax__layer parallax__layer--back"></div>
-    <div class="parallax__layer parallax__layer--base">
+    <div class="parallax__layer parallax__layer--back">
       <Component
         v-for="(icon, index) in icons"
         :is="icon"
@@ -10,6 +9,9 @@
         size="xl"
         :style="generateRandomStyles(index)"
       />
+    </div>
+    <div class="parallax__layer parallax__layer--base">
+      <slot />
     </div>
   </div>
 </template>
@@ -188,8 +190,6 @@ function generateRandomStyles(index) {
     '--scale': `${Math.random() * 90 + 50}%`, // 50% to 100%
   };
 }
-
-const randomStyles = generateRandomStyles();
 </script>
 
 <style lang="scss">
@@ -203,6 +203,10 @@ const randomStyles = generateRandomStyles();
     top: var(--top);
     left: var(--left);
     transform: scale(var(--scale));
+  }
+
+  .parallax__layer--back {
+    opacity: 0.3;
   }
 }
 </style>

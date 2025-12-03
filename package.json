@@ -1,5 +1,6 @@
 {
   "name": "nuxt-compose-icons-root",
+  "private": true,
   "scripts": {
     "test": "pnpm --filter nuxt-compose-icons test",
     "lint": "eslint .",
@@ -45,7 +46,7 @@
     "typedoc-vitepress-theme": "1.1.2",
     "typescript": "5.9.2",
     "typescript-eslint": "8.40.0",
-    "vite": "6.3.5"
+    "vite": "7.1.3"
   },
   "lint-staged": {
     "**/*.{js,ts,tsx}": [

@@ -10,7 +10,12 @@
       <h2 class="tagline text-xl">
         Automatically generates customizable Vue components based on SVG files
       </h2>
-      <Separator />
+      <Separator width="15%" />
+      <p>
+        No extra wrapper needed. <br />
+        <span class="brand">Generated</span> at build time,
+        <span class="brand">customizable</span> at runtime using CSS custom properties
+      </p>
     </header>
 
     <ClientOnly>
@@ -29,6 +34,7 @@
 import { YHighlightedText } from '@use-compose/ui';
 import Features from './Features.vue';
 import ModuleTemplateExample from './ModuleTemplateExample.vue';
+import Separator from './Separator.vue';
 </script>
 
 <style lang="scss">
@@ -90,7 +96,12 @@ import ModuleTemplateExample from './ModuleTemplateExample.vue';
   }
 }
 
+.highlighted-text > span {
+  padding: 4.55px 2px 0 2px;
+}
+
 .heading {
+  max-width: 700px;
   grid-area: heading;
   align-self: end;
   color: white;
@@ -119,10 +130,10 @@ import ModuleTemplateExample from './ModuleTemplateExample.vue';
     // height: 100%;
     // align-content: center;
     grid-template-columns: 1fr 1fr auto;
-    grid-template-rows: 30svh auto;
+    grid-template-rows: auto;
     grid-template-areas:
-      'heading heading icon-overview'
-      'features . module-template-example';
+      'heading heading module-template-example'
+      'features features features';
     // 'description description module-template-example'
     // 'module-example module-example module-template-example';
     // grid-template-columns: 1.5fr 1fr;
@@ -137,10 +148,22 @@ import ModuleTemplateExample from './ModuleTemplateExample.vue';
     }
   }
 }
-@container banner (min-width: 768px) {
+@container banner (min-width: 0px) {
   .features {
-    grid-template-columns: repeat(2, minmax(260px, 1fr));
-    grid-template-rows: repeat(2, minmax(160px, 1fr));
+    // grid-template-columns: repeat(, minmax(200px, 1cqi));
+    // grid-template-rows: repeat(auto, minmax(160px, 1cqi));
+  }
+}
+@container banner (min-width: 540px) {
+  .features {
+    grid-template-columns: repeat(2, minmax(260px, 1cqi));
+    grid-template-rows: repeat(auto, minmax(160px, 1cqi));
+  }
+}
+@container banner (min-width: 1024px) {
+  .features {
+    grid-template-columns: repeat(4, minmax(260px, 1cqi));
+    grid-template-rows: repeat(auto, minmax(160px, 1cqi));
   }
 }
 </style>

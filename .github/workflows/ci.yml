@@ -33,13 +33,14 @@ jobs:
       node_version: ${{ matrix.node_version }}
 
   build:
+    if: ${{ ! startsWith(github.event.pull_request.head.ref, 'renovate/') }}
     uses: ./.github/workflows/build.yml
     with:
       node_version: 22
       # SSH_KEY: ${{ secrets.SSH_KEY }}
 
   deploy:
-    # if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     needs: build
     runs-on: ubuntu-latest
 

@@ -2,12 +2,14 @@
   <div class="features">
     <div v-for="feature in features" :key="feature.title" class="feature">
       <p class="feature-title">{{ feature.title }}</p>
+      <Separator />
       <p>{{ feature.details }}</p>
     </div>
   </div>
 </template>
 
 <script setup>
+import Separator from './Separator.vue';
 const features = [
   {
     title: 'SVG to Vue Component at Build time',
@@ -50,9 +52,10 @@ const features = [
   width: 100%;
   padding: 16px 24px;
   flex-direction: column;
-  gap: 16px;
-  border: 1px solid #5b1215;
+  // gap: 16px;
+  // border: 1px solid #5b1215;
   background: rgba(91, 18, 21, 0.25);
+  background-color: #1c1b1b;
 
   .feature-title {
     // font-size: var(--text-lg);

@@ -11,6 +11,8 @@
   --text-xl: clamp(1.5625rem, 1.3933rem + 0.8462vw, 2.25rem);
   --text-xxl: clamp(1.9531rem, 1.6031rem + 1.75vw, 3.375rem);
   --text-h1: clamp(2.4414rem, 1.7962rem + 3.226vi, 5.0625rem);
+  --text-h1: clamp(1.125rem, 4.1vw + 0.1rem, 4.5rem);
+  /* line-height: 1.5; */
 
   /* Title height */
   --_heading-height: var(--heading-height, calc(1rem * 2.5) ;);
@@ -35,4 +37,18 @@
   --space-lg: calc(1.5 * var(--space-unit));
   --space-xl: calc(2 * var(--space-unit));
   --space-xxl: calc(4 * var(--space-unit));
+}
+
+.holy {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap, 1rem);
+  --switch: 40rem;
+}
+
+.holy > * {
+  flex-grow: 1;
+  flex-basis: calc((var(--switch) - 100%) * 999);
+  /* avoid overflow from long content */
+  min-width: 0;
 }

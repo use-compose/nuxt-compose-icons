@@ -24,14 +24,17 @@
 
 .parallax {
   perspective: 1px;
-  height: 100svh;
+  min-height: 100svh;
   overflow-x: hidden;
   overflow-y: auto;
-  // position: relative;
+  position: relative;
 }
 .parallax__layer {
   position: absolute;
-  inset: 0;
+  right: 0;
+  left: 0;
+
+  height: 100%;
   // padding: 100vh 0;
 }
 .parallax__layer--base {

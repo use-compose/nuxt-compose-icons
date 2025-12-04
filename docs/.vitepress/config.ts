@@ -67,6 +67,7 @@ export default defineConfig({
       },
     ],
   ],
+  // srcDir: './',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
@@ -91,8 +92,15 @@ export default defineConfig({
     outline: [2, 3],
   },
   cleanUrls: true,
+  rewrites: {
+    // '/web/css': '/web/css/:page',
+    // 'docs/web/css/general.md': 'css/general.md',
+    'packages/pkg-a/src/foo.md': 'pkg-a/foo.md',
+    'packages/pkg-b/src/index.md': 'pkg-b/index.md',
+    'packages/pkg-b/src/bar.md': 'pkg-b/bar.md',
+  },
   vite: {
-    publicDir: 'public',
+    // publicDir: 'public',
     build: {
       rollupOptions: {
         // external: ['@use-compose/ui', '@use-compose/ui/dist/*'],

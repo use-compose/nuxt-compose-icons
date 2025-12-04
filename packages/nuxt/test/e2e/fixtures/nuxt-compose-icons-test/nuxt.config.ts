@@ -1,6 +1,6 @@
 import * as path from 'node:path';
-import MyModule from '../../../src/module';
-import type { ComposeIconSize } from '../../../src/runtime/types';
+import MyModule from '../../../../src/module';
+import type { ComposeIconSize } from '../../../../src/runtime/types';
 
 const iconSizes: ComposeIconSize = {
   xs: '0.5rem',

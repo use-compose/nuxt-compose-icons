@@ -1,6 +1,13 @@
 <template>
   <div class="icon-overview">
-    <Component
+    <input v-model="q" placeholder="Search icons…" />
+    <ul>
+      <li v-for="i in filtered" :key="i.name">
+        <component :is="i.name" class="w-6 h-6" />
+        <span>{{ i.kebabName }}</span>
+      </li>
+    </ul>
+    <!-- <Component
       :is="component"
       v-for="(component, index) in components"
       :key="index"
@@ -11,13 +18,14 @@
       size="xl"
       :some-prop="`Component ${index + 1}`"
     />
-    <AlarmBellIcon />
+    <AlarmBellIcon /> -->
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, onMounted, ref, resolveComponent, type Component } from 'vue';
 import { useComposeIcon } from '../../src/runtime/composables/compose-icon';
+import { useComposeIconRegistry } from '../../src/runtime/composables/use-compose-icons-registry';
 import type { ComposeIconSize } from '../../src/runtime/types';
 import * as AllIcons from './nuxt-compose-icons';
 
@@ -28,6 +36,13 @@ interface IconOverviewProps {
   strokeWidth?: string | number;
   fill?: string;
 }
+
+const { icons, getIconByName, searchIcons } = useComposeIconRegistry();
+console.log('📟 - getIconByName → ', getIconByName);
+console.log('📟 - icons → ', icons);
+const q = ref('');
+
+const filtered = computed(() => searchIcons(q.value));
 
 const props = defineProps<IconOverviewProps>();
 

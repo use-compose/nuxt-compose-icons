@@ -1,14 +1,16 @@
 <template>
   <div class="icons-overview parallax">
     <div class="parallax__layer parallax__layer--back">
-      <Component
-        v-for="(icon, index) in icons"
-        :is="icon"
-        :key="index"
-        class="icon"
-        size="xl"
-        :style="generateRandomStyles(index)"
-      />
+      <ClientOnly>
+        <Component
+          v-for="(icon, index) in icons"
+          :is="icon"
+          :key="index"
+          class="icon"
+          size="xl"
+          :style="generateRandomStyles(index)"
+        />
+      </ClientOnly>
     </div>
     <div class="parallax__layer parallax__layer--base">
       <slot />
@@ -17,7 +19,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { shallowRef } from 'vue';
 import {
   AjouterIcon,
   ArticleIcon,
@@ -96,7 +98,7 @@ import {
 import './icons/assets/compose-icon.css';
 import './icons/assets/compose-sizes.css';
 
-const icons = ref([
+const icons = shallowRef([
   AjouterIcon,
   ArticleIcon,
   BoiteAQuestion2Icon,
@@ -185,8 +187,8 @@ const tt = icons.value.map((icon, index) => {
 console.log('📟 - tt → ', tt);
 function generateRandomStyles(index) {
   return {
-    '--top': `${Math.random() * 70 + index + 1}%`, // 10% to 90%
-    '--left': `${Math.random() * 80 + index + 1}%`, // 10% to 90%
+    '--top': `calc(100svh * ${Math.random()})`, // 10% to 90%
+    '--left': `calc(100svw * ${Math.random()})`, // 10% to 90%
     '--scale': `${Math.random() * 90 + 50}%`, // 50% to 100%
   };
 }
@@ -195,14 +197,11 @@ function generateRandomStyles(index) {
 <style lang="scss">
 .icons-overview {
   z-index: 0;
-  position: absolute;
   inset: 0;
 
   .icon {
     position: absolute;
-    top: var(--top);
-    left: var(--left);
-    transform: scale(var(--scale));
+    transform: translate(var(--left), var(--top)) scale(var(--scale));
   }
 
   .parallax__layer--back {
@@ -210,3 +209,9 @@ function generateRandomStyles(index) {
   }
 }
 </style>
+gh api repos/{owner}/{repo}/pulls/{pull_number}/comments --paginate --jq '.[] | "$$.path):$$.line)
+\n$$.body) \n[by $$.user.login)] \n"' gh api \ -H "Accept: application/vnd.github+json" \ -H
+"X-GitHub-Api-Version: 2022-11-28" \ /repos/reteach/reteach-app/pulls/5547/comments --paginate --jq
+'.[] | "$.path):$.line)"' gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version:
+2022-11-28" /repos/reteach/reteach-app/pulls/5547/comments | jq '[ .[] | select(.user.type == "User"
+and .user.login == "$GH_USER") | { diff_hunk, line, start_line, body } ]'

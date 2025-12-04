@@ -3,7 +3,8 @@
     <header class="heading">
       <h1>
         <YHighlightedText level="span" active stick-to-left>
-          <span style="color: white">Compose</span>
+          <!-- <span style="color: white">Compose</span> -->
+          Compose
         </YHighlightedText>
         your own Icon components library
       </h1>

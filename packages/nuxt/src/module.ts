@@ -20,6 +20,7 @@ import {
   readDirectoryRecursively,
   writeComponentFile,
 } from './utils';
+import { generateIconIndex } from './utils/filesystem/generate-icon-index';
 // export * from './runtime/composables/index';
 // export { generateColorVariable, getIconSizeClass } from './runtime/utils';
 
@@ -205,6 +206,9 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
         // We first read all the files recursively to flatten the structure
         const files = await readDirectoryRecursively(absolutePathToIcons);
 
+        // List of generated Icon components
+        const generatedComponents: Component[] = [];
+
         /*
          * Dry run mode: log the component names and paths without writing files
          */
@@ -237,7 +241,7 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
          * We use a literal string template to create the Vue component
          * see https://nuxt-compose-icons.arthurplazanet.com/why-literal-strings-to-create-vue-components
          */
-        files.forEach(async (filePath) => {
+        for (const filePath of files) {
           const fileInfo = path.parse(filePath);
 
           if (fileInfo.ext !== '.svg') {
@@ -251,6 +255,7 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
           svgContent = optimizeSvg(svgContent);
 
           // TODO: Check if necessary to handle snake case as well
+
           // TODO: handle double dashes "--", and if ".svg" already present
           const componentName = generateComponentName(fileInfo.name, options);
 
@@ -273,6 +278,11 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
             filePath: generatedFilePath,
           });
 
+          // 5.5 Store the component in array for later use
+          generatedComponents.push(component);
+
+          logger.success(`✅ Generated component: ${componentName} from ${fileInfo.base}`);
+
           // 6. Add the component to the Nuxt app's components array at build time
           nuxt.hook('components:extend', (components) => {
             components.push(component);
@@ -287,7 +297,7 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
           //     },
           //   ],
           // });
-        });
+        }
 
         // 7. Generate a CSS file with the icon sizes and add it to the Nuxt app's CSS array at build time
         const cssContent = generateCssFile(iconSizes);
@@ -322,6 +332,9 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
 
         // Add composables
         addImportsDir(resolve('runtime/composables'));
+
+        // Indew file
+        generateIconIndex(componentsDir, generatedComponents);
 
         // addImports({
         //   name: 'useComposeIcon', // name of the composable to be used

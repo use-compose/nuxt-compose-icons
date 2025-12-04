@@ -6,5 +6,7 @@ export function createComponentsDir(dir: string) {
     fs.rmSync(dir, { recursive: true, force: true });
   }
   // Create the directory if it doesn't exist
-  return fs.mkdirSync(dir, { recursive: true });
+  fs.mkdirSync(dir, { recursive: true });
+
+  return dir;
 }

@@ -125,8 +125,8 @@ importers:
         version: 4.0.0
     devDependencies:
       '@nuxt/devtools':
-        specifier: 2.6.4
-        version: 2.6.4(vite@7.1.3(@types/node@24.10.1)(jiti@2.6.1)(sass@1.90.0)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.20(typescript@5.9.2))
+        specifier: 2.6.5
+        version: 2.6.5(vite@7.1.3(@types/node@24.10.1)(jiti@2.6.1)(sass@1.90.0)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.20(typescript@5.9.2))
       '@nuxt/eslint-config':
         specifier: 1.9.0
         version: 1.9.0(@typescript-eslint/utils@8.46.2(eslint@9.34.0(jiti@2.6.1))(typescript@5.9.2))(@vue/compiler-sfc@3.5.22)(eslint@9.34.0(jiti@2.6.1))(typescript@5.9.2)
@@ -1077,8 +1077,8 @@ packages:
     peerDependencies:
       vite: '>=6.0'
 
-  '@nuxt/devtools-kit@2.6.4':
-    resolution: {integrity: sha512-UWP4F4K9DA6vkv8DIClimgLrzKdpqQo0K7Gtj8bVSWBlrN+jk5jr//KYQ4NXhky/Y0C2nnYrW6DPGi4EXiFTTQ==}
+  '@nuxt/devtools-kit@2.6.5':
+    resolution: {integrity: sha512-t+NxoENyzJ8KZDrnbVYv3FJI5VXqSi6X4w6ZsuIIh0aKABu6+6k9nR/LoEhrM0oekn/2LDhA0NmsRZyzCXt2xQ==}
     peerDependencies:
       vite: '>=6.0'
 
@@ -1086,8 +1086,8 @@ packages:
     resolution: {integrity: sha512-FWXPkuJ1RUp+9nWP5Vvk29cJPNtm4OO38bgr9G8vGbqcRznzgaSODH/92c8sm2dKR7AF+9MAYLL+BexOWOkljQ==}
     hasBin: true
 
-  '@nuxt/devtools-wizard@2.6.4':
-    resolution: {integrity: sha512-BIBg4/FxrQtRRqSzDwakqNxSLC7e7bMSawE+X8Tq2sbz9vv+gA1aATdNcjF7g7BoZ8E/RreZB6Jy3pOxFPLEWA==}
+  '@nuxt/devtools-wizard@2.6.5':
+    resolution: {integrity: sha512-nYYGxT4lmQDvfHL6qolNWLu0QTavsdN/98F57falPuvdgs5ev1NuYsC12hXun+5ENcnigEcoM9Ij92qopBgqmQ==}
     hasBin: true
 
   '@nuxt/devtools@2.6.3':
@@ -1096,8 +1096,8 @@ packages:
     peerDependencies:
       vite: '>=6.0'
 
-  '@nuxt/devtools@2.6.4':
-    resolution: {integrity: sha512-ymqRjlShXCfUfTc+fnADG7XOV13toMiPc5loi+6lYjCmu1+rOI8K3i8R/8DWgGxr8MK7d5L4szl1xZlMQ4WzlA==}
+  '@nuxt/devtools@2.6.5':
+    resolution: {integrity: sha512-Xh9XF1SzCTL5Zj6EULqsN2UjiNj4zWuUpS69rGAy5C55UTaj+Wn46IkDc6Q0+EKkGI279zlG6SzPRFawqPPUEw==}
     hasBin: true
     peerDependencies:
       vite: '>=6.0'
@@ -7163,7 +7163,7 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  '@nuxt/devtools-kit@2.6.4(magicast@0.3.5)(vite@7.1.3(@types/node@24.10.1)(jiti@2.6.1)(sass@1.90.0)(terser@5.44.0)(yaml@2.8.1))':
+  '@nuxt/devtools-kit@2.6.5(magicast@0.3.5)(vite@7.1.3(@types/node@24.10.1)(jiti@2.6.1)(sass@1.90.0)(terser@5.44.0)(yaml@2.8.1))':
     dependencies:
       '@nuxt/kit': 3.19.3(magicast@0.3.5)
       execa: 8.0.1
@@ -7182,7 +7182,7 @@ snapshots:
       prompts: 2.4.2
       semver: 7.7.3
 
-  '@nuxt/devtools-wizard@2.6.4':
+  '@nuxt/devtools-wizard@2.6.5':
     dependencies:
       consola: 3.4.2
       diff: 8.0.2
@@ -7234,10 +7234,10 @@ snapshots:
       - utf-8-validate
       - vue
 
-  '@nuxt/devtools@2.6.4(vite@7.1.3(@types/node@24.10.1)(jiti@2.6.1)(sass@1.90.0)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.20(typescript@5.9.2))':
+  '@nuxt/devtools@2.6.5(vite@7.1.3(@types/node@24.10.1)(jiti@2.6.1)(sass@1.90.0)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.20(typescript@5.9.2))':
     dependencies:
-      '@nuxt/devtools-kit': 2.6.4(magicast@0.3.5)(vite@7.1.3(@types/node@24.10.1)(jiti@2.6.1)(sass@1.90.0)(terser@5.44.0)(yaml@2.8.1))
-      '@nuxt/devtools-wizard': 2.6.4
+      '@nuxt/devtools-kit': 2.6.5(magicast@0.3.5)(vite@7.1.3(@types/node@24.10.1)(jiti@2.6.1)(sass@1.90.0)(terser@5.44.0)(yaml@2.8.1))
+      '@nuxt/devtools-wizard': 2.6.5
       '@nuxt/kit': 3.19.3(magicast@0.3.5)
       '@vue/devtools-core': 7.7.7(vite@7.1.3(@types/node@24.10.1)(jiti@2.6.1)(sass@1.90.0)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.20(typescript@5.9.2))
       '@vue/devtools-kit': 7.7.7
@@ -12338,7 +12338,7 @@ snapshots:
       pathe: 2.0.3
       picomatch: 4.0.3
       scule: 1.3.0
-      tinyglobby: 0.2.14
+      tinyglobby: 0.2.15
       unplugin: 2.3.10
       unplugin-utils: 0.2.5
       yaml: 2.8.1

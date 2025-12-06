@@ -22,7 +22,7 @@
     "vitepress": "1.6.4"
   },
   "dependencies": {
-    "@use-compose/logger": "0.0.5",
+    "@use-compose/logger": "0.0.6",
     "@use-compose/ui": "0.3.0",
     "@wdns/vue-code-block": "2.3.5",
     "highlight.js": "11.11.1",

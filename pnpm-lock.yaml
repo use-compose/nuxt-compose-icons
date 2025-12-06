@@ -78,8 +78,8 @@ importers:
   docs:
     dependencies:
       '@use-compose/logger':
-        specifier: 0.0.5
-        version: 0.0.5
+        specifier: 0.0.6
+        version: 0.0.6
       '@use-compose/ui':
         specifier: 0.3.0
         version: 0.3.0(typescript@5.9.2)
@@ -2076,9 +2076,6 @@ packages:
     resolution: {integrity: sha512-lrW200hZdbfRtztbygyaq/6jP6AKE8qQN2KvPcJ+x7wiD038YtnYtZ82IMNJ69GJibV7bwL3y9FgK+5w/pYt6g==}
     cpu: [x64]
     os: [win32]
-
-  '@use-compose/logger@0.0.5':
-    resolution: {integrity: sha512-7By7naxy2GHwsVzu3v+JQw0zTAHZw0sD9GAUn75e+8nXIGmW2nyIUIVIxcocdGMEIMd58AgTAiduBrI8B+JM4A==}
 
   '@use-compose/logger@0.0.6':
     resolution: {integrity: sha512-9/TvTkHP6miDTyTXxfROcCy7aNp5f4xVyS39nEK0vem46A30fZKY3XJejspfFblB6FoNyTxsPoBL+C8DV1Ivdw==}
@@ -8250,8 +8247,6 @@ snapshots:
 
   '@unrs/resolver-binding-win32-x64-msvc@1.11.1':
     optional: true
-
-  '@use-compose/logger@0.0.5': {}
 
   '@use-compose/logger@0.0.6': {}
 

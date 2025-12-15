@@ -15,8 +15,12 @@
       "import": "./dist/module.mjs"
     },
     "./utils": {
-      "types": "./dist/runtime/utils/index.d.ts",
-      "import": "./dist/runtime/utils/index.js"
+      "types": "./dist/runtime/utils/index.d.mts",
+      "import": "./dist/runtime/utils/index.mjs"
+    },
+    "./runtime/*": {
+      "types": "./dist/runtime/*.d.mts",
+      "import": "./dist/runtime/*.mjs"
     }
   },
   "main": "./dist/module.mjs",
@@ -24,6 +28,7 @@
   "files": [
     "dist"
   ],
+  "type": "module",
   "scripts": {
     "prepack": "nuxt-module-build build",
     "dev": "PORT=3008 nuxi dev playground",
@@ -41,28 +46,28 @@
     "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
   },
   "dependencies": {
-    "@nuxt/kit": "4.0.3",
-    "@use-compose/logger": "latest",
+    "@nuxt/kit": "4.2.2",
+    "@use-compose/logger": "0.0.5",
     "node-html-parser": "7.0.1",
     "svg-parser": "2.0.4",
     "svgo": "4.0.0"
   },
   "devDependencies": {
-    "@nuxt/devtools": "2.6.3",
+    "@nuxt/devtools": "3.1.1",
     "@nuxt/eslint-config": "1.9.0",
     "@nuxt/module-builder": "1.0.2",
-    "@nuxt/schema": "4.0.3",
-    "@nuxt/test-utils": "3.19.2",
+    "@nuxt/schema": "4.2.2",
+    "@nuxt/test-utils": "3.20.1",
     "@types/node": "latest",
     "@types/svg-parser": "2.0.6",
     "@vitest/coverage-v8": "3.2.4",
-    "@vitest/ui": "3.2.4",
+    "@vitest/ui": "4.0.13",
     "changelogen": "0.6.2",
     "eslint": "9.34.0",
-    "nuxt": "4.0.3",
+    "nuxt": "4.2.1",
     "playwright-core": "1.55.0",
     "typescript": "5.9.2",
     "vitest": "3.2.4",
-    "vue-tsc": "3.0.6"
+    "vue-tsc": "3.1.5"
   }
 }

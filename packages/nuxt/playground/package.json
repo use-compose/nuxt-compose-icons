@@ -8,7 +8,8 @@
     "generate": "nuxi generate"
   },
   "dependencies": {
-    "nuxt": "^4.0.0",
-    "@use-compose/ui": "0.3.0"
+    "nuxt": "4.2.1",
+    "@use-compose/ui": "0.3.0",
+    "nuxt-compose-icons": "workspace:*"
   }
 }

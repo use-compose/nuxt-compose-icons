@@ -1,9 +1,8 @@
 // runtime/composables/useComposeIconRegistry.ts
-import { iconRegistry, type IconRegistryEntry } from '../../../src/runtime/utils/icon-registry';
+import { iconRegistry, type IconRegistryEntry } from '../../runtime/utils/icon-registry';
 
-export function useComposeIconRegistry(componentsDir?: string) {
-  // eslint-disable-next-line no-console
-  console.log('📟 - componentsDir → ', componentsDir);
+export function useComposeIconRegistry() {
+   
   // const iconRegistryPath = componentsDir
   //   ? `${componentsDir}/icon-registry.ts`
   //   : '../../src/runtime/composables/use-compose-icons-registry.ts';
@@ -19,19 +18,42 @@ export function useComposeIconRegistry(componentsDir?: string) {
 
   const icons = iconRegistry;
 
-  const getIconByName = (name: string) => {
-    return icons.find((icon) => icon.name === name || icon.kebabName === name);
-  };
+  /**
+   * Get an Icon Component by itsname
+   *
+   * @param {string} name
+   * @returns {(IconRegistryEntry | undefined)}
+   */
+  function getIconsByName(name: string): IconRegistryEntry[] {
+    const iconByStrictName = icons.filter(
+      (icon) => icon.name === name || icon.kebabName === name || icon.pascalName === name,
+    );
+    if (iconByStrictName.length > 0) {
+      return iconByStrictName;
+    }
+
+    return filterIcons(name);
+  }
 
   function searchIcons(query: string): IconRegistryEntry[] {
-    const q = query.trim().toLowerCase();
-    if (!q) return iconRegistry;
-    return iconRegistry.filter((i) => i.name.toLowerCase().includes(q) || i.kebabName.includes(q));
+    const searchTerms = query.trim().toLowerCase();
+    if (!searchTerms) return iconRegistry;
+    return filterIcons(searchTerms);
+  }
+
+  function filterIcons(query: string): IconRegistryEntry[] {
+    const lowerQuery = query.toLowerCase();
+    return icons.filter(
+      (icon) =>
+        icon.name.toLowerCase().includes(lowerQuery) ||
+        icon.kebabName.includes(lowerQuery) ||
+        icon.pascalName.toLowerCase().includes(lowerQuery),
+    );
   }
 
   return {
     icons,
-    getIconByName,
+    getIconsByName,
     searchIcons,
   };
 }

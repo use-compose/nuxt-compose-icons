@@ -13,14 +13,14 @@ import { createSvgComponentCode } from './render/svg-codegen';
 import { IconSize, type ComposeIconSize } from './runtime/types';
 import {
   createComponentFromName,
-  createComponentsDir,
   generateComponentName,
   generateCssFile,
   optimizeSvg,
   readDirectoryRecursively,
   writeComponentFile,
 } from './utils';
-import { generateIconIndex } from './utils/filesystem/generate-icon-index';
+import { generateIconsIndex, generateIconsRegistry } from './utils/filesystem/generate-icon-index';
+import { createDir, writeFile } from './utils/filesystem/helpers';
 // export * from './runtime/composables/index';
 // export { generateColorVariable, getIconSizeClass } from './runtime/utils';
 
@@ -149,12 +149,14 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
 
       // TODO: The directory to save the generated components
       // default "runtime/components/icons-generated"
-      // componentsDestDir: 'runtime/components/icons-generated',
+      componentsDestDir: undefined,
     },
     iconComponentList: {},
   },
   async setup(options, nuxt) {
     const logger = useLogger('nuxt-compose-icons');
+    const { resolve } = createResolver(import.meta.url);
+
     const issues = await checkNuxtCompatibility({ nuxt: '^2.16.0' }, nuxt);
     if (issues.length) {
       logger.warn('Nuxt compatibility issues found:\n' + issues.toString());
@@ -182,7 +184,8 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
     const componentsDestDir = options.generatedComponentOptions.componentsDestDir as string;
 
     // .nuxt/compose-icons
-    const defaultDir = path.resolve(nuxt.options.buildDir, 'compose-icons');
+    const defaultDir = resolve(nuxt.options.buildDir, 'compose-icons');
+    logger.info('📟 - defaultDir → ', defaultDir);
 
     if (!pathToIcons && !iconComponentList) {
       logger.error(
@@ -191,16 +194,14 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
       throw new Error('pathToIcons or iconComponentList is required');
     }
 
-    const { resolve } = createResolver(import.meta.url);
-
     // Create components directory and remove it first if it exists
     const componentsDir = componentsDestDir
-      ? createComponentsDir(resolve(componentsDestDir)) || defaultDir
-      : createComponentsDir(defaultDir);
+      ? (await createDir(resolve(componentsDestDir))) || defaultDir
+      : await createDir(defaultDir);
 
     if (pathToIcons) {
       // Resolve the path to the icons directory provided
-      const absolutePathToIcons = path.resolve(nuxt.options.rootDir, pathToIcons);
+      const absolutePathToIcons = resolve(nuxt.options.rootDir, pathToIcons);
 
       if (fs.existsSync(absolutePathToIcons) && fs.statSync(absolutePathToIcons).isDirectory()) {
         // We first read all the files recursively to flatten the structure
@@ -230,13 +231,17 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
         /*
          * For each file we:
          * 1. Parse the content (as HTML string)
-         * 2. Create the component code as literal string template by:
+         * 2. Optimize with SVGO
+         * 3. Create the component code as literal string template by:
          *   . Recreating the Vue VNode structure dynamically based on the SVG content
          *   . Set the props and attributes based on the SVG content and the options passed
-         * 3. Write the component to the file system
-         * 4. Create the "official" component object with the name and path
-         * 5. Add the component to the Nuxt app's components array at build time
-         * 6. Generate a CSS file with the icon sizes and add it to the Nuxt app's CSS array at build time
+         * 4. Write the component to the file system
+         * 5. Create the "official" component object with the name and path
+         * 6. Add the component to the Nuxt app's components array at build time
+         * 7. Generate a CSS file with the icon sizes and add it to the Nuxt app's CSS array at build time
+         * 8. Add composables
+         * 9. Generate the icons index file
+         * 10. Generate the icon registry file
          *
          * We use a literal string template to create the Vue component
          * see https://nuxt-compose-icons.arthurplazanet.com/why-literal-strings-to-create-vue-components
@@ -264,11 +269,10 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
           const componentCode = createSvgComponentCode(componentName, svgContent);
 
           // 4. Write the component to the file system
-          const generatedFilePath = writeComponentFile(
+          const generatedFilePath = await writeComponentFile(
             componentName,
             componentsDir,
             componentCode,
-            true,
           );
 
           // 5. Create the "official" component object with the name and path
@@ -303,12 +307,10 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
         const cssContent = generateCssFile(iconSizes);
 
         // Define the path to save the CSS file within the module
-        const iconRootVars = path.resolve(__dirname, './runtime/assets/compose-sizes.css');
+        const iconRootVars = resolve('./runtime/assets/compose-sizes.css');
 
         // // Ensure the directory exists
-        await fsp.mkdir(path.dirname(iconRootVars), { recursive: true });
-        // // Write the CSS content to the file
-        await fsp.writeFile(iconRootVars, cssContent, 'utf-8');
+        await writeFile(iconRootVars, cssContent);
 
         const iconClasses = resolve('./runtime/assets/compose-icon.css');
         // nuxt.options.alias = {
@@ -321,7 +323,7 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
         // });
         // logger.log('📟 - tpl → ', tpl);
 
-        // 3. Inject into the Nuxt build
+        // Inject into the Nuxt build
         // nuxt.options.css.push(tpl.dst);
         // // Push the CSS file into the Nuxt app's CSS array
         nuxt.options.css.push(iconRootVars);
@@ -330,11 +332,21 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
         addImportsDir(resolve('runtime/types'));
         addImportsDir(resolve('runtime/utils'));
 
-        // Add composables
+        // 8. Add composables
         addImportsDir(resolve('runtime/composables'));
 
-        // Indew file
-        generateIconIndex(componentsDir, generatedComponents);
+        // 9. Generate the icons index file
+        const iconsIndexContent = generateIconsIndex(generatedComponents);
+        const indexPath = resolve(componentsDir, 'index.ts');
+        await writeFile(indexPath, iconsIndexContent.join('\n'));
+
+        // 10. Generate the icon registry file
+        const iconsRegistryContent = await generateIconsRegistry(generatedComponents);
+        const registryPath = resolve(componentsDir, 'icon-registry.ts');
+        await writeFile(registryPath, iconsRegistryContent.join('\n'));
+        // write also localy
+        const localRegistryPath = resolve('./runtime/utils/icon-registry.ts');
+        await writeFile(localRegistryPath, iconsRegistryContent.join('\n'));
 
         // addImports({
         //   name: 'useComposeIcon', // name of the composable to be used

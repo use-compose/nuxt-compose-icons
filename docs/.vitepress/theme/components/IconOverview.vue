@@ -173,18 +173,15 @@ const icons = shallowRef([
   TrashIcon,
   TwitterIcon,
 ]);
-console.log('📟 - icons → ', icons);
 
 const tt = icons.value.map((icon, index) => {
   const newIcon = icon;
-  console.log('📟 - newIcon → ', newIcon);
   return {
     ...newIcon,
     ...{ style: generateRandomStyles(index) },
   };
 });
 
-console.log('📟 - tt → ', tt);
 function generateRandomStyles(index) {
   return {
     '--top': `calc(100svh * ${Math.random()})`, // 10% to 90%

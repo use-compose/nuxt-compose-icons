@@ -1,5 +1,6 @@
 import type { NuxtComposeIconsOptions } from 'nuxt-compose-icons';
-import Module from 'nuxt-compose-icons';
+import * as path from 'path';
+import { fileURLToPath } from 'url';
 
 const options: NuxtComposeIconsOptions = {
   pathToIcons: './app/assets/icons',
@@ -10,13 +11,22 @@ const options: NuxtComposeIconsOptions = {
     lg: '2rem',
     xl: '4rem',
   },
+  generatedComponentOptions: {
+    suffix: 'Icon',
+    case: 'pascal',
+    componentsDestDir: path.resolve(
+      fileURLToPath(new URL('./app/components/nuxt-compose-icons', import.meta.url)),
+    ),
+  },
 
   // dryRun: true,
 };
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2025-07-15',
-  devtools: { enabled: true },
-  modules: [Module],
+  modules: ['nuxt-compose-icons'],
+  // Module options
   composeIcons: options,
+  devtools: { enabled: true },
+  compatibilityDate: '2024-12-14',
+  // css: ['@use-compose/ui/style.css'],
 });

@@ -23,10 +23,8 @@
 </template>
 
 <script setup lang="ts">
+import type { ComposeIconSize } from 'nuxt-compose-icons';
 import { computed, onMounted, ref, resolveComponent, type Component } from 'vue';
-// import { useComposeIcon } from '../../src/runtime/composables/compose-icon';
-// import { useComposeIconRegistry } from '../../src/runtime/composables/use-compose-icons-registry';
-import type { ComposeIconSize } from '../../src/runtime/types';
 import * as AllIcons from './nuxt-compose-icons';
 
 interface IconOverviewProps {
@@ -55,6 +53,7 @@ const loadComponents = () => {
 };
 const { iconClasses } = useComposeIcon({ size: 'sm' });
 // eslint-disable-next-line no-console
+console.log('📟 - iconClasses → ', iconClasses);
 
 onMounted(() => {
   components.value = loadComponents();

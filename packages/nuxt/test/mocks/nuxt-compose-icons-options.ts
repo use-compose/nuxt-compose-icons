@@ -4,7 +4,6 @@ export { moduleOptionsMock };
 
 const moduleOptionsMock: NuxtComposeIconsOptions = {
   generatedComponentOptions: {
-    prefix: '',
     suffix: 'Icon',
     case: 'pascal',
   },

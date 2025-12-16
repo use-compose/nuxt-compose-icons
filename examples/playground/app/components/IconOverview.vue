@@ -17,15 +17,14 @@
       :fill="true ? getRandomColor() : undefined"
       size="xl"
       :some-prop="`Component ${index + 1}`"
-    />
-    <AlarmBellIcon /> -->
+    /> -->
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, onMounted, ref, resolveComponent, type Component } from 'vue';
 // import { useComposeIcon } from '../../src/runtime/composables/compose-icon';
-import { useComposeIconRegistry } from 'nuxt-compose-icons';
+// import { useComposeIconRegistry } from 'nuxt-compose-icons';
 import * as AllIcons from './nuxt-compose-icons';
 
 const { searchIcons } = useComposeIconRegistry();

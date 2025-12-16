@@ -26,14 +26,14 @@ jobs:
           pnpm_version: 8
           cache: 'pnpm'
 
-      - name: Build the module
-        run: pnpm prepack
+      - name: Build the module (prepack)
+        run: pnpm --filter nuxt-compose-icons prepack
 
-      - name: Playground prepare
-        run: pnpm dev:prepare
+      - name: Prepare playground
+        run: pnpm --filter ./packages/nuxt/playground exec nuxi prepare
 
-      - name: Build the playground
-        run: pnpm dev:build
+      - name: Build playground
+        run: pnpm --filter ./packages/nuxt/playground exec nuxi build
 
       - name: Upload-artifact
         uses: actions/upload-artifact@v4

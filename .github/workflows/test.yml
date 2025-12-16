@@ -24,8 +24,11 @@ jobs:
           pnpm_version: 8
           cache: pnpm
 
+      - name: Build the module (prepack)
+        run: pnpm --filter nuxt-compose-icons prepack
+
       - name: Prepare playground
-        run: pnpm dev:prepare
+        run: pnpm --filter ./packages/nuxt/playground exec nuxi prepare
 
       - name: Install Playwright browsers
         run: pnpm exec playwright-core install --with-deps

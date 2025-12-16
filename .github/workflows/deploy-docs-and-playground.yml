@@ -17,7 +17,7 @@ jobs:
         uses: ./.github/actions/install-dependencies
         with:
           node_version: ${{ inputs.node_version }}
-          pnpm_version: 8
+          pnpm_version: 9
           cache: 'pnpm'
 
       - name: Build with VitePress
@@ -51,7 +51,7 @@ jobs:
         uses: ./.github/actions/install-dependencies
         with:
           node_version: ${{ inputs.node_version }}
-          pnpm_version: 8
+          pnpm_version: 9
           cache: 'pnpm'
 
       - name: Prepare

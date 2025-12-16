@@ -26,6 +26,9 @@ jobs:
           pnpm_version: 8
           cache: 'pnpm'
 
+      - name: Build the module
+        run: pnpm prepack
+
       - name: Playground prepare
         run: pnpm dev:prepare
 

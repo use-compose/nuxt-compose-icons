@@ -7,8 +7,8 @@
         <span>{{ i.kebabName }}</span>
       </li>
     </ul>
-    <!-- <Component -->
-    <!-- :is="component" v-for="(component, index) in components" :key="index" :color="iconStyles"
+    <Component />
+     :is="component" v-for="(component, index) in components" :key="index" :color="iconStyles"
     :stroke="getRandomColor()" :stroke-width="props.strokeWidth" :fill="true ? getRandomColor() :
     undefined" size="xl" :some-prop="`Component ${index + 1}`" /> -->
     <ArticleIcon v-bind="iconStyles" />

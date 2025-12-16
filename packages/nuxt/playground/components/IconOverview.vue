@@ -25,24 +25,13 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, resolveComponent, type Component } from 'vue';
 // import { useComposeIcon } from '../../src/runtime/composables/compose-icon';
-// import { useComposeIconRegistry } from '../../src/runtime/composables/use-compose-icons-registry';
-import type { ComposeIconSize } from '../../src/runtime/types';
+import { useComposeIconRegistry } from 'nuxt-compose-icons';
 import * as AllIcons from './nuxt-compose-icons';
 
-interface IconOverviewProps {
-  size: ComposeIconSize;
-  color: string;
-  stroke?: string;
-  strokeWidth?: string | number;
-  fill?: string;
-}
-
-const { icons, getIconByName, searchIcons } = useComposeIconRegistry();
+const { searchIcons } = useComposeIconRegistry();
 const q = ref('');
 
 const filtered = computed(() => searchIcons(q.value));
-
-const props = defineProps<IconOverviewProps>();
 
 // const components = ref<ReturnType<typeof defineAsyncComponent>[]>([]);
 const components = ref<(Component | string)[]>([]);
@@ -53,25 +42,10 @@ const loadComponents = () => {
     return component;
   });
 };
-const { iconClasses } = useComposeIcon({ size: 'sm' });
-// eslint-disable-next-line no-console
 
 onMounted(() => {
   components.value = loadComponents();
 });
-
-const iconStyles = computed(() => {
-  return getRandomColor();
-});
-
-function getRandomColor() {
-  var letters = '0123456789ABCDEF';
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
 </script>
 
 <style>

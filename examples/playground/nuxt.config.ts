@@ -1,6 +1,4 @@
 import type { NuxtComposeIconsOptions } from 'nuxt-compose-icons';
-import * as path from 'path';
-import { fileURLToPath } from 'url';
 
 const options: NuxtComposeIconsOptions = {
   pathToIcons: './app/assets/icons',
@@ -14,9 +12,12 @@ const options: NuxtComposeIconsOptions = {
   generatedComponentOptions: {
     suffix: 'Icon',
     case: 'pascal',
-    componentsDestDir: path.resolve(
-      fileURLToPath(new URL('./app/components/nuxt-compose-icons', import.meta.url)),
-    ),
+
+    // relative path
+    componentsDestDir: './app/components/nuxt-compose-icons',
+
+    // absolute path
+    // componentsDestDir: path.resolve('./app/components/nuxt-compose-icons'),
   },
 
   // dryRun: true,

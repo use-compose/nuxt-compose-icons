@@ -11,6 +11,7 @@ export async function writeComponentFile(
   // const indexFilePath = path.join(componentsDir, 'index.ts');
 
   const filePath = path.join(componentsDir, `${componentName}.ts`);
+
   if (componentCode) {
     await writeFile(filePath, componentCode);
   }
@@ -35,37 +36,3 @@ export async function writeComponentFile(
 
   return filePath;
 }
-
-// /**
-//  * Write a declaration file for the component to provide type completion in IDEs
-//  *
-//  * @param {string} declarationFilePath
-//  * @param {string} componentName
-//  * @returns {string} the declaration from given component name
-//  */
-// function writeDeclarationFile(declarationFilePath: string, componentName: string): string {
-//   console.log('📟 - declarationFilePath → ', declarationFilePath);
-//   let declarationContent = '';
-//   if (!fs.existsSync(declarationFilePath)) {
-//     fs.mkdirSync(path.dirname(declarationFilePath), { recursive: true });
-//     declarationContent = `// Auto-generated file for icon components completion
-// declare module 'nuxt-compose-icons' {
-//   export type IconComponents = {`;
-//     fs.readFileSync(declarationFilePath, 'utf-8');
-//   }
-
-//   // const exportStatements = fs
-//   //   .readdirSync(componentDir)
-//   //   .filter((file) => file.endsWith('.ts'))
-//   //   .map((file) => `export * from './${file}';`)
-//   //   .join('\n');
-
-//   fs.writeFileSync(
-//     declarationFilePath,
-//     declarationContent +
-//       `\n  ${componentName}: typeof import('./${componentName}').default;\n}\n` +
-//       `export default ${componentName};\n`,
-//     'utf-8',
-//   );
-//   return declarationFilePath;
-// }

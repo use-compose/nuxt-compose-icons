@@ -14,14 +14,15 @@ async function isFileExist(path: string): Promise<boolean> {
 
 async function createDir(dirPath: string): Promise<string> {
   try {
-    //  recursive: true then a string is returned
-    return (await fsp.mkdir(dirPath, { recursive: true })) as string;
+    const projectFolder = new URL(dirPath, import.meta.url);
+    await fsp.mkdir(projectFolder, { recursive: true });
+
+    return dirPath;
   } catch (err) {
-    if ((err as NodeJS.ErrnoException).code !== 'EEXIST') {
-      throw err;
-    }
+    // eslint-disable-next-line no-console
+    console.error('Error creating directory:', err);
+    throw err;
   }
-  return dirPath;
 }
 
 async function writeFile(filePath: string, content: string): Promise<void> {

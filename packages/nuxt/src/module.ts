@@ -210,7 +210,6 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
     }
 
     let componentsDir: string = userComponentsDestDirOption;
-    // Create components directory and remove it first if it exists
 
     /**
      * TODO: description

@@ -1,4 +1,4 @@
-import type { NuxtComposeIconsOptions } from '~/src/module';
+import type { NuxtComposeIconsOptions } from '../../src/module';
 
 export { moduleOptionsMock };
 

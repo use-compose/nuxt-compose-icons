@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 
 describe('ssr', async () => {
   await setup({
-    rootDir: fileURLToPath(new URL('fixtures/nuxt-compose-icons-test', import.meta.url)),
+    rootDir: fileURLToPath(new URL('./fixtures/nuxt-compose-icons-test', import.meta.url)),
   });
 
   it('renders the index page', async () => {

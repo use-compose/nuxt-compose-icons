@@ -10,6 +10,7 @@ import type { Component } from '@nuxt/schema';
 import * as fs from 'node:fs';
 import { promises as fsp } from 'node:fs';
 import * as path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { createSvgComponentCode } from './render/svg-codegen';
 import { IconSize, type ComposeIconSize } from './runtime/types';
 import {
@@ -222,7 +223,13 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
         );
         await createDir(userComponentsDestDirOption);
       } else {
-        await createDir(path.resolve(nuxt.options.rootDir, userComponentsDestDirOption));
+        await createDir(
+          path.resolve(
+            fileURLToPath(
+              new URL(nuxt.options.rootDir + userComponentsDestDirOption, import.meta.url),
+            ),
+          ),
+        );
         logger.info(
           '📟 - Using relative path for componentsDestDir → ',
           userComponentsDestDirOption,
@@ -231,7 +238,7 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
       }
     } else {
       // TODO: Not now see [ROADMAP.md](https://github.com/arthur-plazanet/nuxt-compose-icons/main/ROADMAP.md)
-      // await createDir(defaultDir);
+      componentsDir = await createDir(defaultDir);
     }
 
     // const componentsDir = componentsDestDir
@@ -388,9 +395,9 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
         const iconsRegistryContent = await generateIconsRegistry(generatedComponents);
         const registryPath = resolve(componentsDir, 'icon-registry.ts');
         await writeFile(registryPath, iconsRegistryContent.join('\n'));
-        // write also localy
-        const localRegistryPath = resolve('./runtime/utils/icon-registry.ts');
-        await writeFile(localRegistryPath, iconsRegistryContent.join('\n'));
+        // write also localy TODO:
+        // const localRegistryPath = resolve('./runtime/utils/icon-registry.ts');
+        // await writeFile(localRegistryPath, iconsRegistryContent.join('\n'));
 
         /**
          * TODO: description

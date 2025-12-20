@@ -1,8 +1,8 @@
 // runtime/composables/useComposeIconRegistry.ts
-import { iconRegistry, type IconRegistryEntry } from '../../runtime/utils/icon-registry';
+import type { IconRegistryEntry } from '../../runtime/utils/icon-registry';
+import { iconRegistry } from '../../runtime/utils/icon-registry';
 
 export function useComposeIconRegistry() {
-   
   // const iconRegistryPath = componentsDir
   //   ? `${componentsDir}/icon-registry.ts`
   //   : '../../src/runtime/composables/use-compose-icons-registry.ts';

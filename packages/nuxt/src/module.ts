@@ -396,8 +396,8 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
         const registryPath = resolve(componentsDir, 'icon-registry.ts');
         await writeFile(registryPath, iconsRegistryContent.join('\n'));
         // write also localy TODO:
-        // const localRegistryPath = resolve('./runtime/utils/icon-registry.ts');
-        // await writeFile(localRegistryPath, iconsRegistryContent.join('\n'));
+        const localRegistryPath = resolve('./runtime/utils/icon-registry.ts');
+        await writeFile(localRegistryPath, iconsRegistryContent.join('\n'));
 
         /**
          * TODO: description

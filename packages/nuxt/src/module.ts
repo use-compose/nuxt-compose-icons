@@ -1,5 +1,4 @@
 import {
-  addComponentsDir,
   addImportsDir,
   checkNuxtCompatibility,
   createResolver,
@@ -200,7 +199,7 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
       return;
     }
     // .nuxt/compose-icons
-    const defaultDir = resolve(nuxt.options.buildDir, 'compose-icons');
+    const defaultDir = resolve(nuxt.options.buildDir, './compose-icons');
     logger.info('📟 - defaultDir → ', defaultDir);
 
     if (!pathToIcons && !iconComponentList) {
@@ -334,9 +333,9 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
           logger.success(`✅ Generated component: ${componentName} from ${fileInfo.base}`);
 
           // 6. Add the component to the Nuxt app's components array at build time
-          // nuxt.hook('components:extend', (components) => {
-          //   components.push(component);
-          // });
+          nuxt.hook('components:extend', (components) => {
+            components.push(component);
+          });
 
           // addImportsSources({
           //   from: resolver.resolve('runtime/types'),
@@ -349,10 +348,10 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
           // });
         }
 
-        addComponentsDir({
-          path: componentsDir,
-          prefix: options.generatedComponentOptions.prefix,
-        });
+        // addComponentsDir({
+        //   path: componentsDir,
+        //   prefix: options.generatedComponentOptions.prefix,
+        // });
 
         // 7. Generate a CSS file with the icon sizes and add it to the Nuxt app's CSS array at build time
         const cssContent = generateCssFile(iconSizes);

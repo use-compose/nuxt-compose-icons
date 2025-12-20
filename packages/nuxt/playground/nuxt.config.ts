@@ -19,7 +19,7 @@ export default defineNuxtConfig({
     generatedComponentOptions: {
       suffix: 'Icon',
       case: 'pascal',
-      componentsDestDir: path.resolve('./components/nuxt-compose-icons'),
+      // componentsDestDir: path.resolve('./components/nuxt-compose-icons'),
     },
     // dryRun: true,
   },

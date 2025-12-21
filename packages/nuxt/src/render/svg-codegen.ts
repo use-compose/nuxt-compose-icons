@@ -11,6 +11,7 @@ export function createSvgComponentCode(name: string, svgContent: string) {
   const { attributes, children } = parseAndTransformSvg(svgContent);
 
   return `
+<script lang="ts">
     import { defineComponent, h, type PropType } from 'vue';
 
     // TODO: see [ROADMAP](../../ROADMAP.md#build-icons-in-dot-nuxt)
@@ -38,5 +39,6 @@ export function createSvgComponentCode(name: string, svgContent: string) {
         ]);
       }
     });
-  `;
+ </script>
+ `;
 }

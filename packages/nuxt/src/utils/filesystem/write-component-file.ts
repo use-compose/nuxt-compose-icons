@@ -10,7 +10,7 @@ export async function writeComponentFile(
   // TODO: Components dir parameter
   // const indexFilePath = path.join(componentsDir, 'index.ts');
 
-  const filePath = path.join(componentsDir, `${componentName}.ts`);
+  const filePath = path.join(componentsDir, `${componentName}.vue`);
 
   if (componentCode) {
     await writeFile(filePath, componentCode);

@@ -1,5 +1,7 @@
 import {
   addImportsDir,
+  addTemplate,
+  addTypeTemplate,
   checkNuxtCompatibility,
   createResolver,
   defineNuxtModule,
@@ -9,7 +11,6 @@ import type { Component } from '@nuxt/schema';
 import * as fs from 'node:fs';
 import { promises as fsp } from 'node:fs';
 import * as path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { createSvgComponentCode } from './render/svg-codegen';
 import { IconSize, type ComposeIconSize } from './runtime/types';
 import {
@@ -163,9 +164,37 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
     },
     iconComponentList: {},
   },
+
+  hooks: {
+    'build:before'() {
+      // console.log('🚀 - build:before hook called');
+    },
+  },
   async setup(options, nuxt) {
     const logger = useLogger('nuxt-compose-icons');
     const { resolve } = createResolver(import.meta.url);
+    // const resolver = createResolver(import.meta.url); // module package base
+    // const resolveModule = resolver.resolve;
+
+    /**
+     * Resolver for everything related to the user's app directory
+     *
+     * @param {...string[]} p
+     * @returns {*}
+     */
+    function resolveApp(...p: string[]) {
+      return path.resolve(nuxt.options.rootDir, ...p);
+    } // app base
+
+    /**
+     * Resolver for everything related to the Nuxt build directory
+     *
+     * @param {...string[]} p
+     * @returns {*}
+     */
+    function resolveBuild(...p: string[]) {
+      return path.resolve(nuxt.options.buildDir, ...p);
+    } // build base
 
     const issues = await checkNuxtCompatibility({ nuxt: '^2.16.0' }, nuxt);
     if (issues.length) {
@@ -191,15 +220,15 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
     logger.debug(nuxt4);
 
     const { reRunOnBuild, pathToIcons, iconComponentList, iconSizes } = options;
-    const userComponentsDestDirOption = options.generatedComponentOptions
-      .componentsDestDir as string;
+    // const userComponentsDestDirOption = options.generatedComponentOptions
+    //   .componentsDestDir as string;
 
     if (!reRunOnBuild) {
       logger.info('⚠️ - reRunOnBuild is disabled, the module will run only once at setup');
       return;
     }
     // .nuxt/compose-icons
-    const defaultDir = resolve(nuxt.options.buildDir, './compose-icons');
+    const defaultDir = resolveBuild('compose-icons');
     logger.info('📟 - defaultDir → ', defaultDir);
 
     if (!pathToIcons && !iconComponentList) {
@@ -209,36 +238,56 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
       throw new Error('pathToIcons or iconComponentList is required');
     }
 
-    let componentsDir: string = userComponentsDestDirOption;
+    // let componentsDir: string = userComponentsDestDirOption;
 
-    /**
-     * TODO: description
-     */
-    if (userComponentsDestDirOption) {
-      if (path.isAbsolute(userComponentsDestDirOption)) {
-        logger.info(
-          '📟 - Using absolute path for componentsDestDir → ',
-          userComponentsDestDirOption,
-        );
-        await createDir(userComponentsDestDirOption);
-      } else {
-        await createDir(
-          path.resolve(
-            fileURLToPath(
-              new URL(nuxt.options.rootDir + userComponentsDestDirOption, import.meta.url),
-            ),
-          ),
-        );
-        logger.info(
-          '📟 - Using relative path for componentsDestDir → ',
-          userComponentsDestDirOption,
-        );
-        componentsDir = userComponentsDestDirOption;
-      }
-    } else {
-      // TODO: Not now see [ROADMAP.md](https://github.com/arthur-plazanet/nuxt-compose-icons/main/ROADMAP.md)
-      componentsDir = await createDir(defaultDir);
-    }
+    // /**
+    //  * TODO: description
+    //  */
+    // if (userComponentsDestDirOption) {
+    //   if (path.isAbsolute(userComponentsDestDirOption)) {
+    //     logger.info(
+    //       '📟 - Using absolute path for componentsDestDir → ',
+    //       userComponentsDestDirOption,
+    //     );
+    //     await createDir(userComponentsDestDirOption);
+    //     const componentsDir = options.generatedComponentOptions.componentsDestDir; // ✅ (already absolute)
+    //     await createDir(componentsDir);
+
+    //   } else {
+    //          const componentsDir = resolveApp(options.generatedComponentOptions.componentsDestDir); // ✅
+    //   await createDir(componentsDir);
+    //     await createDir(
+    //       path.resolve(
+    //         fileURLToPath(
+    //           new URL(nuxt.options.rootDir + userComponentsDestDirOption, import.meta.url),
+    //         ),
+    //       ),
+    //     );
+    //     logger.info(
+    //       '📟 - Using relative path for componentsDestDir → ',
+    //       userComponentsDestDirOption,
+    //     );
+    //     componentsDir = userComponentsDestDirOption;
+    //   }
+    // } else {
+
+    //    const componentsDir = resolveBuild('compose-icons'); // ✅
+    //     await createDir(componentsDir);
+    //   // TODO: Not now see [ROADMAP.md](https://github.com/arthur-plazanet/nuxt-compose-icons/main/ROADMAP.md)
+    //   componentsDir = await createDir(defaultDir);
+    // }
+
+    const userDir = options.generatedComponentOptions.componentsDestDir;
+
+    const componentsDir = userDir
+      ? path.isAbsolute(userDir)
+        ? userDir
+        : resolveApp(userDir)
+      : defaultDir;
+
+    await createDir(componentsDir);
+
+    logger.info('📟 componentsDir →', componentsDir);
 
     // const componentsDir = componentsDestDir
     //   ? await createDir(path.resolve(nuxt.options.rootDir, componentsDestDir))
@@ -246,7 +295,9 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
 
     if (pathToIcons) {
       // Resolve the path to the icons directory provided
-      const absolutePathToIcons = resolve(nuxt.options.rootDir, pathToIcons);
+      const absolutePathToIcons = path.isAbsolute(pathToIcons)
+        ? pathToIcons
+        : resolveApp(pathToIcons);
 
       if (fs.existsSync(absolutePathToIcons) && fs.statSync(absolutePathToIcons).isDirectory()) {
         // We first read all the files recursively to flatten the structure
@@ -291,76 +342,87 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
          * We use a literal string template to create the Vue component
          * see https://nuxt-compose-icons.arthurplazanet.com/why-literal-strings-to-create-vue-components
          */
-        for (const filePath of files) {
-          const fileInfo = path.parse(filePath);
+        nuxt.hook('build:before', async () => {
+          for (const filePath of files) {
+            const fileInfo = path.parse(filePath);
 
-          if (fileInfo.ext !== '.svg') {
-            continue;
+            if (fileInfo.ext !== '.svg') {
+              continue;
+            }
+
+            // 1. Parse the content (as HTML string)
+            let svgContent = await fsp.readFile(filePath, 'utf-8');
+
+            // 2. Optimize with SVGO
+            svgContent = optimizeSvg(svgContent);
+
+            // TODO: Check if necessary to handle snake case as well
+
+            // TODO: handle double dashes "--", and if ".svg" already present
+            const componentName = generateComponentName(fileInfo.name, options);
+
+            // 3. Create the component code as literal string template
+            // const componentCode = createSvgComponentCode(componentName, svgContent);
+            const componentCode = createSvgComponentCode(componentName, svgContent);
+
+            // 4. Write the component to the file system
+            const generatedFilePath = await writeComponentFile(
+              componentName,
+              componentsDir,
+              componentCode,
+            );
+
+            // 5. Create the "official" component object with the name and path
+            const component = createComponentFromName({
+              name: componentName,
+              shortPath: generatedFilePath,
+              filePath: generatedFilePath,
+            });
+
+            // 5.5 Store the component in array for later use
+            generatedComponents.push(component);
+
+            logger.success(`✅ Generated component: ${componentName} from ${fileInfo.base}`);
+
+            // 6. Add the component to the Nuxt app's components array at build time
+            // nuxt.hook('components:extend', (components) => {
+            //   components.push(component);
+            // });
+            // addComponent({
+            //   name: component.pascalName,
+            //   filePath: component.filePath,
+            // });
+
+            // addImportsSources({
+            //   from: resolver.resolve('runtime/types'),
+            //   imports: [
+            //     {
+            //       name: 'types',
+            //       as: 'types',
+            //     },
+            //   ],
+            // });
           }
+        });
 
-          // 1. Parse the content (as HTML string)
-          let svgContent = await fsp.readFile(filePath, 'utf-8');
-
-          // 2. Optimize with SVGO
-          svgContent = optimizeSvg(svgContent);
-
-          // TODO: Check if necessary to handle snake case as well
-
-          // TODO: handle double dashes "--", and if ".svg" already present
-          const componentName = generateComponentName(fileInfo.name, options);
-
-          // 3. Create the component code as literal string template
-          // const componentCode = createSvgComponentCode(componentName, svgContent);
-          const componentCode = createSvgComponentCode(componentName, svgContent);
-
-          // 4. Write the component to the file system
-          const generatedFilePath = await writeComponentFile(
-            componentName,
-            componentsDir,
-            componentCode,
-          );
-
-          // 5. Create the "official" component object with the name and path
-          const component = createComponentFromName({
-            name: componentName,
-            shortPath: generatedFilePath,
-            filePath: generatedFilePath,
-          });
-
-          // 5.5 Store the component in array for later use
-          generatedComponents.push(component);
-
-          logger.success(`✅ Generated component: ${componentName} from ${fileInfo.base}`);
-
-          // 6. Add the component to the Nuxt app's components array at build time
-          nuxt.hook('components:extend', (components) => {
-            components.push(component);
-          });
-
-          // addImportsSources({
-          //   from: resolver.resolve('runtime/types'),
-          //   imports: [
-          //     {
-          //       name: 'types',
-          //       as: 'types',
-          //     },
-          //   ],
-          // });
-        }
-
+        logger.info(`📦 - Registering components from ${componentsDir}`);
         // addComponentsDir({
         //   path: componentsDir,
-        //   prefix: options.generatedComponentOptions.prefix,
+        //   extensions: ['vue'], // 👈 critical
+        //   ignore: ['index.ts', 'icon-registry.ts'],
+        //   // prefix: options.generatedComponentOptions.prefix,
         // });
+        nuxt.hook('components:extend', (components) => {
+          components.push(...generatedComponents);
+        });
 
         // 7. Generate a CSS file with the icon sizes and add it to the Nuxt app's CSS array at build time
         const cssContent = generateCssFile(iconSizes);
 
         // Define the path to save the CSS file within the module
-        const iconRootVars = resolve('./runtime/assets/compose-sizes.css');
-
-        // // Ensure the directory exists
-        await writeFile(iconRootVars, cssContent);
+        // const iconRootVars = resolve('./runtime/assets/compose-sizes.css');
+        // await writeFile(iconRootVars, cssContent);
+        // nuxt.options.css.push(iconRootVars);
 
         const iconClasses = resolve('./runtime/assets/compose-icon.css');
         // nuxt.options.alias = {
@@ -373,10 +435,15 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
         // });
         // logger.log('📟 - tpl → ', tpl);
 
+        const tpl = addTemplate({
+          filename: 'nuxt-compose-icons/compose-sizes.css',
+          getContents: () => cssContent,
+        });
+        nuxt.options.css.push(tpl.dst); // ✅ this is in buildDir
+
         // Inject into the Nuxt build
         // nuxt.options.css.push(tpl.dst);
         // // Push the CSS file into the Nuxt app's CSS array
-        nuxt.options.css.push(iconRootVars);
         nuxt.options.css.push(iconClasses);
 
         addImportsDir(resolve('runtime/types'));
@@ -401,30 +468,29 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
         /**
          * TODO: description
          */
-        // addTypeTemplate({
-        //   filename: 'types/my-module.d.ts',
-        //   getContents: () => `// Generated by my-module
-        // declare module 'nuxt-compose-icons' {
-        //   export { useComposeIcon, useComposeIconRegistry } from 'nuxt-compose-icons/dist/runtime/composables';
-        // }
-        // declare module 'nuxt-compose-icons/utils' {
-        //   export { generateColorVariable, getIconSizeClass } from 'nuxt-compose-icons';
-        //   export { useComposeIcon, useComposeIconRegistry } from 'nuxt-compose-icons/dist/runtime/composables/compose-icon';
-        // }
-        // declare module '@nuxt-compose-icons/types' {
-        //   export { IconSize } from 'nuxt-compose-icons';
-        //   export type {
-        //     ComposeIconProps,
-        //     ComposeIconSize,
-        //     IconSizeKey,
-        //     IconSizeKeyValue,
-        //   } from 'nuxt-compose-icons';
-        // }
-        // declare module '@nuxt-compose-icons/components' {
-        //   // export * from '../src/runtime/components/icons-generated';
-        // }
-        // export {}`,
-        // });
+        addTypeTemplate({
+          filename: 'types/my-module.d.ts',
+          getContents: () => `// Generated by my-module
+        declare module 'nuxt-compose-icons' {
+          export { useComposeIcon, useComposeIconRegistry } from 'nuxt-compose-icons/dist/runtime/composables';
+        }
+        declare module 'nuxt-compose-icons/utils' {
+          export { generateColorVariable, getIconSizeClass } from 'nuxt-compose-icons';
+          export { useComposeIcon, useComposeIconRegistry } from 'nuxt-compose-icons/dist/runtime/composables/compose-icon';
+        }
+        declare module '@nuxt-compose-icons/types' {
+          export { IconSize } from 'nuxt-compose-icons';
+          export type {
+            ComposeIconProps,
+            ComposeIconSize,
+            IconSizeKey,
+            IconSizeKeyValue,
+          } from 'nuxt-compose-icons';
+        }
+        declare module 'nuxt-compose-icons/components' {
+          export * from ${JSON.stringify(componentsDir)}
+        }`,
+        });
 
         // addImports({
         //   name: 'useComposeIcon', // name of the composable to be used

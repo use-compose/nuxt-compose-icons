@@ -17,13 +17,13 @@ export default defineNuxtConfig({
   },
   modules: [fileURLToPath(new URL('../../../../src/module', import.meta.url))],
   composeIcons: {
-    pathToIcons: path.resolve(fileURLToPath(new URL('./assets/icons', import.meta.url))),
+    pathToIcons: fileURLToPath(new URL('./assets/icons', import.meta.url)),
     iconSizes,
     generatedComponentOptions: {
       prefix: 'build',
       suffix: 'icon',
       case: 'kebab',
-      // componentsDestDir: path.resolve('./components/nuxt-compose-icons'),
+      componentsDestDir: path.resolve('./components/nuxt-compose-icons'),
     },
   },
   components: {

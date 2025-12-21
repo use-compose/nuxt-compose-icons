@@ -1,6 +1,5 @@
 {
   "name": "playground",
-  "type": "module",
   "private": true,
   "scripts": {
     "build": "nuxt build",
@@ -16,5 +15,6 @@
   },
   "devDependencies": {
     "nuxt-compose-icons": "workspace:*"
-  }
+  },
+  "type": "module"
 }

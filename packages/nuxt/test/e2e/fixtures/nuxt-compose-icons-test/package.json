@@ -1,5 +1,5 @@
 {
-  "private": true,
   "name": "nuxt-compose-icons-test",
+  "private": true,
   "type": "module"
 }

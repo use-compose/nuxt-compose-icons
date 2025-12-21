@@ -48,7 +48,7 @@
     "svgo": "4.0.0"
   },
   "devDependencies": {
-    "@nuxt/devtools": "2.7.0",
+    "@nuxt/devtools": "3.1.1",
     "@nuxt/eslint-config": "1.12.1",
     "@nuxt/module-builder": "1.0.2",
     "@nuxt/schema": "4.0.3",

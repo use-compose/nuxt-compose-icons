@@ -11,13 +11,13 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Install dependencies
         uses: ./.github/actions/install-dependencies
         with:
           node_version: ${{ inputs.node_version }}
-          pnpm_version: 8
+          pnpm_version: 9
           cache: 'pnpm'
 
       - name: Build with VitePress
@@ -45,13 +45,13 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Install dependencies
         uses: ./.github/actions/install-dependencies
         with:
           node_version: ${{ inputs.node_version }}
-          pnpm_version: 8
+          pnpm_version: 9
           cache: 'pnpm'
 
       - name: Prepare

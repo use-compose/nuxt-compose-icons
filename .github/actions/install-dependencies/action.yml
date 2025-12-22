@@ -8,32 +8,34 @@ inputs:
   pnpm_version:
     description: 'pnpm version to use'
     required: true
-    default: '8'
+    default: '9'
   cache:
-    description: 'Cache key for pnpm'
+    description: 'Cache strategy for dependencies'
     required: false
     default: 'pnpm'
 
 runs:
   using: 'composite'
   steps:
-    - name: Checkout code
-      uses: actions/checkout@v5
-
     - name: Setup Node.js and pnpm
       uses: pnpm/action-setup@v4
       with:
         version: ${{ inputs.pnpm_version }}
 
     - name: Install Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v6
       with:
         node-version: ${{ inputs.node_version }}
         cache: ${{ inputs.cache }}
 
+    - name: Verify lockfile
+      shell: bash
+      run: |
+        test -f pnpm-lock.yaml || (echo "pnpm-lock.yaml missing at repo root" && ls -la && exit 1)
+
     - name: Install dependencies
       shell: bash
-      run: pnpm install
+      run: pnpm install --frozen-lockfile --ignore-scripts
 
     - name: ls
       shell: bash

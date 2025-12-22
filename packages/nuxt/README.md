@@ -1,10 +1,10 @@
 # Nuxt-Compose-Icons
 
+<img width="1408" height="423" alt="Frame 207" src="https://github.com/user-attachments/assets/4f2a1f2a-57f0-49ca-bf56-075d3df9d043" />
+
 <a href="https://www.npmjs.com/package/nuxt-compose-icons" target="_blank" rel="noopener noreferrer">
   <img src="https://img.shields.io/npm/v/nuxt-compose-icons.svg?style=flat&colorA=000&colorB=C1272D" alt="npm-downloads" />
 </a>
-
-<img width="1400" height="416" alt="Frame 206" src="https://github.com/user-attachments/assets/4aaba37a-4cd8-4ac3-b12b-f98171869a28" />
 
 Compose your own Icon components library, from SVG files to customizable Vue Components that you own.
 

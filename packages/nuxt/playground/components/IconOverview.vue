@@ -1,55 +1,27 @@
 <template>
   <div class="icon-overview">
-    <Component
-      :is="component"
-      v-for="(component, index) in components"
-      :key="index"
-      :color="iconStyles"
-      :stroke="getRandomColor()"
-      :stroke-width="props.strokeWidth"
-      :fill="true ? getRandomColor() : undefined"
-      size="xl"
-      :some-prop="`Component ${index + 1}`"
-    />
-    <AlarmBellIcon />
+    <!-- <input v-model="q" placeholder="Search icons…" />
+    <ul>
+      <li v-for="i in filtered" :key="i.name">
+        <component :is="i.name" class="w-6 h-6" />
+        <span>{{ i.kebabName }}</span>
+      </li>
+    </ul>
+    <Component />
+     :is="component" v-for="(component, index) in components" :key="index" :color="iconStyles"
+    :stroke="getRandomColor()" :stroke-width="props.strokeWidth" :fill="true ? getRandomColor() :
+    undefined" size="xl" :some-prop="`Component ${index + 1}`" /> -->
+    <ArticleIcon v-bind="iconStyles" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref, resolveComponent, type Component } from 'vue';
-import { useComposeIcon } from '../../src/runtime/composables/compose-icon';
-import type { ComposeIconSize } from '../../src/runtime/types';
-import * as AllIcons from './nuxt-compose-icons';
-
-interface IconOverviewProps {
-  size: ComposeIconSize;
-  color: string;
-  stroke?: string;
-  strokeWidth?: string | number;
-  fill?: string;
-}
-
-const props = defineProps<IconOverviewProps>();
-
-// const components = ref<ReturnType<typeof defineAsyncComponent>[]>([]);
-const components = ref<(Component | string)[]>([]);
-
-const loadComponents = () => {
-  return Object.keys(AllIcons).map((file) => {
-    const component = resolveComponent(file);
-    return component;
-  });
-};
-const { iconClasses } = useComposeIcon({ size: 'sm' });
-// eslint-disable-next-line no-console
-console.log('📟 - iconClasses → ', iconClasses);
-
-onMounted(() => {
-  components.value = loadComponents();
-});
-
+import { computed } from 'vue';
+import { IconSize } from '../../src/runtime/types';
+// import { ArticleIcon } from './nuxt-compose-icons';
+// const { searchIcons } = useComposeIconRegistry();
 const iconStyles = computed(() => {
-  return getRandomColor();
+  return { color: getRandomColor(), size: IconSize.XL };
 });
 
 function getRandomColor() {
@@ -64,6 +36,7 @@ function getRandomColor() {
 
 <style>
 .icon-overview {
+  height: 100svh;
   display: grid;
   gap: 4rem;
   grid-template-columns: repeat(auto-fill, minmax(var(--icon-size-xl), 1fr));

@@ -12,7 +12,6 @@ export { pascalCaseToKebabCase, toKebabCase, toPascalCase } from './convert-case
 /*
  * Filesystems utils
  */
-export { createComponentsDir } from './filesystem/create-components-dir';
 export { readDirectoryRecursively } from './filesystem/read-directory-recursively';
 export { writeComponentFile } from './filesystem/write-component-file';
 

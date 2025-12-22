@@ -26,7 +26,10 @@ function generateIconsIndex(components: Component[]) {
     ...sorted.map((c) => {
       // c.filePath is absolute; we want a relative "./Name"
       const base = path.basename(c.filePath).replace(/\.(ts|js|vue)$/, '');
-      return `export { default as ${c.pascalName || base} } from './${base}';`;
+      const declaration = `export { default as ${c.pascalName || base} } from './${base}';`;
+      // declaration += `\n`;
+      // declaration += `export const ${c.pascalName || base}: typeof import("${'./' + base + '.vue'}")['default']`;
+      return declaration;
     }),
     '',
   ];

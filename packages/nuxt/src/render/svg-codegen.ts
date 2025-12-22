@@ -11,12 +11,11 @@ export function createSvgComponentCode(name: string, svgContent: string) {
   const { attributes, children } = parseAndTransformSvg(svgContent);
 
   return `
-<script lang="ts">
     import { defineComponent, h, type PropType } from 'vue';
 
     // TODO: see [ROADMAP](../../ROADMAP.md#build-icons-in-dot-nuxt)
-    // import { useComposeIcon } from 'nuxt-compose-icons/runtime/composables';
-    // import type { IconSizeKeyValue } from 'nuxt-compose-icons/runtime/types';
+    import { useComposeIcon } from '#imports';
+    // import type { IconSizeKeyValue } from 'nuxt-compose-icons/types';
 
     export default defineComponent({
       name: '${name}',
@@ -26,7 +25,7 @@ export function createSvgComponentCode(name: string, svgContent: string) {
         strokeWidth: [String, Number],
         fill: String,
         size: {
-          type: String as PropType<IconSizeKeyValue>,
+          type: String,
           default: 'md'
         }
       },
@@ -39,6 +38,5 @@ export function createSvgComponentCode(name: string, svgContent: string) {
         ]);
       }
     });
- </script>
  `;
 }

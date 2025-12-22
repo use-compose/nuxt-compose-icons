@@ -342,68 +342,69 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
          * We use a literal string template to create the Vue component
          * see https://nuxt-compose-icons.arthurplazanet.com/why-literal-strings-to-create-vue-components
          */
-        nuxt.hook('build:before', async () => {
-          for (const filePath of files) {
-            const fileInfo = path.parse(filePath);
+        // nuxt.hook('build:before', async () => {
+        for (const filePath of files) {
+          const fileInfo = path.parse(filePath);
 
-            if (fileInfo.ext !== '.svg') {
-              continue;
-            }
-
-            // 1. Parse the content (as HTML string)
-            let svgContent = await fsp.readFile(filePath, 'utf-8');
-
-            // 2. Optimize with SVGO
-            svgContent = optimizeSvg(svgContent);
-
-            // TODO: Check if necessary to handle snake case as well
-
-            // TODO: handle double dashes "--", and if ".svg" already present
-            const componentName = generateComponentName(fileInfo.name, options);
-
-            // 3. Create the component code as literal string template
-            // const componentCode = createSvgComponentCode(componentName, svgContent);
-            const componentCode = createSvgComponentCode(componentName, svgContent);
-
-            // 4. Write the component to the file system
-            const generatedFilePath = await writeComponentFile(
-              componentName,
-              componentsDir,
-              componentCode,
-            );
-
-            // 5. Create the "official" component object with the name and path
-            const component = createComponentFromName({
-              name: componentName,
-              shortPath: generatedFilePath,
-              filePath: generatedFilePath,
-            });
-
-            // 5.5 Store the component in array for later use
-            generatedComponents.push(component);
-
-            logger.success(`✅ Generated component: ${componentName} from ${fileInfo.base}`);
-
-            // 6. Add the component to the Nuxt app's components array at build time
-            // nuxt.hook('components:extend', (components) => {
-            //   components.push(component);
-            // });
-            // addComponent({
-            //   name: component.pascalName,
-            //   filePath: component.filePath,
-            // });
-
-            // addImportsSources({
-            //   from: resolver.resolve('runtime/types'),
-            //   imports: [
-            //     {
-            //       name: 'types',
-            //       as: 'types',
-            //     },
-            //   ],
-            // });
+          if (fileInfo.ext !== '.svg') {
+            continue;
           }
-        });
+
+          // 1. Parse the content (as HTML string)
+          let svgContent = await fsp.readFile(filePath, 'utf-8');
+
+          // 2. Optimize with SVGO
+          svgContent = optimizeSvg(svgContent);
+
+          // TODO: Check if necessary to handle snake case as well
+
+          // TODO: handle double dashes "--", and if ".svg" already present
+          const componentName = generateComponentName(fileInfo.name, options);
+
+          // 3. Create the component code as literal string template
+          // const componentCode = createSvgComponentCode(componentName, svgContent);
+          const componentCode = createSvgComponentCode(componentName, svgContent);
+
+          // 4. Write the component to the file system
+          const generatedFilePath = await writeComponentFile(
+            componentName,
+            componentsDir,
+            componentCode,
+          );
+
+          // 5. Create the "official" component object with the name and path
+          const component = createComponentFromName({
+            name: componentName,
+            shortPath: generatedFilePath,
+            filePath: generatedFilePath,
+          });
+
+          // 5.5 Store the component in array for later use
+          generatedComponents.push(component);
+
+          logger.success(`✅ Generated component: ${componentName} from ${fileInfo.base}`);
+
+          // 6. Add the component to the Nuxt app's components array at build time
+          // nuxt.hook('components:extend', (components) => {
+          // components.push(component);
+          // });
+          // addComponent({
+          //   name: component.pascalName,
+          //   filePath: component.filePath,
+          // });
+
+          // addImportsSources({
+          //   from: resolver.resolve('runtime/types'),
+          //   imports: [
+          //     {
+          //       name: 'types',
+          //       as: 'types',
+          //     },
+          //   ],
+          // });
+        }
+
+        // });
 
         logger.info(`📦 - Registering components from ${componentsDir}`);
         // addComponentsDir({
@@ -412,9 +413,6 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
         //   ignore: ['index.ts', 'icon-registry.ts'],
         //   // prefix: options.generatedComponentOptions.prefix,
         // });
-        nuxt.hook('components:extend', (components) => {
-          components.push(...generatedComponents);
-        });
 
         // 7. Generate a CSS file with the icon sizes and add it to the Nuxt app's CSS array at build time
         const cssContent = generateCssFile(iconSizes);
@@ -474,11 +472,14 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
         declare module 'nuxt-compose-icons' {
           export { useComposeIcon, useComposeIconRegistry } from 'nuxt-compose-icons/dist/runtime/composables';
         }
+        declare module 'nuxt-compose-icons/composables' {
+          export { useComposeIcon, useComposeIconRegistry } from 'nuxt-compose-icons/dist/runtime/composables';
+        }
         declare module 'nuxt-compose-icons/utils' {
           export { generateColorVariable, getIconSizeClass } from 'nuxt-compose-icons';
           export { useComposeIcon, useComposeIconRegistry } from 'nuxt-compose-icons/dist/runtime/composables/compose-icon';
         }
-        declare module '@nuxt-compose-icons/types' {
+        declare module 'nuxt-compose-icons/types' {
           export { IconSize } from 'nuxt-compose-icons';
           export type {
             ComposeIconProps,
@@ -503,6 +504,13 @@ export default defineNuxtModule<NuxtComposeIconsOptions>({
         //     prefix: 'Compose',
         //   });
         // });
+        nuxt.hook('components:extend', async (components) => {
+          for (const c of generatedComponents) {
+            components.push({
+              ...c,
+            });
+          }
+        });
       } else {
         logger.error(`Folder does not exist: ${absolutePathToIcons}`);
         throw new Error(`Folder does not exist: ${absolutePathToIcons}`);

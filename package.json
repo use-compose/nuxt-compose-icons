@@ -43,7 +43,7 @@
     "stylelint": "16.23.0",
     "stylelint-config-recommended-vue": "1.6.1",
     "stylelint-config-standard": "39.0.0",
-    "stylelint-config-standard-scss": "15.0.1",
+    "stylelint-config-standard-scss": "16.0.0",
     "syncpack": "14.0.0-alpha.32",
     "typedoc": "0.28.15",
     "typedoc-plugin-markdown": "4.9.0",

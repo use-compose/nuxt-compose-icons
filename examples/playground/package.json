@@ -1,0 +1,20 @@
+{
+  "name": "playground",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
+  },
+  "dependencies": {
+    "@nuxt/kit": "4.2.2",
+    "nuxt": "4.2.1",
+    "vue": "3.6.0-alpha.2",
+    "vue-router": "4.6.3"
+  },
+  "devDependencies": {
+    "nuxt-compose-icons": "workspace:*"
+  },
+  "type": "module"
+}

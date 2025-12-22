@@ -14,7 +14,22 @@ This module supports multiple configuration options to control icon generation, 
 export default defineNuxtConfig({
   modules: ['nuxt-compose-icons'],
   composeIcons: {
+    reRunOnBuild: true,
     pathToIcons: './assets/icons',
+    generatedComponentOptions: {
+      prefix: 'My',
+      suffix: 'Icon',
+      case: 'kebab',
+      componentsDestDir: 'components/generated',
+    },
+    iconSizes: {
+      xs: '0.5rem',
+      sm: '0.875rem',
+      md: '1rem',
+      lg: '1.5rem',
+      xl: '2.5rem',
+    },
+    dryRun: false,
   },
 });
 ```
@@ -23,6 +38,12 @@ export default defineNuxtConfig({
 
 ## Options
 
+### `reRunOnBuild`
+
+- **Type:** `boolean`
+- **Default:** `true`
+- Whether to re-generate icons on each build. Set to `false` to only generate icons once during initial setup.
+
 ### `pathToIcons`
 
 - **Type:** `string`
@@ -30,15 +51,9 @@ export default defineNuxtConfig({
 - Directory containing your `.svg` icon files.
 - The module will scan and convert each file into a Vue component.
 
-```ts
-composeIcons: {
-  pathToIcons: './assets/icons',
-}
-```
-
 ---
 
-### `iconComponentList`
+### 🚧 (see [Roadmap](../roadmap.md)) `iconComponentList`
 
 - **Type:** `Record<string, Component>`
 - **Default:** `{}`
@@ -49,15 +64,6 @@ Use this to:
 - Register pre-existing or third-party icon components
 - Integrate with other icon sets
 - Skip file system parsing
-
-```ts
-composeIcons: {
-  iconComponentList: {
-    'custom-icon': CustomIcon,
-    'logo': LogoIcon,
-  }
-}
-```
 
 > Component names are still processed using `prefix`, `suffix`, and `case` rules.
 
@@ -114,12 +120,6 @@ composeIcons: {
 - **Default:** `false`
 - Enables preview mode without writing files. Logs intended component names and exits before build continues.
 
-```ts
-composeIcons: {
-  dryRun: true;
-}
-```
-
 ---
 
 ## CSS Integration
@@ -138,7 +138,7 @@ You can override them or provide your own themes using these variables.
 You **must provide either**:
 
 - `pathToIcons`: to generate icons from `.svg` files
-- **or** `iconComponentList`: to manually register existing components
+- **or** 🚧 (see [Roadmap](../roadmap.md)) `iconComponentList`: to manually register existing components
 
 Providing neither will result in a build error.
 

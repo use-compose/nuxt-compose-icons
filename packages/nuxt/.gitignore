@@ -61,6 +61,9 @@ src/runtime/components/icons-generated
 # Generated CSS
 src/runtime/assets/compose-sizes.css
 
+# Generated Icon Registry
+src/runtime/utils/icon-registry.ts
+
 # Playwright generated report files
 test/coverage
 test/screenshots

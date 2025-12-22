@@ -6,7 +6,6 @@
   <img src="https://img.shields.io/npm/v/nuxt-compose-icons.svg?style=flat&colorA=000&colorB=C1272D" alt="npm-downloads" />
 </a>
 
-
 Compose your own Icon components library, from SVG files to customizable Vue Components that you own.
 
 <img width="200" alt="logo" src="https://github.com/user-attachments/assets/71be7ce7-54ef-401e-84df-8dde0891cc9d" />

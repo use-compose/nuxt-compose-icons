@@ -21,11 +21,11 @@ jobs:
         uses: ./.github/actions/install-dependencies
         with:
           node_version: ${{ inputs.node_version }}
-          pnpm_version: 8
+          pnpm_version: 9
           cache: pnpm
 
       - name: Prepare playground
-        run: pnpm dev:prepare
+        run: pnpm --filter ./packages/nuxt/playground exec nuxi prepare
 
       - name: Install Playwright browsers
         run: pnpm exec playwright-core install --with-deps

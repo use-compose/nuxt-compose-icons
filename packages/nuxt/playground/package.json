@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@use-compose/ui": "0.3.0",
-    "nuxt": "4.2.1"
+    "nuxt": "4.2.2"
   },
   "devDependencies": {
     "nuxt-compose-icons": "workspace:*"
